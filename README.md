@@ -1,2 +1,61 @@
-# so_long
-[42 Cursus] This project is a very small 2D game.
+<h1 align="center">
+ so_long  (⚠️ in development)
+</h1>
+
+<p align="center">
+	<b><i>And thanks for all the fish!</i></b><br>
+</p>
+
+<p align="center">
+	<img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/mewmewdevart/so_long?color=6272a4" />
+	<img alt="Main language" src="https://img.shields.io/github/languages/top/mewmewdevart/so_long?color=6272a4"/>
+	<img alt="License" src="https://img.shields.io/github/license/mewmewdevart/so_long?color=6272a4"/>
+</p>
+
+## 💡 About the project
+> _This project is a very small 2D game. Its purpose is to make you work with textures, sprites, and some other very basic gameplay elements. (Version: 2.3) This project uses the 42 school's graphical library, MiniLibX. <br>
+> _This project is not meant to be a fully-fledged game, rather an introduction to a minimal, event-wise graphic library, developed over the course.
+
+## 📁 Files/
+
+## 🛠️ Usage
+
+### Requirements
+
+**Linux and MacOS**
+
+This project requires [GNU Compiler Collection](https://gcc.gnu.org/), [GNU Make](https://www.gnu.org/software/make/) compiler and the Internet to clone [MiniLibX](https://github.com/42Paris/minilibx-linux#readme) in the project folder.<br>
+❗️| Make sure you have all the required tools installed on your local machine then continue with these steps.<br>
+
+**Windows**
+
+You'll need to install Xserver in your machine seeing as the library runs on X-Window system. You may also use WSL on Windows 11 and run ```wsl --update``` and you should be good to go.
+
+### Instructions to run the game :
+
+**0. Download the archives**
+
+```bash
+# Clone the repository
+$ git clone git@github.com:mewmewdevart/so_long.git
+
+# Enter into the directory
+$ cd so_long/
+```
+
+**1. Running the Game**
+```bash
+# Run the command make root directory
+$ make
+
+# Use that command to clone the Minilibx inside the libs/ folder
+$ make call_mlx
+
+# This will compile the executable file so_long to execute its necessary run the archive
+# 		+ any map of your choice (or you could even make a map of your own)
+$ cd bin/
+$ ./so_long ../resources/maps/map.ber
+```
+//soon
+
+<p align="center"> Developed with love 💜 by Larissa Cristina Benedito (Mewmew/Larcrist). </p>
