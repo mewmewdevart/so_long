@@ -1,0 +1,93 @@
+@echo "______________	  ___   _____________________"
+@echo "7     77     7	  7  7   7     77     77     7"
+@echo "|  ___!|  7  |	  |  |   |  7  ||  _  ||   __!"
+@echo "!__   7|  |  |	  |  !___|  |  ||  7  ||  !  7"
+@echo "7     ||  !  |____|     7|  !  ||  |  ||     |"
+@echo "!_____!!_____!____!_____!!_____!!__!__!!_____!"
+
+- Project
+        So_long will help you improve your skills in the following areas: window management, event handling, colors, textures, and so forth
+
+- Turn files:
+        Makefile, *.h, *.c, maps, textures
+
+- External Functs
+        • open, close, read, write, malloc, free, perror, strerror, exit
+        • All functions of the math library (-lm compiler option, man man 3 math)
+        • All functions of the MiniLibX
+        • ft_printf and any equivalent YOU code
+
+- Mandatory part 1
+1. Game
+        • The player’s goal is to collect every collectible present on the map, then escape chosing the shortest possible route. 
+        • The W, A, S, and D keys must be used to move the main character.
+        • The player should be able to move in these 4 directions: up, down, left, right.       
+        • The player should not be able to move into walls.
+        • At every move, the current number of movements must be displayed in the shell.
+        • You have to use a 2D view (top-down or profile).
+        • The game doesn’t have to be real time.
+        • Although the given examples show a dolphin theme, you can create the world you want.
+
+2. Graphic management
+        • Your program has to display the image in a window.
+        • The management of your window must remain smooth (changing to another window, minimizing, and so forth).
+        • Pressing ESC must close the window and quit the program in a clean way.
+        • Clicking on the cross on the window’s frame must close the window and quit the
+        program in a clean way.
+        • The use of the images of the MiniLibX is mandatory.
+
+3. Maps
+        • The map has to be constructed with 3 components: walls, collectibles, and free
+        space.
+        • The map can be composed of only these 5 characters:
+        0 for an empty space,
+        1 for a wall,
+        C for a collectible,
+        E for a map exit,
+        P for the player’s starting position.
+        Here is a simple valid map:
+
+        1111111111111
+        10010000000C1
+        1000011111001
+        1P0011E000001
+        1111111111111
+
+        The map must contain 1 exit, at least 1 collectible, and 1 starting position to be valid.
+        ❗| If the map contains a duplicates characters (exit/start), you should display an error message.
+
+        The map must be rectangular.
+        • The map must be closed/surrounded by walls. If it’s not, the program must return
+        an error.
+        • You have to check if there’s a valid path in the map.
+        • You must be able to parse any kind of map, as long as it respects the above rules.
+        • Another example of a minimal .ber map
+
+        1111111111111111111111111111111111
+        1E0000000000000C00000C000000000001
+        1010010100100000101001000000010101
+        1010010010101010001001000000010101
+        1P0000000C00C0000000000000000000C1
+        1111111111111111111111111111111111
+
+        If any misconfiguration of any kind is encountered in the file, the program must exit in a clean way, and return "Error\n" followed by an explicit error message of
+your choice.
+
+00. KEY CODES:
+
+ESC: 65307
+
+A: 97
+W: 119
+D: 100
+S: 115
+Q: 113
+E: 101
+O: 111
+P: 112
+
+left: 65361
+up: 65362
+right: 65363
+down: 65364
+
