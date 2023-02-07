@@ -17,6 +17,12 @@
 > _This project is not meant to be a fully-fledged game, rather an introduction to a minimal, event-wise graphic library, developed over the course.
 
 ## 📁 Files/
+* ```include/``` The headerfile of the so_long project
+* ```bin/``` Where the final executable binary file goes
+* ```libs/```  The libraries (My onw libft +  minilibx (you have to clone it).
+* ```objs/``` Keeps all the .o files produced throughout the compilation process.
+* ```resources/```  All sprites used in the game in .xpm format + some maps (for running and testing the game)
+* ```srcs/```  Where the artcode happens!<br>
 
 ## 🛠️ Usage
 
@@ -25,11 +31,11 @@
 **Linux and MacOS**
 
 This project requires [GNU Compiler Collection](https://gcc.gnu.org/), [GNU Make](https://www.gnu.org/software/make/) compiler and the Internet to clone [MiniLibX](https://github.com/42Paris/minilibx-linux#readme) in the project folder.<br>
-❗️| Make sure you have all the required tools installed on your local machine then continue with these steps.<br>
 
 **Windows**
 
-You'll need to install Xserver in your machine seeing as the library runs on X-Window system. You may also use WSL on Windows 11 and run ```wsl --update``` and you should be good to go.
+You'll need to install Xserver in your machine seeing as the library runs on X-Window system. You may also use WSL on Windows 11 and run ```wsl --update``` and you should be good to go. <br>
+❗️| Make sure you have all the required tools installed on your local machine then continue with these steps.<br>
 
 ### Instructions to run the game :
 
