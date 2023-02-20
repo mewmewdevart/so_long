@@ -7,4 +7,10 @@
 # include <fcntl.h>
 
 void    ft_error(int n);
+void ft_map_open(char *map);
+void ft_map_extension(char *map);
+int ft_map_composed(char *map);
+
+int	ft_strcmp(const char *s1, const char *s2);
+
 #endif
