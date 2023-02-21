@@ -12,48 +12,39 @@
 
 #include "../include/so_long.h"
 
-void	ft_error(int n)
+
+void	ft_error(char *local, int n)
 {
-	if (n == 22 || n == 52)
+	if (n == 5)
 	{
-		ft_printf("[EINVAL] or [EBADE] Error: Invalid argument/Invalid exchange. \n");
-		ft_printf("Recommendation: ./so.long <filename>.ber\n");
+		ft_printf("%s: %s\n", local, strerror(n));
+		ft_printf("Input/output error\n");
+		exit(n);
+	}
+	else if (n == 21)
+	{
+		ft_printf("%s: %s\n", local, strerror(n));
+		ft_printf("This is a directory. Try to open one file! \n");
+		exit(n);
+	}
+	else if (n == 22 || n == 52)
+	{
+		ft_printf("%s: %s\n", local, strerror(n));
+		ft_printf("Usage: ./so.long <filename>.ber\n");
 		exit(n);
 	}
 	else if (n == 24)
 	{
-		ft_printf("[EMFILE] Error: \n");
+		ft_printf("%s: %s\n", local, strerror(n));
 		ft_printf("Too many open files!\n");
 		exit(n);
 	}
+	else if (n == 59)
+	{
+		ft_printf("%s: %s\n", local, strerror(n));
+		ft_printf("Bad font file format!\n");
+		exit(n);
+	}
+	ft_printf("%s: %s\n", local, strerror(n));
 	exit(n);
-}
-
-//function to open the map
-void ft_map_open(char *map)
-{
-	ft_map_extension(map);
-}
-
-//function to check the extension is .ber
-void	ft_map_extension(char *map)
-{
-	char	*extension;
-	char	*file_extension;
-
-	extension = ".ber";
-	file_extension = ft_strrchr(map, '.');
-	if (map[ft_strlen(map) - 1] == '/')
-		ft_error(24);
-	else if (file_extension && ft_strcmp(file_extension, extension) == 0)
-		ft_printf("It is a good extension!\n");
-	else
-		ft_error(22);
-}
-
-//function to read if the function have walls etc...
-int ft_map_composed(char *map)
-{
-	ft_printf("%s", map);
-	return(0);
 }
