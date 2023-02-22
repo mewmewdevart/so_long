@@ -6,7 +6,7 @@
 /*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:47:49 by larcrist          #+#    #+#             */
-/*   Updated: 2023/02/21 14:47:51 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/02/22 17:41:42 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	ft_map_extension(char *map)
 //function to read if the map have walls etc...
 int	ft_map_composed(char *map)
 {
+
 	ft_printf("%s", map);
 	return(0);
 }
