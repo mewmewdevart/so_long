@@ -6,14 +6,13 @@
 /*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 16:36:17 by larcrist          #+#    #+#             */
-/*   Updated: 2023/02/20 16:36:19 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:17:24 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-
-void	ft_error(char *local, int n)
+void	ft_error_map(char *local, int n)
 {
 	if (n == 5)
 	{
@@ -27,22 +26,10 @@ void	ft_error(char *local, int n)
 		ft_printf("This is a directory. Try to open one file! \n");
 		exit(n);
 	}
-	else if (n == 22 || n == 52)
+	else if (n == 22 || n == 52 || n == 59 || n == 24)
 	{
 		ft_printf("%s: %s\n", local, strerror(n));
 		ft_printf("Usage: ./so.long <filename>.ber\n");
-		exit(n);
-	}
-	else if (n == 24)
-	{
-		ft_printf("%s: %s\n", local, strerror(n));
-		ft_printf("Too many open files!\n");
-		exit(n);
-	}
-	else if (n == 59)
-	{
-		ft_printf("%s: %s\n", local, strerror(n));
-		ft_printf("Bad font file format!\n");
 		exit(n);
 	}
 	ft_printf("%s: %s\n", local, strerror(n));

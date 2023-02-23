@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/23 13:21:47 by larcrist          #+#    #+#             */
+/*   Updated: 2023/02/23 13:21:48 by larcrist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -19,17 +31,20 @@
 
 typedef struct s_ptr
 {
-    void *mlx;
-    void *window;
-}   t_ptr;
+	void	*mlx;
+	void	*window;
+}	t_ptr;
 
-void	ft_error(char *local, int n);
-int ft_map_open(char *map);
-int ft_map_extension(char *map);
-int ft_map_composed(char *map);
+int		ft_map_open(char *map);
+int		ft_map_extension(char *map);
+int		ft_map_composed(char *map);
 
-int ft_check_keys(int key, t_ptr *ptr);
+void	ft_error_map(char *local, int n);
+void	ft_error_game(char *local, int n);
+void	ft_error_graphics(char *local, int n);
 
-int	ft_strcmp(const char *s1, const char *s2);
+int		ft_check_keys(int key, t_ptr *ptr);
+
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif
