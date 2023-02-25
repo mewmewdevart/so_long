@@ -58,7 +58,7 @@ $ make
 
 # This will compile the executable file so_long to execute its necessary run the archive
 # 		+ any map of your choice (or you could even make a map of your own)
-$ ./bin/so_long ./rcsc/map.ber
+$ ./bin/so_long ./rscs/map.ber
 ```
 **2. How to play**
 
