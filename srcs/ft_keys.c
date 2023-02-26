@@ -31,6 +31,6 @@ int	ft_check_keys(int key, t_ptr *ptr)
 	else if (key == D || key == RIGHT)
 		ft_printf("TECLA D OU RIGHT\n");
 	else
-		ft_printf("You pressed the key: %c -- %d \n", key, key);
+		ft_printf("\nYou pressed the key: %c -- %d \n", key, key);
 	return (0);
 }

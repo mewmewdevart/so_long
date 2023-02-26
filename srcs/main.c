@@ -12,13 +12,6 @@
 
 #include "../include/so_long.h"
 
-int count_player;
-int count_exit;
-int count_collectible;
-int count_wall;
-int count_empty;
-
-
 int	main(int argc, char *argv[])
 {
 	void	*ptr_mlx;
@@ -33,6 +26,7 @@ int	main(int argc, char *argv[])
 		ft_error_map("argument", 22);
 	if (argv[1])
 		ft_map_open(argv[1]);
+	//calling for game
 	mlx_key_hook(ptr.window, ft_check_keys, &ptr);
 	mlx_loop(ptr_mlx);
 	return (0);

@@ -32,6 +32,11 @@ void	ft_error_map(char *local, int n)
 		ft_printf("Usage: ./so.long <filename>.ber\n");
 		exit(n);
 	}
+	else if (n == 61)
+	{
+		ft_printf("%s: %s\n", local, strerror(n));
+		ft_printf("No data available! Try create one valid map!\n");
+	}
 	ft_printf("%s: %s\n", local, strerror(n));
 	exit(n);
 }

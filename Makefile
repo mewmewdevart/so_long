@@ -25,7 +25,8 @@ MLX_PATH = $(LIBS_PATH)mlx/
 SRCS_FILES = ft_errors.c \
 	ft_utils.c \
 	ft_maps.c \
-	ft_keys.c
+	ft_map_contents.c \
+	ft_keys.c \
 
 SOURCES = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 

@@ -24,17 +24,17 @@ int	ft_strcmp(const char *s1, const char *s2)
 }
 
 //locate all ocurrence of the character in string
-int ft_strchr_all_oc(char *str, char ch)
+int	ft_strchr_all_oc(char *str, char ch)
 {
-    int count;
-    char *ptr;
+	int		count;
+	char	*ptr;
 
-    count = 0;
-    ptr = ft_strchr(str, ch);
-    while(ptr != NULL)
-    {
-        ptr = ft_strchr(ptr + 1, ch);
-        count++;
-    }
-    return(count);
+	count = 0;
+	ptr = ft_strchr(str, ch);
+	while (ptr != NULL)
+	{
+		ptr = ft_strchr(ptr + 1, ch);
+		count++;
+	}
+	return (count);
 }
