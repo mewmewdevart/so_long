@@ -6,7 +6,7 @@
 /*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:47:49 by larcrist          #+#    #+#             */
-/*   Updated: 2023/02/22 17:41:42 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/02/25 20:20:40 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ int	ft_map_open(char *map)
 		close (fd);
 		return (-1);
 	}
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		free (line);
-		line = get_next_line(fd);
-	}
+	line = "";
+    while (line != NULL)
+    {
+        line = get_next_line(fd);
+        ft_map_composed(line);
+        free(line);
+    }
 	close(fd);
 	return (0);
 }
@@ -72,9 +73,86 @@ int	ft_map_extension(char *map)
 	return (1);
 }
 
-//function to read if the map have walls etc...
+//function to check the content of map
 int	ft_map_composed(char *map)
 {
-	ft_printf("%s", map);
+	int count_player;
+    int count_exit;
+    int count_collectible;
+    int count_wall;
+    int count_empty;
+
+    count_player = 0;
+    count_exit = 0;
+    count_collectible = 0;
+    count_wall = 0;
+    count_empty = 0;
+
+	if (map == NULL)
+		return(0);
+    while (*map != '\0')
+	{
+        if (*map  == PLAYER)
+            count_player++;
+        else if (*map == EXIT)
+            count_exit++;
+        else if (*map  == COLLECTIBLE)
+            count_collectible++;
+        else if (*map  == WALL)
+            count_wall++;
+        else if (*map  == EMPTY )
+            count_empty++;
+        map++;
+    }
+	if (count_player > 0)
+		ft_printf("Count Player: %d\n", count_player);
+	if (count_exit > 0)
+		ft_printf("Count Exit: %d\n", count_exit);
+	if (count_collectible > 0)
+		ft_printf("Count Collectible: %d\n", count_collectible);
+	if (count_wall > 0)
+		ft_printf("Count Wall: %d\n", count_wall);
+	if (count_empty > 0)
+		ft_printf("Count Empty: %d\n", count_empty);
+	ft_printf("\n");
 	return (0);
 }
+/* function to read if the map have walls etc...
+int	ft_map_composed(char *map)
+{
+    int count_player;
+    int count_exit;
+    int count_collectible;
+    int count_wall;
+    int count_empty;
+
+    count_player = 0;
+    count_exit = 0;
+    count_collectible = 0;
+    count_wall = 0;
+    count_empty = 0;
+
+    if (map == NULL)
+		return(0);
+	
+	count_player += ft_strchr_all_oc(map, PLAYER);
+    count_exit += ft_strchr_all_oc(map, EXIT);
+    count_collectible += ft_strchr_all_oc(map, COLLECTIBLE);
+    count_wall += ft_strchr_all_oc(map, WALL);
+    count_empty += ft_strchr_all_oc(map, EMPTY);
+
+	if (count_player > 0)
+		ft_printf("Count Player: %d\n", count_player);
+	if (count_exit > 0)
+		ft_printf("Count Exit: %d\n", count_exit);
+	if (count_collectible > 0)
+		ft_printf("Count Collectible: %d\n", count_collectible);
+	if (count_wall > 0)
+		ft_printf("Count Wall: %d\n", count_wall);
+	if (count_empty > 0)
+		ft_printf("Count Empty: %d\n", count_empty);
+	ft_printf("\n");
+
+	return (0);
+}
+*/

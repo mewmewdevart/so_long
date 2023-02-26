@@ -12,6 +12,13 @@
 
 #include "../include/so_long.h"
 
+int count_player;
+int count_exit;
+int count_collectible;
+int count_wall;
+int count_empty;
+
+
 int	main(int argc, char *argv[])
 {
 	void	*ptr_mlx;
