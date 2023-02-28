@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_maps.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 14:47:49 by larcrist          #+#    #+#             */
-/*   Updated: 2023/02/26 13:31:29 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/02/28 14:51:02 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int ft_map_open(char *map)
 {
 	int fd;
-	char *line;
+    char *line;
 
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
@@ -39,7 +39,10 @@ int ft_map_open(char *map)
 			free(line);
 			return (-1);
 		}
-		ft_map_composed(line);
+        //ft_count_aligned(map, count);
+        //count++;
+        //ft_map_behaviors(line); one function to call
+        ft_map_composed(line);
 		/* t_map_content map_info = ft_map_composed(line);
 		ft_map_composed_valid(&map_info); */
 		free(line);
@@ -48,7 +51,6 @@ int ft_map_open(char *map)
 	close(fd);
 	return (0);
 }
-
 
 
 //function to check the extension is .ber
@@ -82,4 +84,17 @@ int	ft_map_extension(char *map)
 		return (-1);
 	}
 	return (1);
+}
+
+t_map_content   ft_map_start(void)
+{
+    t_map_content   layers;
+
+    layers.count_player = 0;
+    layers.count_exit = 0;
+    layers.count_collectible = 0;
+    layers.count_wall = 0;
+    layers.count_empty = 0;
+
+    return(layers);
 }

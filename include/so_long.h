@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 13:21:47 by larcrist          #+#    #+#             */
-/*   Updated: 2023/02/26 09:30:20 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/02/28 14:35:52 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,12 @@ int		ft_strchr_all_oc(char *str, char ch);
 int		ft_map_open(char *map);
 int		ft_map_extension(char *map);
 int		ft_isrectangular(char *map);
+//int     ft_map_behaviors(char *map);
 int		ft_count_rows(char *map, int size_content);
 int		ft_count_cols(char *map, int size_content);
+int     ft_check_walls(char *map);
+int     ft_count_aligned(char *map, int size_content);
+t_map_content   ft_map_start(void);
 t_map_content	ft_map_composed(char *map);
 int ft_map_composed_valid(t_map_content *map_info);
 //int		ft_map_composed(char *map);
