@@ -82,7 +82,7 @@ $ ./bin/so_long ./rscs/map.ber
 
 //soon
 
-## 🍜  License
+## 📜  License
 This project is licensed under the terms of the [LICENSE](https://github.com/mewmewdevart/so_long/blob/main/LICENSE) file. See the file for more details. <br>
 
 <p align="center"> Developed with love 💜 by Larissa Cristina Benedito (Mewmew/Larcrist). </p>
