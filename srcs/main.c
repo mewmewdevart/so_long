@@ -25,8 +25,10 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		ft_error_map("argument", 22);
 	if (argv[1])
-		ft_map_open(argv[1]);
-	//calling for game
+	{
+		if (ft_open_map(argv[1]) == -1)
+			ft_error_map("failed to open or read map file", 23);
+	}
 	mlx_key_hook(ptr.window, ft_check_keys, &ptr);
 	mlx_loop(ptr_mlx);
 	return (0);

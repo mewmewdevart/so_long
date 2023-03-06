@@ -12,116 +12,77 @@
 
 #include "../include/so_long.h"
 
-int ft_read_map(char *map)
+int	ft_check_map(char *map, t_size_map *map_size)
 {
-	t_size_map map_size;
-	//t_map_content map_data = ft_map_start();
-	int size;
-	//int ret;
+	int	char_index;
 
-	size = ft_strlen(map);
-	map_size.matrice = (char *)malloc(sizeof(char) * (size + 1));
-	if (!map_size.matrice)
+	char_index = -1;
+	while (map[++char_index])
 	{
-        ft_error_map("Falha ao mallocar memoria", 1);
-        return (-1);
-    }
-	ft_strlcpy(map_size.matrice, map, size + 1);
-	if (ft_count_cols_rows(map_size.matrice, &map_size) == -1)
-	{
-        free(map_size.matrice);
-        return (-1);
-    }
-	/*
-	ft_map_composed(map);
-    ret = ft_map_composed_valid(&map_data);
-    if (ret == -1)
-	{	
+		if (map[char_index] == '\n')
+		{
+			if (ft_check_cols(map_size, map_size->cols) == -1)
+				return (-1);
+			map_size->rows++;
+			if (map_size->cols == 0)
+				map_size->cols = char_index;
+		}
+	}
+	if (ft_check_cols(map_size, map_size->cols) == -1)
 		return (-1);
-	}*/
-	//ft_printf("Rows: %d, Cols: %d, matrice: %s\n", map_size.rows, map_size.cols, map_size.matrice);
-	ft_printf("%s", map);
-	free(map_size.matrice);
-	return(1);
+	return (1);
+}
+
+int	ft_check_cols(t_size_map *map_size, int cols_count)
+{
+	if (map_size->cols == 0)
+		map_size->cols = cols_count;
+	else if (cols_count != map_size->cols)
+	{
+		ft_error_map("Invalid map! The lines are not the same size.", 61);
+		return (-1);
+	}
+	return (1);
 }
 
 int	ft_count_cols_rows(char *map, t_size_map *map_size)
 {
-	int	i;
-	int	count_cols;
-    int line_number;
-
-	i = 0;
-	count_cols = 0;
 	map_size->rows = 0;
 	map_size->cols = 0;
-    line_number = 1;
-	while(map[i] != '\0')
-	{
-		if(map[i] == '\n')
-			count_cols++;
-		if(map[i] == '\n')
-		{
-			map_size->rows++;
-			if (map_size->cols  == 0)
-				map_size->cols  = count_cols;
-			else if(count_cols != map_size->cols )
-			{
-				ft_error_map("Invalid map!", 61);
-				return(-1);
-			}
-			count_cols = 0;
-            line_number++;
-		}
-		i++;
-	}
-	if (count_cols > 0)
-	{
-		map_size->rows++;
-		if (map_size->cols  == 0)
-			map_size->cols  = count_cols;
-		else if (count_cols != map_size->cols)
-		{
-			ft_printf("Error: o número de colunas na linha %d é diferente das outras linhas.\n", line_number);
-			ft_error_map("Invalid map!", 61);
-			return(-1);
-		}
-	}
-	if (map_size->rows > map_size->cols )
-	{
-		ft_printf("Error: a string não forma um retângulo.\n");
-		ft_error_map("Invalid map!", 61);
-		return(-1);
-	}
-	return(1);
+	return (ft_check_map(map, map_size));
 }
-
-
 
 /*
-//Checks if the map has the main elements to be a valid map
-
-//Checks if the map is closed by walls on its border : need one revision
-int ft_check_walls(char *map)
+int	ft_check_map(char *map, t_size_map *map_size)
 {
-	int i;
+	int	i;
 
-	i = 0;
-	while(map[i] != '\0')
+	i = -1;
+	while (map[++i])
 	{
-		if(map[i] == '\n')
+		if (map[i] == '\n')
 		{
-			if(map[i - 1] == WALL)
-				continue;
+			if (ft_check_cols(map_size, map_size->cols) == -1)
+				return (-1);
+			map_size->rows++;
+			if (map_size->cols == 0)
+				map_size->cols = i;
 			else
+				map_size->cols = map_size->cols;
+			if (map[i + 1] == '\0' || map[i + 1] == '\n')
 			{
-				ft_error_map("Invalid map!", 61);
-				return(-1);
-			}
+				ft_error_map("Invalid map! Map drawing doesn't form a rectangle.", 61);
+				return (-1);
 		}
-		i++;
+		else if (map[i] != PLAYER && map[i] != WALL && map[i] != EXIT)
+		{
+			ft_error_map("Invalid character in the map.", 60);
+			return (-1);
+		}
 	}
-	ft_printf("\n É protegido por muros! %s\n", map);
-	return(1);
+	if (ft_check_cols(map_size, map_size->cols) == -1)
+		return (-1);
+	return (1);
 }
+
 */

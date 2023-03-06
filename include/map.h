@@ -38,36 +38,30 @@ typedef struct s_size_map {
 } t_size_map;
 
 
-//Uses get_next_line to read the file and check the map errors
-int	ft_map_open(char *map);
+// Uses get_next_line to read the file and check the map errors
+int ft_open_map(char *map);
 
-//Check if the map have the correct path and .ber extension
+// Function to read the characters reserved in the map passed as a parameter and allocate memory for it
+int	ft_read_map(char *map);
+
+// Check if the map have the correct path and .ber extension
 int	ft_map_extension(char *map);
 
-//takes the map file and returns a struct containing the map information
-//t_map *ft_data_map(char *map);
-
-//Clear all structures of map before checking
-t_map_content	ft_map_start(void);
-
-//Check if the all content inside the map is valid
-int ft_read_map(char *map);
-
-//Check if the read file map have or not cols and rows 
+// Check if the read file map have or not cols and rows 
 //		+ check if have a rectangule format
+int	ft_check_map(char *map, t_size_map *map_size);
 int	ft_count_cols_rows(char *map, t_size_map *map_size);
+int	ft_check_cols(t_size_map *map_size, int cols_count);
 
-//Checks if the map is closed by walls on its border
-int	ft_check_walls(char *map);
-
-//Checks if the map has the main elements to be a valid map
+// Clear all structures of map before checking
+t_map_content	ft_map_start(void);
+// Function receives a string that represents a map and counts a number of distinct elements present in the map
 t_map_content ft_map_composed(char *map);
-int	ft_map_composed_valid(t_map_content *map_layers);
 
-//Count the all elements have inside the map
-t_map_content	ft_map_composed(char *map);
+// Verifies that the map contains the correct number of players, exits and collectibles
+int ft_map_composed_valid(t_map_content *map_data);
 
-//Prints a custom error message and exits the program
+// Prints a custom error message and exits the program
 void	ft_error_map(char *local, int n);
 
 #endif
