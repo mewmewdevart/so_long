@@ -27,6 +27,7 @@ SRCS_FILES = ft_errors.c \
 	ft_maps.c \
 	ft_map_contents.c \
 	ft_keys.c \
+	ft_data.c \
 
 SOURCES = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 

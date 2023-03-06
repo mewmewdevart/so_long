@@ -11,49 +11,39 @@
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-//function to open the map
+
+//Uses get_next_line to read the file and check the map errors
 int ft_map_open(char *map)
 {
-	int fd;
+    int fd;
     char *line;
 
-	fd = open(map, O_RDONLY);
-	if (fd == -1)
-	{
-		ft_error_map(map, 5);
-		return (-1);
-	}
-
-	if (ft_map_extension(map) == -1)
-	{
-		close(fd);
-		return (-1);
-	}
-
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		if (!ft_isrectangular(line))
-		{
-			close(fd);
-			ft_error_map(map, 61);
-			free(line);
-			return (-1);
-		}
-        //ft_count_aligned(map, count);
-        //count++;
-        //ft_map_behaviors(line); one function to call
-        ft_map_composed(line);
-		/* t_map_content map_info = ft_map_composed(line);
-		ft_map_composed_valid(&map_info); */
-		free(line);
-	}
-
-	close(fd);
-	return (0);
+    fd = open(map, O_RDONLY);
+    if (fd == -1)
+    {
+        ft_error_map(map, 5);
+        return (-1);
+    }
+    if (ft_map_extension(map) == -1)
+    {
+        close(fd);
+        return (-1);
+    }
+    while ((line = get_next_line(fd)))
+    {
+        if (!ft_read_map(line))
+        {
+            free(line);
+            close(fd);
+            return (-1);
+        }
+        free(line);
+    }
+    close(fd);
+    return (0);
 }
 
-
-//function to check the extension is .ber
+//Check if the map have the correct path and .ber extension
 int	ft_map_extension(char *map)
 {
 	char		*extension;
@@ -76,7 +66,6 @@ int	ft_map_extension(char *map)
 			return (-1);
 		}
 		file_count++;
-		ft_printf("It is a good extension!\n");
 	}
 	else
 	{
@@ -84,17 +73,4 @@ int	ft_map_extension(char *map)
 		return (-1);
 	}
 	return (1);
-}
-
-t_map_content   ft_map_start(void)
-{
-    t_map_content   layers;
-
-    layers.count_player = 0;
-    layers.count_exit = 0;
-    layers.count_collectible = 0;
-    layers.count_wall = 0;
-    layers.count_empty = 0;
-
-    return(layers);
 }

@@ -12,141 +12,116 @@
 
 #include "../include/so_long.h"
 
-/*
-int ft_map_behaviors(char *map)
+int ft_read_map(char *map)
 {
-    ft_map_start();
-    ft_isrectangular(map);
-    ft_map_composed(map);
+	t_size_map map_size;
+	//t_map_content map_data = ft_map_start();
+	int size;
+	//int ret;
 
-    return (1);
-}
-*/
-/*  FUNÇÃO PRINCIPAL QUE PRECISA SER CHAMADA DENTRO DO FT_MAPS NO FD
-int ft_count_aligned(char *map, int size_content)
-{
-    int rows;
-    int cols;
-    int i;
-    int j;
-
-    j = i = 0;
-    while(i < size_content)
-    {
-        if(map[i] == '\n')
-            rows++;
-        while(j < size_content)
-        {
-            if(map[j] == '\n')
-                cols++;
-            j++;
-        }
-        i++;
+	size = ft_strlen(map);
+	map_size.matrice = (char *)malloc(sizeof(char) * (size + 1));
+	if (!map_size.matrice)
+	{
+        ft_error_map("Falha ao mallocar memoria", 1);
+        return (-1);
     }
-
-    //verificar se é retangulo
-    if (cols > rows)
-    {
-        if(ft_check_walls(map) == 1 )
-            ft_map_composed(map);
+	ft_strlcpy(map_size.matrice, map, size + 1);
+	if (ft_count_cols_rows(map_size.matrice, &map_size) == -1)
+	{
+        free(map_size.matrice);
+        return (-1);
     }
-    else
-    {
-        return(-1);
-        ft_error_map("aligned",61);
-    }
-    return(1);
-}
-*/
-
-//int	ft_isrectangular(char *map, int size_content)
-int	ft_isrectangular(char *map)
-{
-	//map[rows][cols]
+	/*
+	ft_map_composed(map);
+    ret = ft_map_composed_valid(&map_data);
+    if (ret == -1)
+	{	
+		return (-1);
+	}*/
+	//ft_printf("Rows: %d, Cols: %d, matrice: %s\n", map_size.rows, map_size.cols, map_size.matrice);
 	ft_printf("%s", map);
+	free(map_size.matrice);
 	return(1);
 }
 
-// linked list for loop
-t_map_content	ft_map_composed(char *map)
+int	ft_count_cols_rows(char *map, t_size_map *map_size)
 {
-	char *next_occurrence = map;
-	t_map_content   layers;
-	
-	
-	if (map == NULL)
-	{
-		layers.count_player = -1;
-		return (layers);
-	}
+	int	i;
+	int	count_cols;
+    int line_number;
 
-	while (next_occurrence != NULL && *next_occurrence != '\0')
+	i = 0;
+	count_cols = 0;
+	map_size->rows = 0;
+	map_size->cols = 0;
+    line_number = 1;
+	while(map[i] != '\0')
 	{
-		if (*next_occurrence == PLAYER)
+		if(map[i] == '\n')
+			count_cols++;
+		if(map[i] == '\n')
 		{
-			next_occurrence++;
-			layers.count_player = ft_strchr_all_oc(next_occurrence, PLAYER);
-			next_occurrence--;
+			map_size->rows++;
+			if (map_size->cols  == 0)
+				map_size->cols  = count_cols;
+			else if(count_cols != map_size->cols )
+			{
+				ft_error_map("Invalid map!", 61);
+				return(-1);
+			}
+			count_cols = 0;
+            line_number++;
 		}
-		else if (*next_occurrence == EXIT)
-		{
-			next_occurrence++;
-			layers.count_exit = ft_strchr_all_oc(next_occurrence, EXIT);
-			next_occurrence--;
-		}
-		else if (*next_occurrence == COLLECTIBLE)
-		{
-			next_occurrence++;
-			layers.count_collectible = ft_strchr_all_oc(next_occurrence, COLLECTIBLE);
-			next_occurrence--;
-		}
-		else if (*next_occurrence == WALL)
-		{
-			next_occurrence++;
-			layers.count_wall = ft_strchr_all_oc(next_occurrence, WALL);
-			next_occurrence--;
-		}
-		else if (*next_occurrence == EMPTY)
-		{
-			next_occurrence++;
-			layers.count_empty = ft_strchr_all_oc(next_occurrence, EMPTY);
-			next_occurrence--;
-		}
-		next_occurrence++;
+		i++;
 	}
-	//Armazenando os valores da leitura em uma struct
-	return (layers);
-}
-
-int ft_map_composed_valid(t_map_content *map_info)
-{
-	if (map_info->count_player != 1 || map_info->count_exit != 1 || map_info->count_collectible < 1)
+	if (count_cols > 0)
 	{
-		ft_error_map("content error", 61);
+		map_size->rows++;
+		if (map_size->cols  == 0)
+			map_size->cols  = count_cols;
+		else if (count_cols != map_size->cols)
+		{
+			ft_printf("Error: o número de colunas na linha %d é diferente das outras linhas.\n", line_number);
+			ft_error_map("Invalid map!", 61);
+			return(-1);
+		}
+	}
+	if (map_size->rows > map_size->cols )
+	{
+		ft_printf("Error: a string não forma um retângulo.\n");
+		ft_error_map("Invalid map!", 61);
 		return(-1);
 	}
 	return(1);
 }
 
+
+
+/*
+//Checks if the map has the main elements to be a valid map
+
+//Checks if the map is closed by walls on its border : need one revision
 int ft_check_walls(char *map)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while(map[i] != '\0')
-    {
-        if(map[i] == '\n')
+	i = 0;
+	while(map[i] != '\0')
+	{
+		if(map[i] == '\n')
 		{
 			if(map[i - 1] == WALL)
 				continue;
 			else
 			{
-				ft_error_map("map", 61);
+				ft_error_map("Invalid map!", 61);
 				return(-1);
 			}
 		}
 		i++;
 	}
-    ft_printf("\n É protegido por muros! %s\n", map);
-    return(1);
+	ft_printf("\n É protegido por muros! %s\n", map);
+	return(1);
 }
+*/

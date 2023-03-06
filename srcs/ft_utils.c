@@ -24,9 +24,9 @@ int	ft_strcmp(const char *s1, const char *s2)
 }
 
 //locate all ocurrence of the character in string
-int	ft_strchr_all_oc(char *str, char ch)
+size_t	ft_strchr_all_ocurrences(char *str, char ch)
 {
-	int		count;
+	size_t	count;
 	char	*ptr;
 
 	count = 0;

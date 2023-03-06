@@ -15,6 +15,7 @@
 
 # include "../libs/mlx/mlx.h"
 # include "../libs/libft/includes/libft.h"
+# include "map.h"
 
 # include <fcntl.h> // Read
 # include <string.h> // Strerror
@@ -29,50 +30,22 @@
 # define D 100
 # define RIGHT 65363
 
-# define PLAYER 'P' // Map compositions
-# define EXIT 'E'
-# define COLLECTIBLE 'C'
-# define WALL '1'
-# define EMPTY '0'
-
 typedef struct s_ptr
 {
 	void	*mlx;
 	void	*window;
 }	t_ptr;
 
-typedef struct	s_map_content
-{
-	int	count_player;
-	int	count_exit;
-	int	count_collectible;
-	int	count_wall;
-	int	count_empty;
-}	t_map_content;
-
 /* -------◊	UTILS FUNCTIONS ◊------- */
 int		ft_strcmp(const char *s1, const char *s2);
-int		ft_strchr_all_oc(char *str, char ch);
-
-/* -------◊	MAP ACTIONS	◊------- */
-int		ft_map_open(char *map);
-int		ft_map_extension(char *map);
-int		ft_isrectangular(char *map);
-//int     ft_map_behaviors(char *map);
-int		ft_count_rows(char *map, int size_content);
-int		ft_count_cols(char *map, int size_content);
-int     ft_check_walls(char *map);
-int     ft_count_aligned(char *map, int size_content);
-t_map_content   ft_map_start(void);
-t_map_content	ft_map_composed(char *map);
-int ft_map_composed_valid(t_map_content *map_info);
-//int		ft_map_composed(char *map);
+size_t	ft_strchr_all_ocurrences(char *str, char ch);
 
 /* -------◊	ERROR RESPONSES	◊------- */
 void	ft_error_map(char *local, int n);
 void	ft_error_game(char *local, int n);
 void	ft_error_graphics(char *local, int n);
 
+/* -------◊	INTERACTIONS MADE BY THE PLAYER WITH THE GAME ◊------- */
 int		ft_check_keys(int key, t_ptr *ptr);
 
 #endif

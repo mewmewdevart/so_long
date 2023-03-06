@@ -36,6 +36,7 @@ void	ft_error_map(char *local, int n)
 	{
 		ft_printf("%s: %s\n", local, strerror(n));
 		ft_printf("No data available! Try create one valid map!\n");
+		exit(n);
 	}
 	ft_printf("%s: %s\n", local, strerror(n));
 	exit(n);
