@@ -17,11 +17,14 @@ t_map_content	ft_map_start(void)
 {
 	t_map_content	map_data;
 
+    map_data = (t_map_content) {0};
+	/* 
 	map_data.count_player = 0;
 	map_data.count_exit = 0;
 	map_data.count_collectible = 0;
 	map_data.count_wall = 0;
 	map_data.count_empty = 0;
+	*/
 	return (map_data);
 }
 
