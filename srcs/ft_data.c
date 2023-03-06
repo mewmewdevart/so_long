@@ -56,6 +56,7 @@ t_map_content	ft_map_composed(char *map)
 
 // Verifies that the map contains the correct number 
 //			of players, exits and collectibles
+// https://discord.com/channels/706206701598277681/803709249330741289/1081710585902792804
 int	ft_map_composed_valid(t_map_content *map_data)
 {
 	if (map_data->count_player != 1 || map_data->count_exit != 1

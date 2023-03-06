@@ -37,7 +37,6 @@ typedef struct s_size_map {
     char *matrice;
 } t_size_map;
 
-
 // Uses get_next_line to read the file and check the map errors
 int ft_open_map(char *map);
 
