@@ -30,37 +30,35 @@ typedef struct s_map_content
 	int	count_empty;
 }	t_map_content;
 
-
-typedef struct s_size_map {
+typedef struct s_map {
     int rows;
     int cols;
     char *matrice;
-} t_size_map;
+	int size;
+} t_map;
 
-// Uses get_next_line to read the file and check the map errors
+// Function to open and read the map file
 int ft_open_map(char *map);
+int ft_read_map(int fd, t_map *map_data);
 
-// Function to read the characters reserved in the map passed as a parameter and allocate memory for it
-int	ft_read_map(char *map);
+// Functions to initialize the game
+void ft_initialize(void);
+t_map	ft_map_start_map(void);
+t_map_content	ft_map_start_data(void);
+int ft_read_matrice(t_map *map_data);
 
-// Check if the map have the correct path and .ber extension
+// Check if all conditions are valid
+int ft_is_valid_map();
+// Check if the map is rectangular
+int is_rectangular(t_map *data);
+int	ft_check_cols(int cols_count, t_map *data);
+int	ft_count_cols_rows(t_map *data);
+
+// Check if the map is closed/surrounded by walls
+int is_wall(char *map);
+// The map must contain 1 exit, 1 starting position, and at least 1 collectible
+int is_content(char *map);
+// Check if the map has a valid .ber extension and path/
 int	ft_map_extension(char *map);
-
-// Check if the read file map have or not cols and rows 
-//		+ check if have a rectangule format
-int	ft_check_map(char *map, t_size_map *map_size);
-int	ft_count_cols_rows(char *map, t_size_map *map_size);
-int	ft_check_cols(t_size_map *map_size, int cols_count);
-
-// Clear all structures of map before checking
-t_map_content	ft_map_start(void);
-// Function receives a string that represents a map and counts a number of distinct elements present in the map
-t_map_content ft_map_composed(char *map);
-
-// Verifies that the map contains the correct number of players, exits and collectibles
-int ft_map_composed_valid(t_map_content *map_data);
-
-// Prints a custom error message and exits the program
-void	ft_error_map(char *local, int n);
 
 #endif

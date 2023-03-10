@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_data.c                                          :+:      :+:    :+:   */
+/*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,22 +11,6 @@
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
-
-// Clear all structures of map before checking
-t_map_content	ft_map_start(void)
-{
-	t_map_content	map_data;
-
-    map_data = (t_map_content) {0};
-	/* 
-	map_data.count_player = 0;
-	map_data.count_exit = 0;
-	map_data.count_collectible = 0;
-	map_data.count_wall = 0;
-	map_data.count_empty = 0;
-	*/
-	return (map_data);
-}
 
 // Function receives a string that represents a map and counts
 //		+ a number of distinct elements present in the map
@@ -59,7 +43,6 @@ t_map_content	ft_map_composed(char *map)
 
 // Verifies that the map contains the correct number 
 //			of players, exits and collectibles
-// https://discord.com/channels/706206701598277681/803709249330741289/1081710585902792804
 int	ft_map_composed_valid(t_map_content *map_data)
 {
 	if (map_data->count_player != 1 || map_data->count_exit != 1

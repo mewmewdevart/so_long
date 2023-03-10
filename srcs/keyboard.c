@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_keys.c                                          :+:      :+:    :+:   */
+/*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 13:17:56 by larcrist          #+#    #+#             */
-/*   Updated: 2023/02/23 13:17:58 by larcrist         ###   ########.fr       */
+/*   Created: 2023/03/10 20:18:07 by larcrist          #+#    #+#             */
+/*   Updated: 2023/03/10 20:18:08 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int	ft_check_keys(int key, t_ptr *ptr)
+int	ft_check_keyboard(int key, t_ptr *ptr)
 {
 	if (key == ESC)
 	{

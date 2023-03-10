@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 13:18:48 by larcrist          #+#    #+#             */
-/*   Updated: 2023/02/23 13:18:49 by larcrist         ###   ########.fr       */
+/*   Created: 2023/03/10 20:18:24 by larcrist          #+#    #+#             */
+/*   Updated: 2023/03/10 20:18:25 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char *argv[])
 		if (ft_open_map(argv[1]) == -1)
 			ft_error_map("failed to open or read map file", 23);
 	}
-	mlx_key_hook(ptr.window, ft_check_keys, &ptr);
+	mlx_key_hook(ptr.window, ft_check_keyboard, &ptr);
 	mlx_loop(ptr_mlx);
 	return (0);
 }

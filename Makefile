@@ -22,12 +22,13 @@ LIBFT_PATH = $(LIBS_PATH)libft/
 MLX_PATH = $(LIBS_PATH)mlx/
 
 # sources files
-SRCS_FILES = ft_errors.c \
-	ft_utils.c \
-	ft_maps.c \
-	ft_map_contents.c \
-	ft_keys.c \
-	ft_data.c \
+SRCS_FILES = data.c \
+	errors.c \
+	game_initialization.c \
+	keyboard.c \
+	map_validate.c \
+	maps.c \
+	utils.c \
 
 SOURCES = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 

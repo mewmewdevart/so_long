@@ -46,6 +46,6 @@ void	ft_error_game(char *local, int n);
 void	ft_error_graphics(char *local, int n);
 
 /* -------◊	INTERACTIONS MADE BY THE PLAYER WITH THE GAME ◊------- */
-int		ft_check_keys(int key, t_ptr *ptr);
+int	ft_check_keyboard(int key, t_ptr *ptr);
 
 #endif

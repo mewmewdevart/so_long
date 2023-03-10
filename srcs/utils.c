@@ -38,3 +38,23 @@ size_t	ft_strchr_all_ocurrences(char *str, char ch)
 	}
 	return (count);
 }
+
+/* 
+void	ft_parse_first_line(char *line, t_map *map)
+{
+	int i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != WALL)
+			ft_error_map("Invalid character in the first line", 24);
+		i++;
+	}
+	if (i < 3)
+		ft_error_map("Map is too small", 25);
+	map->empty = ' ';
+	map->wall = '1';
+	map->player = 'P';
+	map->exit = 'E';
+} */
