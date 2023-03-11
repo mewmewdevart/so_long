@@ -15,9 +15,13 @@
 //Check if the all conditions is valid or not
 int	ft_is_valid_map(t_map *data)
 {
-	if (ft_is_rectangular(&data[0]) || ft_is_wall(&data[0]))//== -1 && ft_is_wall(&data[0]) == -1)
-		return (1);
-	return (0);
+	if (!ft_is_rectangular(data))
+		return (0);
+	if (!ft_is_wall(data))
+		return (0);
+	if (!ft_is_content(data))
+		return (0);
+	return (1);
 }
 
 //Check if the map is rectangular
@@ -52,27 +56,61 @@ int	ft_is_rectangular(t_map *data)
 //Check if the map is closed/surrounded by walls
 int	ft_is_wall(t_map *data)
 {
-    int rows = data->rows;
-    int cols = data->cols;
-    char *matrice = data->matrice;
+	int rows;
+	int cols;
+	char *matrice;
+	int i;
 
-    // Check top and bottom rows
-    for (int i = 0; i < cols; i++) {
-        if (matrice[i] != WALL || matrice[(rows - 1) * (cols + 1) + i] != WALL) {
-            return (0);
-        }
-    }
-    // Check left and right columns
-    for (int i = 0; i < rows; i++) {
-        if (matrice[i * (cols + 1)] != WALL || matrice[(i + 1) * (cols + 1) - 2] != WALL) {
-            return (0);
-        }
-    }
-    return (1);
+	// Check top and bottom rows
+	i = 0;
+	rows = data->rows;
+	cols = data->cols;
+	matrice = data->matrice;
+	while (i < cols)
+	{
+		if (matrice[i] != WALL || matrice[(rows - 1) * (cols + 1) + i] != WALL)
+			return (0);
+		i++;
+	}
+	// Check left and right columns
+	i = 0;
+	while (i < rows)
+	{
+		if (matrice[i * (cols + 1)] != WALL || matrice[(i + 1) * (cols + 1) - 2] != WALL)
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 //The map must contain 1 exit, 1 starting position and at least 1 collectible
-int	ft_is_content(char *map);
+ int	ft_is_content(t_map *data)
+{
+    char *str = data->matrice;
+	t_map_content value_map;
+    int i = 0;
+    
+    while(str[i] != '\0')
+    {
+        if (str[i] == 'P')
+            value_map.count_player++;
+        else if (str[i] == 'E')
+            value_map.count_exit++;
+        else if (str[i] == 'C')
+            value_map.count_collectible++;
+        i++;
+    }
+    if (value_map.count_player == 1 && value_map.count_exit == 1 && value_map.count_collectible >= 1)
+	{
+		ft_printf("\n");
+		ft_printf("Count player: %d\n", value_map.count_player);
+		ft_printf("Count player: %d\n", value_map.count_exit);
+		ft_printf("Count player: %d\n", value_map.count_collectible);
+		return(1);
+	}
+    else
+        return(0);
+}
 
 //Check if the map have a valid .ber extension and path/
 int	ft_map_extension(char *map)

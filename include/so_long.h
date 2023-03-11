@@ -30,11 +30,24 @@
 # define D 100
 # define RIGHT 65363
 
+# define RESTART 114
+
+typedef struct s_settings_map
+{
+	char *name_window;
+	char *map_name;
+	int width;
+	int height;
+} t_settings_map;
+
 typedef struct s_game
 {
 	void	*mlx;
 	void	*window;
-}	t_game;
+	int argc;
+	char **argv;
+	t_settings_map settings;
+} t_game;
 
 
 /* -------◊	UTILS FUNCTIONS ◊------- */
@@ -46,8 +59,20 @@ void	ft_error_map(char *local, int n);
 void	ft_error_game(char *local, int n);
 void	ft_error_graphics(char *local, int n);
 
-/* -------◊	INTERACTIONS MADE BY THE PLAYER WITH THE GAME ◊------- */
+// maybe change this to map.h
+// Receive map path on command line and filter name only and put it in the window name
+t_settings_map ft_print_map_name(char *path);
+
+int	main(int argc, char **argv);
+void	ft_initialize_game(int argc, char **argv);
+
+// To check if the R key was pressed, if yes the game is reset
+void ft_reset_game(t_game *game);
+
+// To check if any key was pressed, and do what the key do
 int		ft_check_keyboard(int key, t_game *game);
+
+// To check if the [ESC] key was pressed, if yes the game is closed
 int ft_close_program(t_game *game);
 
 #endif

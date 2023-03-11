@@ -53,7 +53,7 @@ int		ft_is_rectangular(t_map *data);
 // Check if the map is closed/surrounded by walls
 int		ft_is_wall(t_map *data);
 // The map must contain 1 exit, 1 starting position, and at least 1 collectible
-int		ft_is_content(char *map);
+ int	ft_is_content(t_map *data);
 // Check if the map has a valid .ber extension and path/
 int		ft_map_extension(char *map);
 

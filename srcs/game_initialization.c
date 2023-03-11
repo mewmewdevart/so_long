@@ -29,8 +29,6 @@ t_map	ft_initialize_map(void)
 
 t_map_content	ft_initialize_data(void)
 {
-	t_map_content	map_data;
-
-	map_data = (t_map_content){0};
-	return (map_data);
+	t_map_content value_map = {0, 0, 0, 0, 0};
+	return (value_map);
 }

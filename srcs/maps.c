@@ -33,12 +33,13 @@ int	ft_open_map(char *map)
 		close(fd);
 		return (0);
 	}
-	close(fd);
 	if (!ft_is_valid_map(&map_data))
 	{
 		free(map_data.matrice);
+		close(fd);
 		return (0);
 	}
+	close(fd);
 	free(map_data.matrice);
 	return (1);
 }
