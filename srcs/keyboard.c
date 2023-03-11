@@ -12,14 +12,14 @@
 
 #include "../include/so_long.h"
 
-int	ft_check_keyboard(int key, t_ptr *ptr)
+int	ft_check_keyboard(int key, t_game *game)
 {
 	if (key == ESC)
 	{
 		ft_printf("Closing the windows and program.. \n");
-		mlx_destroy_window(ptr->mlx, ptr->window);
-		mlx_destroy_display(ptr->mlx);
-		free (ptr->mlx);
+		mlx_destroy_window(game->mlx, game->window);
+		mlx_destroy_display(game->mlx);
+		free (game->mlx);
 		exit (0);
 	}
 	else if (key == W || key == UP)
@@ -32,5 +32,15 @@ int	ft_check_keyboard(int key, t_ptr *ptr)
 		ft_printf("TECLA D OU RIGHT\n");
 	else
 		ft_printf("\nYou pressed the key: %c -- %d \n", key, key);
+		//ft_printf("You are pressing the wrong key.");
 	return (0);
+}
+
+int ft_close_program(t_game *game)
+{
+	ft_printf("Closing the windows and program.. \n");
+	mlx_destroy_window(game->mlx, game->window);
+	mlx_destroy_display(game->mlx);
+	free (game->mlx);
+	exit (0);
 }

@@ -30,11 +30,12 @@
 # define D 100
 # define RIGHT 65363
 
-typedef struct s_ptr
+typedef struct s_game
 {
 	void	*mlx;
 	void	*window;
-}	t_ptr;
+}	t_game;
+
 
 /* -------◊	UTILS FUNCTIONS ◊------- */
 int		ft_strcmp(const char *s1, const char *s2);
@@ -46,6 +47,7 @@ void	ft_error_game(char *local, int n);
 void	ft_error_graphics(char *local, int n);
 
 /* -------◊	INTERACTIONS MADE BY THE PLAYER WITH THE GAME ◊------- */
-int	ft_check_keyboard(int key, t_ptr *ptr);
+int		ft_check_keyboard(int key, t_game *game);
+int ft_close_program(t_game *game);
 
 #endif

@@ -12,13 +12,13 @@
 
 #include "../include/so_long.h"
 
-void	ft_initialize(void)
+void	ft_initialize_map_data(t_map *map, t_map_content *data)
 {
-	ft_map_start_map();
-	ft_map_start_data();
+	*map = ft_initialize_map();
+	*data = ft_initialize_data();
 }
 
-t_map	ft_map_start_map(void)
+t_map	ft_initialize_map(void)
 {
 	t_map	map_data;
 
@@ -27,20 +27,10 @@ t_map	ft_map_start_map(void)
 	return (map_data);
 }
 
-t_map_content	ft_map_start_data(void)
+t_map_content	ft_initialize_data(void)
 {
 	t_map_content	map_data;
 
 	map_data = (t_map_content){0};
 	return (map_data);
-}
-
-int	ft_read_matrice(t_map *map_data)
-{
-	if (ft_is_valid_map(map_data) == -1)
-		return (-1);
-	ft_printf("\n");
-	ft_printf("%d\n", map_data->cols);
-	ft_printf("%d\n", map_data->rows);
-	return (1);
 }

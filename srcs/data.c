@@ -49,7 +49,7 @@ int	ft_map_composed_valid(t_map_content *map_data)
 		|| map_data->count_collectible < 1)
 	{
 		ft_error_map("Invalid map!", 61);
-		return (-1);
+		return (0);
 	}
 	return (1);
 }
