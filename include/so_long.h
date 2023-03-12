@@ -16,6 +16,7 @@
 # include "../libs/mlx/mlx.h"
 # include "../libs/libft/includes/libft.h"
 # include "map.h"
+# include "custom_letters.h"
 
 # include <fcntl.h> // Read
 # include <string.h> // Strerror

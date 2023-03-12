@@ -27,10 +27,12 @@ int	ft_is_valid_map(t_map *data)
 //Check if the map is rectangular
 int	ft_is_rectangular(t_map *data)
 {
-	int char_index;
-	int rows = 0;
-	int cols = 0;
+	int	char_index;
+	int	rows;
+	int	cols;
 
+	rows = 0;
+	cols = 0;
 	char_index = -1;
 	while (data->matrice[++char_index])
 	{
@@ -45,7 +47,6 @@ int	ft_is_rectangular(t_map *data)
 	}
 	if (cols == 0 || char_index - cols != 1)
 		return (0);
-
 	if (!(cols > rows))
 		return (0);
 	data->rows = rows;
@@ -56,10 +57,10 @@ int	ft_is_rectangular(t_map *data)
 //Check if the map is closed/surrounded by walls
 int	ft_is_wall(t_map *data)
 {
-	int rows;
-	int cols;
-	char *matrice;
-	int i;
+	int		rows;
+	int		cols;
+	char	*matrice;
+	int		i;
 
 	// Check top and bottom rows
 	i = 0;
@@ -84,32 +85,34 @@ int	ft_is_wall(t_map *data)
 }
 
 //The map must contain 1 exit, 1 starting position and at least 1 collectible
- int	ft_is_content(t_map *data)
+int	ft_is_content(t_map *data)
 {
-    char *str = data->matrice;
-	t_map_content value_map;
-    int i = 0;
-    
-    while(str[i] != '\0')
-    {
-        if (str[i] == 'P')
-            value_map.count_player++;
-        else if (str[i] == 'E')
-            value_map.count_exit++;
-        else if (str[i] == 'C')
-            value_map.count_collectible++;
-        i++;
-    }
-    if (value_map.count_player == 1 && value_map.count_exit == 1 && value_map.count_collectible >= 1)
+	t_map_content	value_map;
+	char			*str;
+	int				i;
+
+	i = 0;
+	str = data->matrice;
+	while(str[i] != '\0')
+	{
+		if (str[i] == 'P')
+			value_map.count_player++;
+		else if (str[i] == 'E')
+			value_map.count_exit++;
+		else if (str[i] == 'C')
+			value_map.count_collectible++;
+		i++;
+	}
+	if (value_map.count_player == 1 && value_map.count_exit == 1 && value_map.count_collectible >= 1)
 	{
 		ft_printf("\n");
 		ft_printf("Count player: %d\n", value_map.count_player);
 		ft_printf("Count player: %d\n", value_map.count_exit);
 		ft_printf("Count player: %d\n", value_map.count_collectible);
-		return(1);
+		return (1);
 	}
-    else
-        return(0);
+	else
+		return (0);
 }
 
 //Check if the map have a valid .ber extension and path/

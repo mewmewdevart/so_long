@@ -17,21 +17,22 @@ void	ft_error_map(char *local, int n)
 	if (n == 21)
 	{
 		ft_printf("%s: %s\n", local, strerror(n));
-		ft_printf("This is a directory. Try to open one valid file! \n");
+		ft_printf("%sThis is a directory. Try to open one valid file! \n", COLOR_RED);
 		exit(n);
 	}
 	else if (n == 22 || n == 52 || n == 59 || n == 24 || n == 5)
 	{
 		ft_printf("%s: %s\n", local, strerror(n));
-		ft_printf("Usage: ./so.long <filename>.ber\n");
+		ft_printf("%sUsage: ./so.long <filename>.ber\n", COLOR_RED);
 		exit(n);
 	}
 	else if (n == 61)
 	{
 		ft_printf("%s: %s\n", local, strerror(n));
-		ft_printf("No data available! Try create one valid map!\n");
+		ft_printf("%sNo data available! Try create one valid map!\n", COLOR_RED);
 		exit(n);
 	}
-	ft_printf("%s: %s\n", local, strerror(n));
+	else
+		ft_printf("%s %s: %s\n", COLOR_RED, local, strerror(n));
 	exit(n);
 }

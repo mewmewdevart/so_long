@@ -52,16 +52,12 @@ int ft_close_program(t_game *game)
 
 void ft_reset_game(t_game *game)
 {
-    // Reiniciar os elementos do jogo para as configurações iniciais
-	
-    
-    // Destruir e criar novamente a janela do jogo
-    mlx_destroy_window(game->mlx, game->window);
-    game->window = mlx_new_window(game->mlx, game->settings.width, game->settings.height, "so_long");
-
-    // Atualizar a janela do jogo
-   // mlx_put_image_to_window(game->mlx, game->window, game->image.img, 0, 0);
-    
-    // Reiniciar o jogo chamando a função main()
-    main(game->argc, game->argv);
+	// Reiniciar os elementos do jogo para as configurações iniciais
+	// Destruir e criar novamente a janela do jogo
+	mlx_destroy_window(game->mlx, game->window);
+	game->window = mlx_new_window(game->mlx, game->settings.width, game->settings.height, "so_long");
+	// Atualizar a janela do jogo
+	// mlx_put_image_to_window(game->mlx, game->window, game->image.img, 0, 0);
+	// Reiniciar o jogo chamando a função main()
+	main (game->argc, game->argv);
 }

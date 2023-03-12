@@ -27,7 +27,6 @@ void	ft_initialize_game(int argc, char **argv)
 	ptr.settings.width = 650;
 	ptr.settings.height = 500;
 	ptr.settings.name_window = "so_long"; //need to be changed witht the correct function
-
 	ptr_mlx = mlx_init();
 	ptr_win = mlx_new_window(ptr_mlx, ptr.settings.width, ptr.settings.height, ptr.settings.name_window);
 	if (argc != 2)
@@ -54,13 +53,12 @@ Insere dentro do main /initialize: Faz parte da chamada da função ft_print_map
 		    free(map_settings.name_window);
         free(map_settings.map_name);
 */
-
 // Receive map path on command line and filter name only and put it in the window name
-t_settings_map ft_print_map_name(char *path)
+t_settings_map	ft_print_map_name(char *path)
 {
-	t_settings_map map_settings;
-	char *file_extension;
-	char *p;
+	t_settings_map	map_settings;
+	char			*file_extension;
+	char			*p;
 
 	p = ft_strrchr(path, '/');
 	file_extension = ft_strrchr(path, '.');
