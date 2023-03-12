@@ -33,6 +33,8 @@
 
 # define RESTART 114
 
+//#include "../rscs/sprites/Player_idle/idleAnim_00.xpm"
+
 typedef struct s_settings_map
 {
 	char *name_window;

@@ -5,7 +5,8 @@ LIB_SOLONG = lib_solong.a
 # compilation and settings
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
-LFLAGS = -lft -lmlx -lmlx_Linux -lX11 -lXext -lXext -lm
+ICON_GAME = -DICON=\"rscs/sprites/iconGame.xpm\"
+LFLAGS = -lft -lmlx -lmlx_Linux -lX11 -lXext -lXext -lm $(ICON_GAME)
 AR = ar rcs
 REMOVE = rm -rf
 MKDIR = mkdir -p
