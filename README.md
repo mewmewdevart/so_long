@@ -1,6 +1,13 @@
+
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/50052600/224555283-9b0d1dea-97f7-4f58-80fc-600bec04f4d5.gif" alt="Sublime's custom image"/>
+</p>
+
 <h1 align="center">
  so_long  (⚠️ in development)
 </h1>
+
 
 <p align="center">
 	<b><i>And thanks for all the fish!</i></b><br>
