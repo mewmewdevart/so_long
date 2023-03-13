@@ -12,7 +12,7 @@
 
 #include "../include/so_long.h"
 
-int	ft_check_keyboard(int key, t_game *game)
+int	ft_check_keyboard(int key, t_game_instance *game)
 {
 	if (key == ESC)
 	{
@@ -41,7 +41,7 @@ int	ft_check_keyboard(int key, t_game *game)
 	return (0);
 }
 
-int ft_close_program(t_game *game)
+int ft_close_program(t_game_instance *game)
 {
 	ft_printf("Closing the windows and program.. \n");
 	mlx_destroy_window(game->mlx, game->window);
@@ -50,14 +50,11 @@ int ft_close_program(t_game *game)
 	exit (0);
 }
 
-void ft_reset_game(t_game *game)
+void ft_reset_game(t_game_instance *game)
 {
-	// Reiniciar os elementos do jogo para as configurações iniciais
-	// Destruir e criar novamente a janela do jogo
 	mlx_destroy_window(game->mlx, game->window);
-	game->window = mlx_new_window(game->mlx, game->settings.width, game->settings.height, "so_long");
-	// Atualizar a janela do jogo
+	game->window = mlx_new_window(game->mlx, game->settings.width, game->settings.height, "so_long"); //alterar o nome do arquivo
 	// mlx_put_image_to_window(game->mlx, game->window, game->image.img, 0, 0);
-	// Reiniciar o jogo chamando a função main()
+	// Reiniciar o jogo e chamar a função main()
 	main (game->argc, game->argv);
 }

@@ -30,52 +30,52 @@
 # define DOWN 65364
 # define D 100
 # define RIGHT 65363
-
-# define RESTART 114
+# define RESTART 114 // The [r] key
 
 //#include "../rscs/sprites/Player_idle/idleAnim_00.xpm"
 
-typedef struct s_settings_map
+typedef struct s_map_settings
 {
 	char *name_window;
 	char *map_name;
 	int width;
 	int height;
-} t_settings_map;
+} t_map_settings;
 
-typedef struct s_game
+typedef struct s_game_instance
 {
 	void	*mlx;
 	void	*window;
 	int argc;
 	char **argv;
-	t_settings_map settings;
-} t_game;
+	t_map_settings settings;
+} t_game_instance;
 
+// Filters path of the map name to use it as the window name
+t_map_settings ft_print_map_name(char *path);
 
-/* -------◊	UTILS FUNCTIONS ◊------- */
-int		ft_strcmp(const char *s1, const char *s2);
-size_t	ft_strchr_all_ocurrences(char *str, char ch);
+// The main function of the program
+int	main(int argc, char **argv);
 
-/* -------◊	ERROR RESPONSES	◊------- */
+// Initializes the game based on the command line arguments
+void	ft_initialize_game(int argc, char **argv);
+
+// Checks if the [R] key was pressed and resets the game if so
+void ft_reset_game(t_game_instance *game);
+
+// Checks if any reserved [key] was pressed and performs the corresponding behavior
+int		ft_check_keyboard(int key, t_game_instance *game);
+
+// Checks if the [X] button in the window was pressed, if yes the game is closed
+int ft_close_program(t_game_instance *game);
+
+// Displays an error message for problems related to map, game and graphics
 void	ft_error_map(char *local, int n);
 void	ft_error_game(char *local, int n);
 void	ft_error_graphics(char *local, int n);
 
-// maybe change this to map.h
-// Receive map path on command line and filter name only and put it in the window name
-t_settings_map ft_print_map_name(char *path);
-
-int	main(int argc, char **argv);
-void	ft_initialize_game(int argc, char **argv);
-
-// To check if the R key was pressed, if yes the game is reset
-void ft_reset_game(t_game *game);
-
-// To check if any key was pressed, and do what the key do
-int		ft_check_keyboard(int key, t_game *game);
-
-// To check if the [ESC] key was pressed, if yes the game is closed
-int ft_close_program(t_game *game);
+// Auxiliary functions : Compares two strings and check all ocurrances
+int		ft_strcmp(const char *s1, const char *s2);
+size_t	ft_strchr_all_ocurrences(char *str, char ch);
 
 #endif

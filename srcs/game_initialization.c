@@ -12,25 +12,25 @@
 
 #include "../include/so_long.h"
 
-void	ft_initialize_map_data(t_map *map, t_map_content *data)
+void	ft_initialize_map_data(t_map_data *map, t_map_objects_counts *data)
 {
 	*map = ft_initialize_map();
 	*data = ft_initialize_data();
 }
 
-t_map	ft_initialize_map(void)
+t_map_data	ft_initialize_map(void)
 {
-	t_map	map_data;
+	t_map_data	map_data;
 
-	map_data = (t_map){0};
+	map_data = (t_map_data){0};
 	map_data.matrice = NULL;
 	return (map_data);
 }
 
-t_map_content	ft_initialize_data(void)
+t_map_objects_counts	ft_initialize_data(void)
 {
-	t_map_content	value_map;
+	t_map_objects_counts	value_map;
 
-	value_map = (t_map_content){0};
+	value_map = (t_map_objects_counts){0};
 	return (value_map);
 }

@@ -22,8 +22,11 @@ void	ft_initialize_game(int argc, char **argv)
 {
 	void	*ptr_mlx;
 	void	*ptr_win;
-	t_game	ptr;
+	t_game_instance	ptr;
+	t_map_data	map_data;
+	t_map_objects_counts data;
 
+	ft_initialize_map_data(&map_data, &data);
 	ptr.settings.width = 650;
 	ptr.settings.height = 500;
 	ptr.settings.name_window = "so_long"; //need to be changed witht the correct function
@@ -53,10 +56,10 @@ Insere dentro do main /initialize: Faz parte da chamada da função ft_print_map
 		    free(map_settings.name_window);
         free(map_settings.map_name);
 */
-// Receive map path on command line and filter name only and put it in the window name
-t_settings_map	ft_print_map_name(char *path)
+// Receive map path and filter name only and put it in the window name
+t_map_settings	ft_print_map_name(char *path)
 {
-	t_settings_map	map_settings;
+	t_map_settings	map_settings;
 	char			*file_extension;
 	char			*p;
 
@@ -76,6 +79,6 @@ t_settings_map	ft_print_map_name(char *path)
 			*file_extension = '\0';
 	}
 	else
-		ft_error_map("file does not have extension", 25);
+		ft_error_map("Map file", 22);
 	return (map_settings);
 }

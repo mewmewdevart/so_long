@@ -12,11 +12,12 @@
 
 #include "../include/so_long.h"
 
+/* 
 // Function receives a string that represents a map and counts
 //		+ a number of distinct elements present in the map
-t_map_content	ft_map_composed(char *map)
+t_map_objects_counts	ft_map_composed(char *map)
 {
-	t_map_content	map_content;
+	t_map_objects_counts	map_content;
 	int				i;
 
 	if (!map)
@@ -41,9 +42,7 @@ t_map_content	ft_map_composed(char *map)
 	return (map_content);
 }
 
-// Verifies that the map contains the correct number 
-//			of players, exits and collectibles
-int	ft_map_composed_valid(t_map_content *map_data)
+int	ft_map_composed_valid(t_map_objects_counts *map_data)
 {
 	if (map_data->count_player != 1 || map_data->count_exit != 1
 		|| map_data->count_collectible < 1)
@@ -53,3 +52,4 @@ int	ft_map_composed_valid(t_map_content *map_data)
 	}
 	return (1);
 }
+*/
