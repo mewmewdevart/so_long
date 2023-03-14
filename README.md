@@ -68,7 +68,7 @@ $ git clone git@github.com:mewmewdevart/so_long.git
 $ cd so_long/
 ```
 
-**1. Running the Game**
+**1. Run the Game**
 ```bash
 # Use that command to clone the Minilibx inside the libs/ folder
 $ make call_mlx
@@ -76,9 +76,9 @@ $ make call_mlx
 # Run the command make root directory
 $ make
 
-# This will compile the executable file so_long to execute its necessary run the archive
+# This will compile the executable file so_long to execute its necessary run the binary file
 # 		+ any map of your choice (or you could even make a map of your own)
-$ ./bin/so_long ./rscs/map.ber
+$ ./bin/so_long ./rscs/maps/map.ber
 ```
 **2. How to play**
 
