@@ -19,18 +19,18 @@ int	ft_is_valid_map(t_map_data *data)
 
 	if (!ft_is_wall(data))
 		return (0);
-	if (!ft_is_rectangular(data))
+	if (!ft_is_rectangular_and_square(data))
 		return (0);
 	if (!ft_count_map_objects(data, &counts))
 		return (0);
-	ft_printf("Count player: %d\n", counts.count_player);
+	ft_printf("Count player: %d\n", counts.count_player); //to debug
 	ft_printf("Count player: %d\n", counts.count_exit);
 	ft_printf("Count player: %d\n", counts.count_collectible);
 	return (1);
 }
 
-// Check if the map is rectangular
-int	ft_is_rectangular(t_map_data *data)
+// Check if the map is rectangular/square
+int	ft_is_rectangular_and_square(t_map_data *data)
 {
 	int	i;
 	int	rows;
@@ -41,7 +41,7 @@ int	ft_is_rectangular(t_map_data *data)
 	i = -1;
 	while (data->matrice[++i] != '\0')
 	{
-		if (data->matrice[i] == '\n')
+		if (data->matrice[i] == '\n') 
 		{
 			if (cols == 0)
 				cols = i;
@@ -50,9 +50,7 @@ int	ft_is_rectangular(t_map_data *data)
 			rows++;
 		}
 	}
-	if (cols == 0 || i - cols != 1)
-		return (0);
-	if (cols <= rows)
+	if (rows + 1 != cols)
 		return (0);
 	data->rows = rows;
 	data->cols = cols;
@@ -63,7 +61,6 @@ int	ft_is_rectangular(t_map_data *data)
 int	ft_is_wall(t_map_data *data)
 {
 	int		i;
-
 	i = 0;
 	while (i < data->cols)
 	{
@@ -90,7 +87,7 @@ int	ft_is_wall(t_map_data *data)
 	return (1);
 }
 
-// Count if the map must contain 1 exit, 1 starting position, and at least 1 collectible
+// Counts the content in the map and if the map must contain 1 exit, 1 starting position, and at least 1 collectible
 int	ft_count_map_objects(t_map_data *data, t_map_objects_counts *counts)
 {
 	char	*str;
@@ -119,7 +116,7 @@ int	ft_count_map_objects(t_map_data *data, t_map_objects_counts *counts)
 	return(1);
 }
 
-// Check if the map have a valid .ber extension and path/
+// Check if the map have a valid .ber extension and check if there’s a valid path/
 int	ft_map_extension(char *map)
 {
 	char		*extension;
@@ -131,14 +128,19 @@ int	ft_map_extension(char *map)
 	file_extension = ft_strrchr(map, '.');
 	if (map[ft_strlen(map) - 1] == '/')
 	{
-		ft_error_map("Map extension", 21);
+		ft_error_map(21);
 		return (0);
 	}
-	else if (file_extension && ft_strcmp(file_extension, extension) == 0)
+	else if (!file_extension || !ft_strcmp(file_extension, ""))
+	{
+		ft_error_map(24);
+		return (0);
+	}
+	else if (file_extension && !ft_strcmp(file_extension, extension))
 	{
 		if (file_count >= max_files)
 		{
-			ft_error_map(map, 24);
+			ft_error_map(24);
 			return (0);
 		}
 		file_count++;

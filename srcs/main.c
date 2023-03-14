@@ -33,11 +33,11 @@ void	ft_initialize_game(int argc, char **argv)
 	ptr_mlx = mlx_init();
 	ptr_win = mlx_new_window(ptr_mlx, ptr.settings.width, ptr.settings.height, ptr.settings.name_window);
 	if (argc != 2)
-		ft_error_map("argument", 22);
+		ft_error_map(22);
 	if (argv[1])
 	{
 		if (ft_open_map(argv[1]) == -1)
-			ft_error_map("failed to open or read map file", 23);
+			ft_error_map(61);
 	}
 	ptr.argc = argc;
 	ptr.argv = argv;
@@ -79,6 +79,6 @@ t_map_settings	ft_print_map_name(char *path)
 			*file_extension = '\0';
 	}
 	else
-		ft_error_map("Map file", 22);
+		ft_error_map(22);
 	return (map_settings);
 }

@@ -61,15 +61,15 @@ int	ft_read_map(int fd, t_map_data *map_data)
 		return (0);
 	}
 	map_data->matrice[total_size] = '\0';
-	if (ft_is_valid_map(map_data))
-	{
-		free(map_data->matrice);
-		return (1);
-	}
-	if (bytes_read < total_size)
+	if (!(bytes_read < total_size))
 	{
 		free(map_data->matrice);
 		return (0);
 	}
-	return (1);
+	if (!ft_is_valid_map(map_data))
+	{
+		free(map_data->matrice);
+		return (0);
+	}
+	return (0);
 }

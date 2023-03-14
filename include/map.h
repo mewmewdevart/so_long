@@ -52,8 +52,8 @@ void	ft_initialize_map_data(t_map_data *map, t_map_objects_counts *data);
 // Check if all conditions are valid
 int		ft_is_valid_map(t_map_data *data);
 
-// Check if the map is rectangular
-int		ft_is_rectangular(t_map_data *data);
+// Check if the map is rectangular/square
+int	ft_is_rectangular_and_square(t_map_data *data);
 
 // Check if the map is closed/surrounded by walls
 int		ft_is_wall(t_map_data *data);

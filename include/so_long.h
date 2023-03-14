@@ -70,11 +70,11 @@ int		ft_check_keyboard(int key, t_game_instance *game);
 int ft_close_program(t_game_instance *game);
 
 // Displays an error message for problems related to map, game and graphics
-void	ft_error_map(char *local, int n);
-void	ft_error_game(char *local, int n);
-void	ft_error_graphics(char *local, int n);
+void	ft_error_map(int n);
+//void	ft_error_game(char *local, int n);
+//void	ft_error_graphics(char *local, int n);
 
-// Auxiliary functions : Compares two strings and check all ocurrances
+// Auxiliary functions : Compares two strings and check all ocurrances (ft_strrchr work)
 int		ft_strcmp(const char *s1, const char *s2);
 size_t	ft_strchr_all_ocurrences(char *str, char ch);
 
