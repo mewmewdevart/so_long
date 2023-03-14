@@ -50,11 +50,12 @@ int ft_close_program(t_game_instance *game)
 	exit (0);
 }
 
+// need to be fix
 void ft_reset_game(t_game_instance *game)
 {
 	mlx_destroy_window(game->mlx, game->window);
 	game->window = mlx_new_window(game->mlx, game->settings.width, game->settings.height, "so_long"); //alterar o nome do arquivo
 	// mlx_put_image_to_window(game->mlx, game->window, game->image.img, 0, 0);
-	// Reiniciar o jogo e chamar a função main()
+	// Reiniciar o jogo e chama a função main()
 	main (game->argc, game->argv);
 }

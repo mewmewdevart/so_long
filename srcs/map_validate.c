@@ -23,31 +23,34 @@ int	ft_is_valid_map(t_map_data *data)
 		return (0);
 	if (!ft_count_map_objects(data, &counts))
 		return (0);
+	ft_printf("Count player: %d\n", counts.count_player);
+	ft_printf("Count player: %d\n", counts.count_exit);
+	ft_printf("Count player: %d\n", counts.count_collectible);
 	return (1);
 }
 
 // Check if the map is rectangular
 int	ft_is_rectangular(t_map_data *data)
 {
-	int	char_index;
+	int	i;
 	int	rows;
 	int	cols;
 
 	rows = 0;
 	cols = 0;
-	char_index = -1;
-	while (data->matrice[++char_index])
+	i = -1;
+	while (data->matrice[++i] != '\0')
 	{
-		if (data->matrice[char_index] == '\n')
+		if (data->matrice[i] == '\n')
 		{
 			if (cols == 0)
-				cols = char_index;
-			else if (char_index - cols != 1)
+				cols = i;
+			else if (i - cols != 1)
 				return (0);
 			rows++;
 		}
 	}
-	if (cols == 0 || char_index - cols != 1)
+	if (cols == 0 || i - cols != 1)
 		return (0);
 	if (cols <= rows)
 		return (0);
@@ -111,9 +114,9 @@ int	ft_count_map_objects(t_map_data *data, t_map_objects_counts *counts)
 			return(0); // Check if the map as invalid if there are invalid characters
 		i++;
 	}
-	if (counts->count_player == 1 && counts->count_exit == 1 && counts->count_collectible >= 1)
-		return(1);
-	return(0);
+	if (!(counts->count_player == 1 && counts->count_exit == 1 && counts->count_collectible >= 1))
+		return(0);
+	return(1);
 }
 
 // Check if the map have a valid .ber extension and path/
