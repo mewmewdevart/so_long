@@ -17,15 +17,13 @@ int	ft_is_valid_map(t_map_data *data)
 {
 	t_map_objects_counts	counts;
 
+	ft_printf("\n Eu entrei na função ft_is_valid\n");
 	if (!ft_is_wall(data))
 		return (0);
 	if (!ft_is_rectangular_and_square(data))
 		return (0);
 	if (!ft_count_map_objects(data, &counts))
 		return (0);
-	ft_printf("Count player: %d\n", counts.count_player); //to debug
-	ft_printf("Count player: %d\n", counts.count_exit);
-	ft_printf("Count player: %d\n", counts.count_collectible);
 	return (1);
 }
 
@@ -38,10 +36,10 @@ int	ft_is_rectangular_and_square(t_map_data *data)
 
 	rows = 0;
 	cols = 0;
-	i = -1;
-	while (data->matrice[++i] != '\0')
+	i = 0;
+	while (data->matrice[i] != NULL)
 	{
-		if (data->matrice[i] == '\n') 
+		if (*data->matrice[i] == '\n')
 		{
 			if (cols == 0)
 				cols = i;
@@ -49,6 +47,7 @@ int	ft_is_rectangular_and_square(t_map_data *data)
 				return (0);
 			rows++;
 		}
+		i++;
 	}
 	if (rows + 1 != cols)
 		return (0);
@@ -58,29 +57,21 @@ int	ft_is_rectangular_and_square(t_map_data *data)
 }
 
 // Check if the map is closed/surrounded by walls
-int	ft_is_wall(t_map_data *data)
+int ft_is_wall(t_map_data *data)
 {
-	int		i;
+	int i;
+
 	i = 0;
 	while (i < data->cols)
 	{
-		if (data->matrice[i] != WALL || data->matrice[(data->rows - 1) * (data->cols + 1) + i] != WALL)
+		if (data->matrice[0][i] != WALL || data->matrice[data->rows - 1][i] != WALL)
 			return (0);
 		i++;
 	}
 	i = 0;
 	while (i < data->rows)
 	{
-		if (data->matrice[i * (data->cols + 1)] != WALL || data->matrice[(i + 1) * (data->cols + 1) - 2] != WALL)
-			return (0);
-		if (data->matrice[i * (data->cols + 1) + 1] != WALL || data->matrice[(i + 1) * (data->cols + 1) - 3] != WALL)
-			return (0);
-		i++;
-	}
-	i = 1;
-	while (i < data->cols - 1)
-	{
-	if (data->matrice[i] != WALL || data->matrice[(data->rows - 1) * (data->cols + 1) + i] != WALL)
+		if (data->matrice[i][0] != WALL || data->matrice[i][data->cols - 1] != WALL)
 			return (0);
 		i++;
 	}
@@ -90,25 +81,31 @@ int	ft_is_wall(t_map_data *data)
 // Counts the content in the map and if the map must contain 1 exit, 1 starting position, and at least 1 collectible
 int	ft_count_map_objects(t_map_data *data, t_map_objects_counts *counts)
 {
-	char	*str;
+	char	**map;
 	int		i;
+	int		j;
 
 	i = 0;
-	str = data->matrice;
-	while (str[i] != '\0')
+	map = data->matrice;
+	while (map[i] != NULL)
 	{
-		if (str[i] == PLAYER)
-			counts->count_player++;
-		else if (str[i] == EXIT)
-			counts->count_exit++;
-		else if (str[i] == COLLECTIBLE)
-			counts->count_collectible++;
-		else if (str[i] == WALL)
-			counts->count_wall++;
-		else if (str[i] == EMPTY)
-			counts->count_empty++;
-		else if (str[i] != '\n')
-			return(0); // Check if the map as invalid if there are invalid characters
+		j = 0;
+		while (map[i][j] != '\0')
+		{
+			if (map[i][j] == PLAYER)
+				counts->count_player++;
+			else if (map[i][j] == EXIT)
+				counts->count_exit++;
+			else if (map[i][j] == COLLECTIBLE)
+				counts->count_collectible++;
+			else if (map[i][j] == WALL)
+				counts->count_wall++;
+			else if (map[i][j] == EMPTY)
+				counts->count_empty++;
+			else if (map[i][j] != '\n')
+				return(0); // Check if the map as invalid if there are invalid characters
+			j++;
+		}
 		i++;
 	}
 	if (!(counts->count_player == 1 && counts->count_exit == 1 && counts->count_collectible >= 1))
@@ -167,34 +164,3 @@ int	ft_is_valid_character(t_map_data *data)
 	return (1);
 }
 */
-/* 
-//The map must contain 1 exit, 1 starting position and at least 1 collectible
-int	ft_is_content(t_map_data *data)
-{
-	t_map_objects_counts	value_map;
-	char			*str;
-	int				i;
-
-	i = 0;
-	str = data->matrice;
-	while(str[i] != '\0')
-	{
-		if (str[i] == 'P')
-			value_map.count_player++;
-		else if (str[i] == 'E')
-			value_map.count_exit++;
-		else if (str[i] == 'C')
-			value_map.count_collectible++;
-		i++;
-	}
-	if (value_map.count_player == 1 && value_map.count_exit == 1 && value_map.count_collectible >= 1)
-	{
-		ft_printf("\n");
-		ft_printf("Count player: %d\n", value_map.count_player);
-		ft_printf("Count player: %d\n", value_map.count_exit);
-		ft_printf("Count player: %d\n", value_map.count_collectible);
-		return (1);
-	}
-	else
-		return (0);
-} */
