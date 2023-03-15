@@ -18,12 +18,13 @@ int	ft_is_valid_map(t_map_data *data)
 	t_map_objects_counts	counts;
 
 	ft_printf("\n Eu entrei na função ft_is_valid\n");
-	if (!ft_is_wall(data))
-		return (0);
 	if (!ft_is_rectangular_and_square(data))
+		return (0);
+	if (!ft_is_wall(data))
 		return (0);
 	if (!ft_count_map_objects(data, &counts))
 		return (0);
+	ft_printf("\n Eu sai da função ft_is_valid\n");
 	return (1);
 }
 
@@ -39,7 +40,8 @@ int	ft_is_rectangular_and_square(t_map_data *data)
 	i = 0;
 	while (data->matrice[i] != NULL)
 	{
-		if (*data->matrice[i] == '\n')
+		ft_printf("%s\n", data->matrice[i]); //debugando a matriz
+		if (data->matrice[i][0] == '\n')
 		{
 			if (cols == 0)
 				cols = i;
@@ -49,12 +51,14 @@ int	ft_is_rectangular_and_square(t_map_data *data)
 		}
 		i++;
 	}
-	if (rows + 1 != cols)
+	if (rows + 1 != cols || rows != data->rows - 2 || cols != data->cols - 1)
 		return (0);
+	
 	data->rows = rows;
 	data->cols = cols;
 	return (1);
 }
+
 
 // Check if the map is closed/surrounded by walls
 int ft_is_wall(t_map_data *data)
