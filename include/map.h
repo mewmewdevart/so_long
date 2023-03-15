@@ -41,6 +41,7 @@ typedef struct s_map_data
 // Function to open and read the map file
 int		ft_open_map(char *map);
 int		ft_read_map(int fd, t_map_data *map_data);
+void	ft_free_matrix(char **matrix);
 
 // Function to initializate
 t_map_objects_counts	ft_initialize_data(void);

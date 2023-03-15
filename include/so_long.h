@@ -77,5 +77,7 @@ void	ft_error_map(int n);
 // Auxiliary functions : Compares two strings and check all ocurrances (ft_strrchr work)
 int		ft_strcmp(const char *s1, const char *s2);
 size_t	ft_strchr_all_ocurrences(char *str, char ch);
+int	ft_is_blank(const char *str);
+int	ft_isspace(int c);
 
 #endif
