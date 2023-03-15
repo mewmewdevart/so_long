@@ -35,7 +35,7 @@ typedef struct s_map_data
 	int		size;
 	int		rows;
 	int		cols;
-	char	*matrice;
+	char	**matrice;
 }	t_map_data;
 
 // Function to open and read the map file
@@ -46,8 +46,6 @@ int		ft_read_map(int fd, t_map_data *map_data);
 t_map_objects_counts	ft_initialize_data(void);
 t_map_data	ft_initialize_map(void);
 void	ft_initialize_map_data(t_map_data *map, t_map_objects_counts *data);
-// int	ft_is_valid_character(t_map_data *data);
-// int	ft_is_content(t_map_data *data);
 
 // Check if all conditions are valid
 int		ft_is_valid_map(t_map_data *data);
