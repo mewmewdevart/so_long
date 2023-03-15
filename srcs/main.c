@@ -36,8 +36,10 @@ void	ft_initialize_game(int argc, char **argv)
 		ft_error_map(22);
 	if (argv[1])
 	{
-		if (ft_open_map(argv[1]) == -1)
+		if (ft_open_map(argv[1]) == 0)
 			ft_error_map(61);
+		else
+			ft_printf("O mapa está supimpa!"); //calling for game actions
 	}
 	ptr.argc = argc;
 	ptr.argv = argv;

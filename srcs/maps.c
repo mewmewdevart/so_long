@@ -49,22 +49,13 @@ int	ft_read_map(int fd, t_map_data *map_data)
 	total_size = 0;
 	bytes_read = read(fd, buffer, BUFFER_SIZE);
 	if (bytes_read > 0)
-	{
-		ft_printf("%s", buffer); //apenas para debugar
 		total_size += bytes_read;
-	}
 	map_data->size = total_size;
-	/* 
-	ft_printf("\nSize of Matrice:%d", map_data->size); //apenas para debugar
-	ft_printf("\nMatrice: %s", map_data->matrice); //apenas para debugar
-	ft_printf("\nCols: %d", map_data->cols); //apenas para debugar
-	ft_printf("\nRows: %d", map_data->rows); //apenas para debugar
-	*/
-	map_data->matrice = (char **)malloc(sizeof(char) * (total_size + 1));
+	map_data->matrice = ft_split(buffer, '\n');
 	if (!map_data->matrice)
 		return (0);
 	bytes_read = read(fd, map_data->matrice, total_size);
-	if (bytes_read == 0)
+	if (bytes_read == -1)
 	{
 		free(map_data->matrice);
 		return (0);
@@ -74,7 +65,7 @@ int	ft_read_map(int fd, t_map_data *map_data)
 	{
 		free(map_data->matrice);
 		return (0);
-	}
+	} 
 	if (!ft_is_valid_map(map_data))
 	{
 		free(map_data->matrice);
