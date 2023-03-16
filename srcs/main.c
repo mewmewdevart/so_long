@@ -22,9 +22,9 @@ void	ft_initialize_game(int argc, char **argv)
 {
 	void	*ptr_mlx;
 	void	*ptr_win;
-	t_game_instance	ptr;
-	t_map_data	map_data;
-	t_map_objects_counts data;
+	t_game_instance			ptr;
+	t_map_data				map_data;
+	t_map_objects_counts	data;
 
 	ft_initialize_map_data(&map_data, &data);
 	ptr.settings.width = 650;
@@ -36,10 +36,10 @@ void	ft_initialize_game(int argc, char **argv)
 		ft_error_map(22);
 	if (argv[1])
 	{
-		if (ft_open_map(argv[1]) == 0)
+		if (ft_open_map(argv[1]) == 0 || ft_open_map(argv[1]) == -1)
 			ft_error_map(61);
 		else
-			ft_printf("O mapa está supimpa!"); //calling for game actions
+			ft_printf("\nO mapa está supimpa!\n"); //calling for game actions
 	}
 	ptr.argc = argc;
 	ptr.argv = argv;
