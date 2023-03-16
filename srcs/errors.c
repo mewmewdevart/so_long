@@ -15,10 +15,10 @@
 void	ft_error_map(int n)
 {
 	if (n == 21)
-		ft_printf("%sError\n This is a directory. Try to open one valid file! \n", COLOR_RED);
+		ft_printf("%sError\n This is a directory. \n", COLOR_RED);
 	else if (n == 22 || n == 52 || n == 59 || n == 24 || n == 5)
-		ft_printf("%sError\n Usage: ./bin/so_long rscs/map/<filename>.ber \n", COLOR_RED);
+		ft_printf("%sError\n Usage: ./so_long <filename>.ber \n", COLOR_RED);
 	else if (n == 61)
-		ft_printf("%sError\n No data available! Try create one valid map! \n", COLOR_RED);
+		ft_printf("%sError\n Try create one valid map! \n", COLOR_RED);
 	exit(n);
 }

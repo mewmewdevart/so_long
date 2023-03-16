@@ -51,10 +51,10 @@ int	ft_is_blank(const char *str)
 	return (1);
 }
 
-//is a clean space comparing it to the known white space characters
+// Clean space comparing it to the known white space characters
 int	ft_isspace(int c)
 {
-	if(c == ' ' || c == '\t' || c == '\n'
+	if (c == ' ' || c == '\t' || c == '\n'
 		|| c == '\v' || c == '\f' || c == '\r')
 		return (1);
 	return (0);

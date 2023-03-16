@@ -36,12 +36,11 @@ int	ft_check_keyboard(int key, t_game_instance *game)
 		ft_reset_game(game);
 	}
 	else
-		ft_printf("\nYou pressed the key: %c -- %d \n", key, key);
-		//ft_printf("You are pressing the wrong key.");
+		ft_printf("You are pressing the wrong key.");
 	return (0);
 }
 
-int ft_close_program(t_game_instance *game)
+int	ft_close_program(t_game_instance *game)
 {
 	ft_printf("Closing the windows and program.. \n");
 	mlx_destroy_window(game->mlx, game->window);
@@ -50,8 +49,7 @@ int ft_close_program(t_game_instance *game)
 	exit (0);
 }
 
-// need to be fix
-void ft_reset_game(t_game_instance *game)
+void	ft_reset_game(t_game_instance *game)
 {
 	mlx_destroy_window(game->mlx, game->window);
 	game->window = mlx_new_window(game->mlx, game->settings.width, game->settings.height, "so_long"); //alterar o nome do arquivo
