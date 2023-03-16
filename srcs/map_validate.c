@@ -15,109 +15,138 @@
 // Check if the all conditions is valid or not
 int	ft_is_valid_map(t_map_data *data)
 {
-	t_map_objects_counts	counts;
+	//t_map_objects_counts	counts;
 
 	ft_printf("\n Eu entrei na função ft_is_valid\n");
-	if (!ft_is_rectangular_and_square(data))
+	if(!(ft_is_rectangular_and_square(data)))
 		return (0);
-	if (!ft_is_wall(data))
+	if(!(ft_is_wall(data)))
 		return (0);
-	if (!ft_count_map_objects(data, &counts))
+	
+	/*
+	if(!(ft_count_map_objects(data, &counts)))
 		return (0);
+	if (!(counts.count_player == 1 && counts.count_exit == 1 && counts.count_collectible >= 1))
+		return (0);
+	*/
 	ft_printf("\n Eu sai da função ft_is_valid\n");
 	return (1);
 }
 
-// Check if the map is rectangular/square
-int	ft_is_rectangular_and_square(t_map_data *data)
+int ft_is_rectangular_and_square(t_map_data *data)
 {
-	int	i;
-	int	rows;
-	int	cols;
+	int i;
+	int num_cells;
 
-	rows = 0;
-	cols = 0;
 	i = 0;
+	ft_printf("\n Eu entrei na função ft_is_rectangular_and_square\n");
 	while (data->matrice[i] != NULL)
 	{
-		ft_printf("%s\n", data->matrice[i]); //debugando a matriz
 		if (data->matrice[i][0] == '\n')
 		{
-			if (cols == 0)
-				cols = i;
-			else if (i - cols != 1)
+			if (data->cols == 0)
+				data->cols = ft_strlen(data->matrice[i - 1]);
+			else if (ft_strlen(data->matrice[i - 1]) != (size_t)data->cols)
 				return (0);
-			rows++;
+			data->rows++;
 		}
 		i++;
 	}
-	if (rows + 1 != cols || rows != data->rows - 2 || cols != data->cols - 1)
-		return (0);
-	
-	data->rows = rows;
-	data->cols = cols;
+	if (data->rows != data->cols)
+	{
+		if (data->cols == 0 || data->rows == 0)
+			return (0);
+		else
+			return (1);
+	}
+	else
+	{
+		num_cells = data->rows * data->cols;
+		if (num_cells != (data->rows * (data->rows + 1) * (2 * data->rows + 1)) / 6)
+			return (0);
+	}
 	return (1);
 }
-
 
 // Check if the map is closed/surrounded by walls
 int ft_is_wall(t_map_data *data)
 {
 	int i;
+	char **map; //necessario verificar essa função
 
+	ft_printf("\n Eu entrei na função ft_is_wall\n");
+	// Check top and bottom borders
 	i = 0;
-	while (i < data->cols)
+	map = data->matrice;
+	ft_printf("\n %s\n", map[i][i]);
+	while(1)
 	{
-		if (data->matrice[0][i] != WALL || data->matrice[data->rows - 1][i] != WALL)
-			return (0);
-		i++;
+		while(i < data->cols)
+		{
+			if (data->matrice[0][i] !=  WALL || data->matrice[data->rows-1][i] !=  WALL)
+				return (0);
+			i++;
+		}
+		i = 0;
+		while(i < data->rows)
+		{
+			if (data->matrice[i][0] !=  WALL || data->matrice[i][data->cols-1] !=  WALL)
+				return (0);
+			i++;
+		}
 	}
-	i = 0;
-	while (i < data->rows)
-	{
-		if (data->matrice[i][0] != WALL || data->matrice[i][data->cols - 1] != WALL)
-			return (0);
-		i++;
-	}
+	ft_printf("\n Eu sai da função ft_is_wall\n");
 	return (1);
 }
 
-// Counts the content in the map and if the map must contain 1 exit, 1 starting position, and at least 1 collectible
+/*
+	i = 0;
+    ft_printf("\n Eu entrei na função ft_is_wall\n");
+	while(data->matrice[i] != NULL)
+	{
+		ft_printf("%s", data->matrice[i]);
+		i++;
+	}
+	ft_printf("\nColuna : %d\n", data->cols);
+	ft_printf("\nLinhas : %d\n", data->rows);
+*/
+
+
+// Count map content and check if it has (1)E, 1(E) and >= 1(C)
 int	ft_count_map_objects(t_map_data *data, t_map_objects_counts *counts)
 {
-	char	**map;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = 0;
-	map = data->matrice;
-	while (map[i] != NULL)
+	ft_printf("\n Eu entrei na função ft_count_map_objects\n");
+	while (data->matrice[i] != NULL)
 	{
 		j = 0;
-		while (map[i][j] != '\0')
+		while (data->matrice[i][j] != '\0')
 		{
-			if (map[i][j] == PLAYER)
+			if (data->matrice[i][j] == PLAYER)
 				counts->count_player++;
-			else if (map[i][j] == EXIT)
+			else if (data->matrice[i][j] == EXIT)
 				counts->count_exit++;
-			else if (map[i][j] == COLLECTIBLE)
+			else if (data->matrice[i][j] == COLLECTIBLE)
 				counts->count_collectible++;
-			else if (map[i][j] == WALL)
+			else if (data->matrice[i][j] == WALL)
 				counts->count_wall++;
-			else if (map[i][j] == EMPTY)
+			else if (data->matrice[i][j] == EMPTY)
 				counts->count_empty++;
-			else if (map[i][j] != '\n')
-				return(0); // Check if the map as invalid if there are invalid characters
+			else if (data->matrice[i][j] != '\n')
+				return (0);
 			j++;
 		}
 		i++;
 	}
-	if (!(counts->count_player == 1 && counts->count_exit == 1 && counts->count_collectible >= 1))
-		return(0);
-	return(1);
+	if (!(counts->count_player == 1 && counts->count_exit && counts->count_collectible >= 1))
+		return (0);
+	return (1);
 }
 
-// Check if the map have a valid .ber extension and check if there’s a valid path/
+// Check if the map has a valid .ber extension and if there's a valid path
 int	ft_map_extension(char *map)
 {
 	char		*extension;
@@ -133,38 +162,14 @@ int	ft_map_extension(char *map)
 		return (0);
 	}
 	else if (!file_extension || !ft_strcmp(file_extension, ""))
-	{
-		ft_error_map(24);
 		return (0);
-	}
 	else if (file_extension && !ft_strcmp(file_extension, extension))
 	{
 		if (file_count >= max_files)
-		{
-			ft_error_map(24);
 			return (0);
-		}
 		file_count++;
 	}
 	else
 		return (0);
 	return (1);
 }
-
-/* 
-int	ft_is_valid_character(t_map_data *data)
-{
-	char	*str;
-	int		i;
-
-	i = 0;
-	str = data->matrice;
-	while(str[i] != '\0') 
-	{
-		if (str[i] != '1' && str[i] != '0' && str[i] != 'C' && str[i] != 'E' && str[i] != 'P')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-*/
