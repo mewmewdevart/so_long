@@ -15,11 +15,8 @@
 // Open the file and storage the content in one struct
 int	ft_open_map(char *map)
 {
-	int		fd;
+	int			fd;
 	t_map_data	map_data;
-
-	map_data = (t_map_data){0};
-	map_data.matrice = NULL;
 
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
@@ -39,37 +36,56 @@ int	ft_open_map(char *map)
 	return (1);
 }
 
- // Read the file and storage the content in one struct
+// Read the file and storage the content in one struct
 int	ft_read_map(int fd, t_map_data *map_data)
 {
+	char	*buffer;
 	int		bytes_read;
 	int		total_size;
-	char	buffer[BUFFER_SIZE];
+	char	*temp;
 
 	total_size = 0;
-	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	if (bytes_read > 0)
+	map_data->matrice = ft_calloc(1, sizeof(char *));
+	map_data->matrice[0] = ft_strdup("");
+	buffer = malloc(BUFFER_SIZE + 1);
+	if (!buffer || !map_data->matrice)
+		return (0);
+	while (1)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read <= 0)
+			break ;
+		temp = ft_strjoin(map_data->matrice[0], buffer);
+		if (!temp)
+			return (0);
+		free(map_data->matrice[0]);
+		map_data->matrice[0] = temp;
 		total_size += bytes_read;
-	map_data->size = total_size;
-	map_data->matrice = ft_split(buffer, '\n');
-	if (!map_data->matrice)
-		return (0);
-	bytes_read = read(fd, map_data->matrice, total_size);
-	if (bytes_read == -1)
-	{
-		free(map_data->matrice);
-		return (0);
 	}
-	map_data->matrice[total_size] = '\0';
-	if (!(bytes_read < total_size))
-	{
-		free(map_data->matrice);
+	free(buffer);
+	ft_map_dimensions(map_data);
+	if (map_data->matrice[0] == NULL || bytes_read == -1 || !ft_is_valid_map(map_data))
 		return (0);
-	} 
-	if (!ft_is_valid_map(map_data))
-	{
-		free(map_data->matrice);
-		return (0);
-	}
 	return (1);
+}
+
+void ft_map_dimensions(t_map_data *map_data)
+{
+	int	cols;
+	int	rows;
+
+	cols = 0;
+	while (map_data->matrice[0][cols] && map_data->matrice[0][cols] != '\n')
+		cols++;
+	map_data->cols = cols;
+	rows = 1;
+	while (map_data->matrice[0][cols])
+	{
+		if (map_data->matrice[0][cols] == '\n')
+			rows++;
+		cols++;
+	}
+	map_data->rows = rows;
+	ft_printf("\nColuna : %d\n", map_data->cols);
+	ft_printf("\nLinhas : %d\n", map_data->rows);
 }
