@@ -25,7 +25,7 @@ MLX_PATH = $(LIBS_PATH)mlx/
 # sources files
 SRCS_FILES = data.c \
 	errors.c \
-	game_initialization.c \
+	game_init.c \
 	keyboard.c \
 	map_validate.c \
 	maps.c \

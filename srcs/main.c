@@ -14,73 +14,11 @@
 
 int	main(int argc, char **argv)
 {
-	ft_initialize_game(argc, argv);
-	return (0);
-}
-
-void	ft_initialize_game(int argc, char **argv)
-{
-	void	*ptr_mlx;
-	void	*ptr_win;
-	t_game_instance			ptr;
 	t_map_data				map_data;
 	t_map_objects_counts	data;
 
 	ft_initialize_map_data(&map_data, &data);
-	ptr.settings.width = 650;
-	ptr.settings.height = 500;
-	ptr.settings.name_window = "so_long"; //need to be changed witht the correct function
-	ptr_mlx = mlx_init();
-	ptr_win = mlx_new_window(ptr_mlx, ptr.settings.width, ptr.settings.height, ptr.settings.name_window);
-	if (argc != 2)
-		ft_error_map(22);
-	if (argv[1])
-	{
-		if (ft_open_map(argv[1]) == 0 || ft_open_map(argv[1]) == -1)
-			ft_error_map(61);
-		else
-			ft_printf("\nO mapa está supimpa!\n"); //calling for game actions
-	}
-	ptr.argc = argc;
-	ptr.argv = argv;
-	ptr.mlx = ptr_mlx;
-	ptr.window = ptr_win;
-	mlx_hook(ptr.window, 17, 0, ft_close_program, &ptr);
-	mlx_key_hook(ptr.window, ft_check_keyboard, &ptr);
-	mlx_loop(ptr_mlx);
-}
-
-/*
-Insere dentro do main /initialize: Faz parte da chamada da função ft_print_map;
-		map_settings = ft_print_map_name(argv[1]);
-        ptr.settings.name_window = map_settings.name_window;
-
-		    free(map_settings.name_window);
-        free(map_settings.map_name);
-*/
-// Receive map path and filter name only and put it in the window name
-t_map_settings	ft_print_map_name(char *path)
-{
-	t_map_settings	map_settings;
-	char			*file_extension;
-	char			*p;
-
-	p = ft_strrchr(path, '/');
-	file_extension = ft_strrchr(path, '.');
-	if (p != NULL)
-		map_settings.name_window = ft_strdup(p + 1);
-	else
-		map_settings.name_window = ft_strdup(path);
-	if (file_extension != NULL)
-	{
-		if (ft_strcmp(file_extension, ".ber") == 0)
-			*file_extension = '\0';
-		map_settings.map_name = ft_strdup(path);
-		file_extension = ft_strrchr(map_settings.map_name, '.');
-		if (ft_strcmp(file_extension, ".ber") == 0)
-			*file_extension = '\0';
-	}
-	else
-		ft_error_map(22);
-	return (map_settings);
+	ft_initialize_game(argc, argv);
+	free_map(&map_data);
+	return (0);
 }

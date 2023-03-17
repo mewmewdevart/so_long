@@ -42,11 +42,13 @@ typedef struct s_map_data
 int		ft_open_map(char *map);
 int		ft_read_map(int fd, t_map_data *map_data);
 void ft_map_dimensions(t_map_data *map_data);
+//int ft_map_dimensions(t_map_data *map_data);
 
-// Function to initializate
+// Function to initializate and to be free
 t_map_objects_counts	ft_initialize_data(void);
 t_map_data	ft_initialize_map(void);
 void	ft_initialize_map_data(t_map_data *map, t_map_objects_counts *data);
+void free_map(t_map_data *data);
 
 // Check if all conditions are valid
 int		ft_is_valid_map(t_map_data *data);

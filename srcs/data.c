@@ -12,44 +12,40 @@
 
 #include "../include/so_long.h"
 
-/* 
-// Function receives a string that represents a map and counts
-//		+ a number of distinct elements present in the map
-t_map_objects_counts	ft_map_composed(char *map)
-{
-	t_map_objects_counts	map_content;
-	int				i;
 
-	if (!map)
-	{
-		map_content.count_player = -1;
-		return (map_content);
-	}
-	i = -1;
-	while (map[++i])
-	{
-		if (map[i] == PLAYER)
-			map_content.count_player++;
-		else if (map[i] == EXIT)
-			map_content.count_exit++;
-		else if (map[i] == COLLECTIBLE)
-			map_content.count_collectible++;
-		else if (map[i] == WALL)
-			map_content.count_wall++;
-		else if (map[i] == EMPTY)
-		map_content.count_empty++;
-	}
-	return (map_content);
+void	ft_initialize_map_data(t_map_data *map, t_map_objects_counts *data)
+{
+	*map = ft_initialize_map();
+	*data = ft_initialize_data();
 }
 
-int	ft_map_composed_valid(t_map_objects_counts *map_data)
+t_map_data	ft_initialize_map(void)
 {
-	if (map_data->count_player != 1 || map_data->count_exit != 1
-		|| map_data->count_collectible < 1)
-	{
-		ft_error_map("Invalid map!", 61);
-		return (0);
-	}
-	return (1);
+	t_map_data	map_data;
+
+	map_data = (t_map_data){0};
+	map_data.matrice = NULL;
+	return (map_data);
 }
-*/
+
+t_map_objects_counts	ft_initialize_data(void)
+{
+	t_map_objects_counts	value_map;
+
+	value_map = (t_map_objects_counts){0};
+	return (value_map);
+}
+
+void free_map(t_map_data *data)
+{
+    int i = 0;
+	if (data->matrice == NULL)
+		return ;
+    while (i < data->rows)
+    {
+        free(data->matrice[i]);
+        i++;
+    }
+    free(data->matrice);
+	data->matrice = NULL;
+}

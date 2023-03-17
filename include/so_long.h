@@ -52,7 +52,7 @@ typedef struct s_game_instance
 } t_game_instance;
 
 // Filters path of the map name to use it as the window name
-t_map_settings ft_print_map_name(char *path);
+t_map_settings	ft_print_map_name(char *path);
 
 // The main function of the program
 int	main(int argc, char **argv);

@@ -13,26 +13,22 @@
 #include "../include/so_long.h"
 
 // Check if the all conditions is valid or not
-int	ft_is_valid_map(t_map_data *data)
+int ft_is_valid_map(t_map_data *data)
 {
-	//t_map_objects_counts	counts;
-
+	t_map_objects_counts	counts = {0};
 	ft_printf("\n Eu entrei na função ft_is_valid\n");
+
 	if(!(ft_is_rectangular_and_square(data)))
 		return (0);
 	if(!(ft_is_wall(data)))
 		return (0);
-	
-	/*
 	if(!(ft_count_map_objects(data, &counts)))
 		return (0);
-	if (!(counts.count_player == 1 && counts.count_exit == 1 && counts.count_collectible >= 1))
-		return (0);
-	*/
 	ft_printf("\n Eu sai da função ft_is_valid\n");
 	return (1);
 }
 
+// Check if the map is rectangular/square
 int ft_is_rectangular_and_square(t_map_data *data)
 {
 	int i;
@@ -40,6 +36,8 @@ int ft_is_rectangular_and_square(t_map_data *data)
 
 	i = 0;
 	ft_printf("\n Eu entrei na função ft_is_rectangular_and_square\n");
+	if(data->matrice[i] == NULL || ft_isspace(*data->matrice[i]))
+		return(0);
 	while (data->matrice[i] != NULL)
 	{
 		if (data->matrice[i][0] == '\n')
@@ -72,45 +70,29 @@ int ft_is_rectangular_and_square(t_map_data *data)
 int ft_is_wall(t_map_data *data)
 {
 	int i;
-	char **map; //necessario verificar essa função
+	int j;
+	int missing_walls;
 
 	ft_printf("\n Eu entrei na função ft_is_wall\n");
-	// Check top and bottom borders
 	i = 0;
-	map = data->matrice;
-	ft_printf("\n %s\n", map[i][i]);
-	while(1)
-	{
-		while(i < data->cols)
-		{
-			if (data->matrice[0][i] !=  WALL || data->matrice[data->rows-1][i] !=  WALL)
-				return (0);
-			i++;
+	while (i < data->rows) {
+		j = 0;
+		while (j < data->cols) {
+			// Verifica se estamos nas bordas da matriz
+			if (i == 0 || j == 0 || i == data->rows - 1 || j == data->cols - 1) 
+			{
+				// Verifica se a célula atual é uma parede
+				if (data->matrice[i][j] != WALL) {
+					missing_walls++;
+				}
+			}
+			j++;
 		}
-		i = 0;
-		while(i < data->rows)
-		{
-			if (data->matrice[i][0] !=  WALL || data->matrice[i][data->cols-1] !=  WALL)
-				return (0);
-			i++;
-		}
-	}
-	ft_printf("\n Eu sai da função ft_is_wall\n");
-	return (1);
-}
-
-/*
-	i = 0;
-    ft_printf("\n Eu entrei na função ft_is_wall\n");
-	while(data->matrice[i] != NULL)
-	{
-		ft_printf("%s", data->matrice[i]);
 		i++;
 	}
-	ft_printf("\nColuna : %d\n", data->cols);
-	ft_printf("\nLinhas : %d\n", data->rows);
-*/
-
+	ft_printf("\n Eu sai da na função ft_is_wall\n");
+	return (missing_walls == 1);
+}
 
 // Count map content and check if it has (1)E, 1(E) and >= 1(C)
 int	ft_count_map_objects(t_map_data *data, t_map_objects_counts *counts)
