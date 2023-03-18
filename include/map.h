@@ -41,8 +41,8 @@ typedef struct s_map_data
 // Function to open and read the map file
 int		ft_open_map(char *map);
 int		ft_read_map(int fd, t_map_data *map_data);
-void ft_map_dimensions(t_map_data *map_data);
-//int ft_map_dimensions(t_map_data *map_data);
+// Function to counts the number of rows, columns and size in matrice
+int ft_map_dimensions(t_map_data *map_data);
 
 // Function to initializate and to be free
 t_map_objects_counts	ft_initialize_data(void);
@@ -54,7 +54,7 @@ void free_map(t_map_data *data);
 int		ft_is_valid_map(t_map_data *data);
 
 // Check if the map is rectangular/square
-int	ft_is_rectangular_and_square(t_map_data *data);
+int	ft_is_map_shape_valid(t_map_data *data);
 
 // Check if the map is closed/surrounded by walls
 int		ft_is_wall(t_map_data *data);

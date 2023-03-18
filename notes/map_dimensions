@@ -1,0 +1,37 @@
+/* 
+int	ft_map_dimensions(t_map_data *map_data)
+{
+	int rows = 0;
+	int cols = 0;
+	char *first_row = map_data->matrice[0];
+
+	// Conta o numero de colunas
+	while (first_row[cols] && first_row[cols] != '\n')
+		cols++;
+	map_data->cols = cols;
+	// Conta o nmero de linhas
+	int i = 0;
+	while (map_data->matrice[i])
+	{
+		char *row = map_data->matrice[i];
+		int row_len = ft_strlen(row);
+		if (row[row_len - 1] == '\n')
+			row_len--;
+		if (row_len != cols)
+		{
+			ft_printf("Error: Rows have different lengths\n");
+			map_data->rows = 0;
+			return (0);
+		}
+		rows++;
+		i++;
+	}
+	map_data->rows = rows;
+	map_data->size = rows * cols;
+
+	ft_printf("\nColumns: %d\n", map_data->cols);
+	ft_printf(" Rows: %d\n", map_data->rows);
+	ft_printf(" Size: %d\n", map_data->size);
+	return (1);
+}
+*/
