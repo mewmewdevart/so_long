@@ -18,41 +18,41 @@ int	ft_open_map(char *map)
 	int			fd;
 	t_map_data	*map_data;
 
-	// Aloca memória para a estrutura t_map_data
+	// Aloca memoria para a estrutura t_map_data
 	map_data = ft_calloc(1, sizeof(t_map_data));
 	if (!map_data)
 		return (0);
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 	{
-		free(map_data);
+		free (map_data);
 		return (-1);
 	}
 	if (!ft_map_extension(map))
 	{
-		close(fd);
-		free(map_data);
+		close (fd);
+		free (map_data);
 		return (0);
 	}
 	if (!ft_read_map(fd, map_data))
 	{
-		close(fd);
-		free_map(map_data);
+		close (fd);
+		free_map (map_data);
 		return (0);
 	}
-	close(fd);
-	free(map_data->matrice[0]);
-	free(map_data);
+	close (fd);
+	free (map_data->matrice[0]);
+	free (map_data);
 	return (1);
 }
 
 // Read the file and storage the content in one struct
-int ft_read_map(int fd, t_map_data *map_data)
+int	ft_read_map(int fd, t_map_data *map_data)
 {
-    char *buffer;
+	int		i;
+	char	*buffer;
 
-    map_data->matrice = ft_calloc(6, sizeof(char *)); // Criar uma função que leia o tamanho do mapa e reserve espaço para ser usado em ft_calloc
-	int i;
+	map_data->matrice = ft_calloc(6, sizeof(char *)); // Criar uma função que leia o tamanho do mapa e reserve espaço para ser usado em ft_calloc
 	i = 0;
     while (1)
     {
@@ -61,61 +61,70 @@ int ft_read_map(int fd, t_map_data *map_data)
 			break;
 		map_data->matrice[i] = buffer;
 		i++;
-    }
-	if (map_data->matrice[0]== NULL)
-		return (0);
-	ft_map_dimensions(map_data);
-
-	// ~~~~~~ CHECANDO OS COMPONENTES ~~~~~~
-	i = 0;
-    ft_printf("\n Estou printando o conteudo : [ft_read_map] \n");
-	while(map_data->matrice[i] != NULL)
-	{
-		ft_printf("%s", map_data->matrice[i]);
-		i++;
 	}
-	ft_printf("\nColuna : %d ", map_data->cols);
-	ft_printf(": Linhas : %d\n", map_data->rows);
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-	if (!ft_is_valid_map(map_data))
+	if (map_data == NULL || map_data->matrice == NULL || map_data->matrice[0] == NULL)
+			return 0;
+	if(!ft_map_dimensions(map_data))
+		return(0);
+	if(!ft_is_valid_map(map_data))
 		return (0);
-    return (1);
+	return (1);
 }
- 
- // Adaptar a função para verificar se a linha anteior possui o mesmo tamanho da linha atual /
-//	verificar se todas as linhas possuem o mesmo tamnho e se todas as colunas também
-void ft_map_dimensions(t_map_data *map_data)
+
+// Counts the number of rows, columns and size in matrice
+int	ft_map_dimensions(t_map_data *map_data)
 {
-	int	cols;
-	int	rows;
+	int		row_index;
+	char	*row;
+	char	*first_row;
+	int		row_len;
 
-	cols = 0;
-	while (map_data->matrice[0][cols] && map_data->matrice[0][cols] != '\n')
-		cols++;
-	map_data->cols = cols;
-	rows = 1;
-	while (map_data->matrice[0][cols])
+	row_index = 0;
+	first_row = map_data->matrice[0];
+	while (first_row[map_data->cols] && first_row[map_data->cols] != '\n') // Conta o numero de colunas
+		map_data->cols++;
+	while (map_data->matrice[row_index]) // Conta o numero de linhas
 	{
-		if (map_data->matrice[0][cols] == '\n')
-			rows++;
-		cols++;
+		row = map_data->matrice[row_index];
+		row_len = ft_strlen(row);
+		if (row[row_len - 1] == '\n')
+			row_len--;
+		if (row_len != map_data->cols)
+		{
+			map_data->rows = 0;
+			return (0);
+		}
+		map_data->rows++;
+		row_index++;
 	}
-	map_data->rows = rows;
-	ft_printf("\nColuna : %d\n", map_data->cols);
-	ft_printf("\nLinhas : %d\n", map_data->rows);
+	map_data->size = map_data->rows * map_data->cols;
+	return (1);
 }
 
-/*
-	// ~~~~~~ CHECANDO OS COMPONENTES ~~~~~~
-	i = 0;
-    ft_printf("\n Estou printando o conteudo : [ ] \n");
-	while(map_data->matrice[i] != NULL)
+// Check if the map has a valid .ber extension and if there's a valid path
+int	ft_map_extension(char *map)
+{
+	char		*extension;
+	char		*file_extension;
+	static int	file_count;
+
+	file_count = 0;
+	extension = ".ber";
+	file_extension = ft_strrchr(map, '.');
+	if (map[ft_strlen(map) - 1] == '/')
 	{
-		ft_printf("%s", map_data->matrice[i]);
-		i++;
+		ft_error_map(21);
+		return (0);
 	}
-	ft_printf("\nColuna : %d ", map_data->cols);
-	ft_printf(": Linhas : %d\n", map_data->rows);
-	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*/
+	else if (!file_extension || !ft_strcmp(file_extension, ""))
+		return (0);
+	else if (file_extension && !ft_strcmp(file_extension, extension))
+	{
+		if (file_count >= MAX_FILES)
+			return (0);
+		file_count++;
+	}
+	else
+		return (0);
+	return (1);
+}
