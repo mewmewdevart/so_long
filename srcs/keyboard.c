@@ -14,7 +14,7 @@
 
 int	ft_check_keyboard(int key, t_game_instance *game)
 {
-	if (key == ESC)
+	if (key == ESC) //modificar para dar free em tudo
 	{
 		ft_printf("Closing the windows and program.. \n");
 		mlx_destroy_window(game->mlx, game->window);

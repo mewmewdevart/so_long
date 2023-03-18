@@ -20,13 +20,14 @@ int	ft_open_map(char *map)
 
 	// Aloca memoria para a estrutura t_map_data
 	map_data = ft_calloc(1, sizeof(t_map_data));
+	map_data->first_read = ft_read_count_map(map);
 	if (!map_data)
 		return (0);
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 	{
 		free (map_data);
-		return (-1);
+		return (0);
 	}
 	if (!ft_map_extension(map))
 	{
@@ -46,13 +47,45 @@ int	ft_open_map(char *map)
 	return (1);
 }
 
+// Function to read and count the map content for ft_calloc in the next function
+int	ft_read_count_map(char *map)
+{
+	int		i;
+	int		fd;
+	int		count;
+	ssize_t	n_read;
+
+	count = 0;
+	fd = open(map, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	char buffer[BUFFER_SIZE];
+	while ((n_read = read(fd, buffer, BUFFER_SIZE)) > 0)
+	{
+		i = 0;
+		while (i < n_read)
+		{
+			if (buffer[i] != '\n')
+				count++;
+			i++;
+		}
+	}
+	if (n_read == -1)
+		return (0);
+	if (close(fd) == -1)
+		return (0);
+	return (count);
+}
+
 // Read the file and storage the content in one struct
 int	ft_read_map(int fd, t_map_data *map_data)
 {
 	int		i;
 	char	*buffer;
 
-	map_data->matrice = ft_calloc(6, sizeof(char *)); // Criar uma função que leia o tamanho do mapa e reserve espaço para ser usado em ft_calloc
+	map_data->matrice = ft_calloc(map_data->first_read, sizeof(char *));
+	if (!map_data->matrice)
+		return (0);
 	i = 0;
     while (1)
     {

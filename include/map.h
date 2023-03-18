@@ -32,6 +32,7 @@ typedef struct s_map_objects_counts
 
 typedef struct s_map_data
 {
+	int		first_read;
 	int		size;
 	int		rows;
 	int		cols;
@@ -40,6 +41,8 @@ typedef struct s_map_data
 
 // Function to open and read the map file
 int		ft_open_map(char *map);
+// Function to read and count the map content for ft_calloc in the next function
+int	ft_read_count_map(char *map);
 int		ft_read_map(int fd, t_map_data *map_data);
 // Function to counts the number of rows, columns and size in matrice
 int ft_map_dimensions(t_map_data *map_data);
