@@ -38,14 +38,16 @@ t_map_objects_counts	ft_initialize_data(void)
 
 void free_map(t_map_data *data)
 {
-    int i = 0;
-	if (data->matrice == NULL)
-		return ;
+	int i = 0;
+
+    if (data == NULL)
+        return;
     while (i < data->rows)
     {
         free(data->matrice[i]);
         i++;
     }
     free(data->matrice);
-	data->matrice = NULL;
+    data->matrice = NULL;
+    free(data);
 }
