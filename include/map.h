@@ -30,6 +30,15 @@ typedef struct s_map_objects_counts
 	int	count_empty;
 }	t_map_objects_counts;
 
+typedef struct s_compass {
+    int player_row;
+    int player_col;
+	int exit_row;
+    int exit_col;
+	//int collectible_row;
+    //int collectible_col;
+} t_compass;
+
 typedef struct s_map_data
 {
 	int		first_read;
@@ -37,6 +46,7 @@ typedef struct s_map_data
 	int		rows;
 	int		cols;
 	char	**matrice;
+	t_compass objects;
 }	t_map_data;
 
 // Function to open and read the map file
@@ -50,6 +60,7 @@ int ft_map_dimensions(t_map_data *map_data);
 // Function to initializate and to be free
 t_map_objects_counts	ft_initialize_data(void);
 t_map_data	ft_initialize_map(void);
+t_compass	ft_initialize_compass(void);
 void	ft_initialize_map_data(t_map_data *map, t_map_objects_counts *data);
 void free_map(t_map_data *data);
 
@@ -67,5 +78,12 @@ int	ft_count_map_objects(t_map_data *data, t_map_objects_counts *counts);
 
 // Check if the map has a valid .ber extension and path/
 int		ft_map_extension(char *map);
+
+// Localization
+t_compass ft_compass_positions(t_map_data map_data);
+t_compass ft_compass_player(t_map_data *map_data, t_compass *compass);
+t_compass ft_compass_exit(t_map_data *map_data, t_compass *compass);
+//t_compass ft_compass_collectible(t_map_data *map_data, t_compass *compass);
+
 
 #endif

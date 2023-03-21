@@ -20,25 +20,24 @@ int	ft_open_map(char *map)
 
 	// Aloca memoria para a estrutura t_map_data
 	map_data = ft_calloc(1, sizeof(t_map_data));
+	if (!map_data)
+		return (0);
 	map_data->first_read = ft_read_count_map(map);
 	if (!map_data)
 		return (0);
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-	{
-		free (map_data);
 		return (0);
-	}
 	if (!ft_map_extension(map))
 	{
 		close (fd);
-		free (map_data);
 		return (0);
 	}
 	if (!ft_read_map(fd, map_data))
 	{
 		close (fd);
-		free_map (map_data);
+		free(map_data->matrice);
+		free(map_data);
 		return (0);
 	}
 	close (fd);
@@ -54,12 +53,12 @@ int	ft_read_count_map(char *map)
 	int		fd;
 	int		count;
 	ssize_t	n_read;
+	char buffer[BUFFER_SIZE];
 
 	count = 0;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	char buffer[BUFFER_SIZE];
 	while ((n_read = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
 		i = 0;
@@ -96,11 +95,12 @@ int	ft_read_map(int fd, t_map_data *map_data)
 		i++;
 	}
 	if (map_data == NULL || map_data->matrice == NULL || map_data->matrice[0] == NULL)
-			return 0;
+		return 0;
 	if(!ft_map_dimensions(map_data))
 		return(0);
 	if(!ft_is_valid_map(map_data))
 		return (0);
+
 	return (1);
 }
 

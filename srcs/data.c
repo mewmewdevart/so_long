@@ -12,7 +12,6 @@
 
 #include "../include/so_long.h"
 
-
 void	ft_initialize_map_data(t_map_data *map, t_map_objects_counts *data)
 {
 	*map = ft_initialize_map();
@@ -36,18 +35,10 @@ t_map_objects_counts	ft_initialize_data(void)
 	return (value_map);
 }
 
-void free_map(t_map_data *data)
+t_compass	ft_initialize_compass(void)
 {
-	int i = 0;
+	t_compass	compass;
 
-    if (data == NULL)
-        return;
-    while (i < data->rows)
-    {
-        free(data->matrice[i]);
-        i++;
-    }
-    free(data->matrice);
-    data->matrice = NULL;
-    free(data);
+	compass = (t_compass){0};
+	return (compass);
 }

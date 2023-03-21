@@ -15,6 +15,7 @@
 
 # include "../libs/mlx/mlx.h"
 # include "../libs/libft/includes/libft.h"
+//# include "game.h"
 # include "map.h"
 # include "custom_letters.h"
 
@@ -33,6 +34,7 @@
 # define RESTART 114 // The [r] key
 
 # define MAX_FILES 1
+# define TRUE 1
 
 //#include "../rscs/sprites/Player_idle/idleAnim_00.xpm"
 
@@ -44,17 +46,18 @@ typedef struct s_map_settings
 	int height;
 } t_map_settings;
 
-typedef struct s_game_instance
-{
-	void	*mlx;
-	void	*window;
-	int argc;
-	char **argv;
-	t_map_settings settings;
+typedef struct s_game_instance {
+    void *mlx;
+    void *window;
+    int argc;
+    char **argv;
+    t_map_settings settings;
+    t_compass compass;
+    t_map_data map_data; // novo membro
 } t_game_instance;
 
 // Filters path of the map name to use it as the window name
-t_map_settings	ft_print_map_name(char *path);
+t_map_settings	ft_print_name_window(char *path);
 
 // The main function of the program
 int	main(int argc, char **argv);
@@ -72,6 +75,7 @@ int		ft_check_keyboard(int key, t_game_instance *game);
 int ft_close_program(t_game_instance *game);
 
 // Displays an error message for problems related to map, game and graphics
+void ft_error_init(int n);
 void	ft_error_map(int n);
 //void	ft_error_game(char *local, int n);
 //void	ft_error_graphics(char *local, int n);
