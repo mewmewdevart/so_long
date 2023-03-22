@@ -12,19 +12,19 @@
 
 #include "../include/so_long.h"
 
-void free_map(t_map_data *data)
+void	free_map(t_map_data *map_data)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (data == NULL)
-        return;
-    while (i < data->rows)
-    {
-        free(data->matrice[i]);
-        i++;
-    }
-    free(data->matrice);
-    data->matrice = NULL;
-    free(data);
+	i = 0;
+	if (map_data == NULL)
+		return ;
+	while (i < map_data->rows_matrice)
+	{
+		free(map_data->matrice[i]);
+		i++;
+	}
+	free(map_data->matrice);
+	map_data->matrice = NULL;
+	free(map_data);
 }

@@ -14,12 +14,12 @@
 
 int	ft_check_keyboard(int key, t_game_instance *game)
 {
-	if (key == ESC) //modificar para dar free em tudo
+	if (key == ESC)
 	{
 		ft_printf("Closing the windows and program.. \n");
-		mlx_destroy_window(game->mlx, game->window);
-		mlx_destroy_display(game->mlx);
-		free (game->mlx);
+		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+		mlx_destroy_display(game->mlx_ptr);
+		free (game->mlx_ptr);
 		exit (0);
 	}
 	else if (key == W || key == UP)
@@ -61,49 +61,17 @@ int	ft_check_keyboard(int key, t_game_instance *game)
 int	ft_close_program(t_game_instance *game)
 {
 	ft_printf("Closing the windows and program.. \n");
-	mlx_destroy_window(game->mlx, game->window);
-	mlx_destroy_display(game->mlx);
-	free (game->mlx);
+	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	mlx_destroy_display(game->mlx_ptr);
+	free (game->mlx_ptr);
 	exit (0);
 }
 
 void	ft_reset_game(t_game_instance *game)
 {
-
 	ft_printf("Reset the game.. \n");
-	mlx_destroy_window(game->mlx, game->window);
-	mlx_destroy_display(game->mlx);
-	free (game->mlx);
-	exit(0);
-
-/* 
-	t_game_instance *game_original = malloc(sizeof(t_game_instance));
-	
-	if (!game_original)
-		ft_error_map(1);
-
-	ft_memcpy(game_original, game, sizeof(t_game_instance));
-
-	mlx_destroy_window(game->mlx, game->window);
-	mlx_destroy_display(game->mlx);
-	free (game->mlx);
-
-	ft_memcpy(game, game_original, sizeof(t_game_instance));
-
-	ft_initialize_game(2, game_original->argv);
-	free(game_original);
-*/
+	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	mlx_destroy_display(game->mlx_ptr);
+	free (game->mlx_ptr);
+	exit (0);
 }
-
-
-
-
-/* 
-void	ft_reset_game(t_game_instance *game)
-{
-	mlx_destroy_window(game->mlx, game->window);
-	//mlx_destroy_display(game->mlx);
-	//free (game->mlx);
-
-	ft_initialize_game(game->argc, game->argv);
-} */

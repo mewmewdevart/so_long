@@ -12,33 +12,19 @@
 
 #include "../include/so_long.h"
 
-void	ft_initialize_map_data(t_map_data *map, t_map_objects_counts *data)
+/* 
+// Init all structs with 0 or NULL
+// Init all structs with 0 or NULL
+void ft_struct_init(t_map_data	map_data, t_map_objects_counts	
+//value_map, t_game_compass	compass, t_game_instance game_instance)
 {
-	*map = ft_initialize_map();
-	*data = ft_initialize_data();
-}
-
-t_map_data	ft_initialize_map(void)
-{
-	t_map_data	map_data;
-
-	map_data = (t_map_data){0};
+	t_map_data	map_data = {0};
 	map_data.matrice = NULL;
-	return (map_data);
+	t_map_objects_counts	value_map = {0};
+	t_game_compass	compass = {0};
+	t_game_instance game_instance = {0};
+	game_instance.mlx_ptr = NULL;
+	game_instance.win_ptr = NULL;
 }
 
-t_map_objects_counts	ft_initialize_data(void)
-{
-	t_map_objects_counts	value_map;
-
-	value_map = (t_map_objects_counts){0};
-	return (value_map);
-}
-
-t_compass	ft_initialize_compass(void)
-{
-	t_compass	compass;
-
-	compass = (t_compass){0};
-	return (compass);
-}
+*/

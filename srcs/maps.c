@@ -18,11 +18,10 @@ int	ft_open_map(char *map)
 	int			fd;
 	t_map_data	*map_data;
 
-	// Aloca memoria para a estrutura t_map_data
 	map_data = ft_calloc(1, sizeof(t_map_data));
 	if (!map_data)
 		return (0);
-	map_data->first_read = ft_read_count_map(map);
+	map_data->first_read_matrice = ft_read_count_map(map);
 	if (!map_data)
 		return (0);
 	fd = open(map, O_RDONLY);
@@ -52,15 +51,20 @@ int	ft_read_count_map(char *map)
 	int		i;
 	int		fd;
 	int		count;
+	char	buffer[BUFFER_SIZE];
 	ssize_t	n_read;
-	char buffer[BUFFER_SIZE];
 
 	count = 0;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	while ((n_read = read(fd, buffer, BUFFER_SIZE)) > 0)
+	while (1)
 	{
+		n_read = read(fd, buffer, BUFFER_SIZE);
+		if (n_read < 0)
+			return (0);
+		if (n_read == 0)
+			break ;
 		i = 0;
 		while (i < n_read)
 		{
@@ -69,8 +73,6 @@ int	ft_read_count_map(char *map)
 			i++;
 		}
 	}
-	if (n_read == -1)
-		return (0);
 	if (close(fd) == -1)
 		return (0);
 	return (count);
@@ -82,29 +84,29 @@ int	ft_read_map(int fd, t_map_data *map_data)
 	int		i;
 	char	*buffer;
 
-	map_data->matrice = ft_calloc(map_data->first_read, sizeof(char *));
+	map_data->matrice = ft_calloc(map_data->first_read_matrice, sizeof(char *));
 	if (!map_data->matrice)
 		return (0);
 	i = 0;
-    while (1)
-    {
+	while (1)
+	{
 		buffer = get_next_line(fd);
 		if (buffer == NULL)
-			break;
+			break ;
 		map_data->matrice[i] = buffer;
 		i++;
 	}
-	if (map_data == NULL || map_data->matrice == NULL || map_data->matrice[0] == NULL)
-		return 0;
-	if(!ft_map_dimensions(map_data))
-		return(0);
-	if(!ft_is_valid_map(map_data))
+	if (map_data == NULL || map_data->matrice == NULL
+		|| map_data->matrice[0] == NULL)
 		return (0);
-
+	if (!ft_map_dimensions(map_data))
+		return (0);
+	if (!ft_is_valid_map(map_data))
+		return (0);
 	return (1);
 }
 
-// Counts the number of rows, columns and size in matrice
+// Counts the number of rows, columns and size in matrice 
 int	ft_map_dimensions(t_map_data *map_data)
 {
 	int		row_index;
@@ -114,23 +116,24 @@ int	ft_map_dimensions(t_map_data *map_data)
 
 	row_index = 0;
 	first_row = map_data->matrice[0];
-	while (first_row[map_data->cols] && first_row[map_data->cols] != '\n') // Conta o numero de colunas
-		map_data->cols++;
-	while (map_data->matrice[row_index]) // Conta o numero de linhas
+	while (first_row[map_data->cols_matrice]
+		&& first_row[map_data->cols_matrice] != '\n')
+		map_data->cols_matrice++;
+	while (map_data->matrice[row_index])
 	{
 		row = map_data->matrice[row_index];
 		row_len = ft_strlen(row);
 		if (row[row_len - 1] == '\n')
 			row_len--;
-		if (row_len != map_data->cols)
+		if (row_len != map_data->cols_matrice)
 		{
-			map_data->rows = 0;
+			map_data->rows_matrice = 0;
 			return (0);
 		}
-		map_data->rows++;
+		map_data->rows_matrice++;
 		row_index++;
 	}
-	map_data->size = map_data->rows * map_data->cols;
+	map_data->size_matrice = map_data->rows_matrice * map_data->cols_matrice;
 	return (1);
 }
 
