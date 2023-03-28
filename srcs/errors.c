@@ -12,6 +12,16 @@
 
 #include "../include/so_long.h"
 
+void	ft_error_init(int n)
+{
+	if (n == 38)
+	{
+		ft_printf("Error\n");
+		ft_printf("%sCheck library compatibility!", COLOR_RED);
+	}
+	exit(n);
+}
+
 void	ft_error_map(int n)
 {
 	if (n == 21)
