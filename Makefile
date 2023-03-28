@@ -23,14 +23,11 @@ LIBFT_PATH = $(LIBS_PATH)libft/
 MLX_PATH = $(LIBS_PATH)mlx/
 
 # sources files
-SRCS_FILES = map_compass.c \
-	map_validate.c \
+SRCS_FILES = map_validate.c \
 	maps.c \
 	utils.c \
-	player.c \
 	errors.c \
 	frees.c \
-	game_data.c \
 	game_init.c \
 	keyboard.c \
 

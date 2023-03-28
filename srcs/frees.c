@@ -14,7 +14,7 @@
 
 void	free_map(t_map_data *map_data)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	if (map_data == NULL)
@@ -22,9 +22,11 @@ void	free_map(t_map_data *map_data)
 	while (i < map_data->rows_matrice)
 	{
 		free(map_data->matrice[i]);
+		map_data->matrice[i] = NULL;
+		ft_printf("Estou dentro do arquivo free.c : %d\n", i);
 		i++;
 	}
 	free(map_data->matrice);
 	map_data->matrice = NULL;
-	free(map_data);
+	map_data = NULL;
 }

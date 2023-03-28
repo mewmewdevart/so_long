@@ -52,7 +52,7 @@ int	ft_is_wall(t_map_data *map_data)
 		j = 0;
 		while (j < map_data->cols_matrice)
 		{
-			if (i == 0 || j == 0 || i == map_data->rows_matrice- 1 || j == map_data->cols_matrice - 1)
+			if (i == 0 || j == 0 || i == map_data->rows_matrice - 1 || j == map_data->cols_matrice - 1)
 			{
 				if (map_data->matrice[i][j] != WALL)
 					return (0);

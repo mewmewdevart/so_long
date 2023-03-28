@@ -17,7 +17,7 @@ void	ft_error_init(int n)
 	if (n == 38)
 	{
 		ft_printf("Error\n");
-		ft_printf("Function not implemented, check library compatibility!");
+		ft_printf("%sCheck library compatibility!", COLOR_RED);
 	}
 	exit(n);
 }

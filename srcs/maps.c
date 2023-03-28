@@ -13,12 +13,10 @@
 #include "../include/so_long.h"
 
 // Open the file and storage the content in one struct
-int	ft_open_map(char *map)
+int	ft_open_map(char *map, t_map_data *map_data)
 {
 	int			fd;
-	t_map_data	*map_data;
 
-	map_data = ft_calloc(1, sizeof(t_map_data));
 	if (!map_data)
 		return (0);
 	map_data->first_read_matrice = ft_read_count_map(map);
@@ -41,11 +39,12 @@ int	ft_open_map(char *map)
 	}
 	close (fd);
 	free (map_data->matrice[0]);
-	free (map_data);
+	//free (map_data);
 	return (1);
 }
 
 // Function to read and count the map content for ft_calloc in the next function
+// [  ] Take only the number of lines
 int	ft_read_count_map(char *map)
 {
 	int		i;
@@ -68,6 +67,12 @@ int	ft_read_count_map(char *map)
 		i = 0;
 		while (i < n_read)
 		{
+			/*
+			if (buffer[i] == '\n') // alterei apenas o != para == e adicionei o == '\0'
+				count++;
+			if (buffer[i] == '\0')
+				break ;
+				*/
 			if (buffer[i] != '\n')
 				count++;
 			i++;
@@ -85,6 +90,7 @@ int	ft_read_map(int fd, t_map_data *map_data)
 	char	*buffer;
 
 	map_data->matrice = ft_calloc(map_data->first_read_matrice, sizeof(char *));
+	ft_printf("\n%d\n", map_data->first_read_matrice);
 	if (!map_data->matrice)
 		return (0);
 	i = 0;
@@ -116,8 +122,7 @@ int	ft_map_dimensions(t_map_data *map_data)
 
 	row_index = 0;
 	first_row = map_data->matrice[0];
-	while (first_row[map_data->cols_matrice]
-		&& first_row[map_data->cols_matrice] != '\n')
+	while (first_row[map_data->cols_matrice] && first_row[map_data->cols_matrice] != '\n')
 		map_data->cols_matrice++;
 	while (map_data->matrice[row_index])
 	{
@@ -134,6 +139,12 @@ int	ft_map_dimensions(t_map_data *map_data)
 		row_index++;
 	}
 	map_data->size_matrice = map_data->rows_matrice * map_data->cols_matrice;
+	
+	map_data->resolutions.settings_map_width = map_data->cols_matrice;
+	map_data->resolutions.settings_map_height = map_data->rows_matrice;
+
+	ft_printf("Width: %d e Height: %d\n", map_data->resolutions.settings_map_width, map_data->resolutions.settings_map_height);
+
 	return (1);
 }
 
