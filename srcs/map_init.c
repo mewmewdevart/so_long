@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maps.c                                             :+:      :+:    :+:   */
+/*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/10 20:11:13 by larcrist          #+#    #+#             */
-/*   Updated: 2023/03/10 20:11:14 by larcrist         ###   ########.fr       */
+/*   Created: 2023/03/28 15:37:25 by larcrist          #+#    #+#             */
+/*   Updated: 2023/03/28 15:37:26 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
 // Open the file and storage the content in one struct
-int	ft_open_map(char *map, t_map_data *map_data)
+int	ft_open_map(char *map, t_game_instance *game_init)
 {
 	int			fd;
 
-	if (!map_data)
+	game_init->map_init.first_read_matrice = ft_read_count_map(map);
+	if (!&game_init->map_init)
+	{
+		free(game_init->map_init.matrice);
 		return (0);
-	map_data->first_read_matrice = ft_read_count_map(map);
-	if (!map_data)
-		return (0);
+	}
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		return (0);
@@ -30,16 +31,16 @@ int	ft_open_map(char *map, t_map_data *map_data)
 		close (fd);
 		return (0);
 	}
-	if (!ft_read_map(fd, map_data))
+	if (!ft_read_map(fd, game_init))
 	{
 		close (fd);
-		free(map_data->matrice);
-		free(map_data);
+		free(game_init->map_init.matrice);
+		game_init->map_init.matrice = NULL;
 		return (0);
 	}
 	close (fd);
-	free (map_data->matrice[0]);
-	//free (map_data);
+	free(game_init->map_init.matrice);
+	game_init->map_init.matrice = NULL;
 	return (1);
 }
 
@@ -67,53 +68,49 @@ int	ft_read_count_map(char *map)
 		i = 0;
 		while (i < n_read)
 		{
-			/*
-			if (buffer[i] == '\n') // alterei apenas o != para == e adicionei o == '\0'
-				count++;
-			if (buffer[i] == '\0')
-				break ;
-				*/
-			if (buffer[i] != '\n')
+			if (buffer[i] == '\n')
 				count++;
 			i++;
 		}
 	}
 	if (close(fd) == -1)
 		return (0);
+	count++;
 	return (count);
 }
 
 // Read the file and storage the content in one struct
-int	ft_read_map(int fd, t_map_data *map_data)
+int	ft_read_map(int fd, t_game_instance *game_init)
 {
 	int		i;
 	char	*buffer;
 
-	map_data->matrice = ft_calloc(map_data->first_read_matrice, sizeof(char *));
-	ft_printf("\n%d\n", map_data->first_read_matrice);
-	if (!map_data->matrice)
+	game_init->map_init.matrice = ft_calloc(game_init->map_init.first_read_matrice + 1, sizeof(char *));
+	ft_printf("\n%d\n", game_init->map_init.first_read_matrice);
+	if (!game_init->map_init.matrice)
+	{
+		free(game_init->map_init.matrice);
 		return (0);
+	}
 	i = 0;
 	while (1)
 	{
 		buffer = get_next_line(fd);
 		if (buffer == NULL)
 			break ;
-		map_data->matrice[i] = buffer;
+		game_init->map_init.matrice[i] = buffer;
 		i++;
 	}
-	if (map_data == NULL || map_data->matrice == NULL
-		|| map_data->matrice[0] == NULL)
+	if (!game_init->map_init.matrice || !ft_map_dimensions(game_init) || !ft_is_valid_map(game_init))
+	{
+		free(game_init->map_init.matrice);
 		return (0);
-	if (!ft_map_dimensions(map_data))
-		return (0);
-	if (!ft_is_valid_map(map_data))
-		return (0);
+	}
 	return (1);
 }
 
 // Counts the number of rows, columns and size in matrice 
-int	ft_map_dimensions(t_map_data *map_data)
+int	ft_map_dimensions(t_game_instance *game_init)
 {
 	int		row_index;
 	char	*row;
@@ -121,29 +118,29 @@ int	ft_map_dimensions(t_map_data *map_data)
 	int		row_len;
 
 	row_index = 0;
-	first_row = map_data->matrice[0];
-	while (first_row[map_data->cols_matrice] && first_row[map_data->cols_matrice] != '\n')
-		map_data->cols_matrice++;
-	while (map_data->matrice[row_index])
+	first_row = game_init->map_init.matrice[0];
+	while (first_row[game_init->map_init.cols_matrice] && first_row[game_init->map_init.cols_matrice] != '\n')
+		game_init->map_init.cols_matrice++;
+	while (game_init->map_init.matrice[row_index])
 	{
-		row = map_data->matrice[row_index];
+		row = game_init->map_init.matrice[row_index];
 		row_len = ft_strlen(row);
 		if (row[row_len - 1] == '\n')
 			row_len--;
-		if (row_len != map_data->cols_matrice)
+		if (row_len != game_init->map_init.cols_matrice)
 		{
-			map_data->rows_matrice = 0;
+			game_init->map_init.rows_matrice = 0;
 			return (0);
 		}
-		map_data->rows_matrice++;
+		game_init->map_init.rows_matrice++;
 		row_index++;
 	}
-	map_data->size_matrice = map_data->rows_matrice * map_data->cols_matrice;
+	game_init->map_init.size_matrice = game_init->map_init.rows_matrice * game_init->map_init.cols_matrice;
 	
-	map_data->resolutions.settings_map_width = map_data->cols_matrice;
-	map_data->resolutions.settings_map_height = map_data->rows_matrice;
+	game_init->map_init.resolutions.settings_map_width = game_init->map_init.cols_matrice;
+	game_init->map_init.resolutions.settings_map_height = game_init->map_init.rows_matrice;
 
-	ft_printf("Width: %d e Height: %d\n", map_data->resolutions.settings_map_width, map_data->resolutions.settings_map_height);
+	ft_printf("Width: %d e Height: %d\n", game_init->map_init.resolutions.settings_map_width, game_init->map_init.resolutions.settings_map_height);
 
 	return (1);
 }

@@ -24,12 +24,13 @@ MLX_PATH = $(LIBS_PATH)mlx/
 
 # sources files
 SRCS_FILES = map_validate.c \
-	maps.c \
+	map_init.c \
 	utils.c \
 	errors.c \
 	frees.c \
 	game_init.c \
 	keyboard.c \
+	game_positions.c
 
 SOURCES = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 

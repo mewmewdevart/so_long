@@ -46,22 +46,42 @@
 
 # define CELL_SIZE 32
 
-typedef struct s_game_compass
+// Elements of Game
+typedef struct s_game_objs
+{
+    void *player;
+    void *player_left;
+    void *player_right;
+    void *player_down;
+    void *player_up;
+
+    void *collectible;
+
+    void *exit_on;
+    void *exit_off;
+
+    void *wall;
+    void *floor;
+} t_game_objs;
+
+typedef struct s_game_positions
 {
     int player_row;
     int player_col;
 	int exit_row;
     int exit_col;
-} t_game_compass;
+} t_game_positions;
 
-typedef struct s_map_objects_counts
+typedef struct s_game_data
 {
 	int	count_player;
 	int	count_exit;
 	int	count_collectible;
 	int	count_wall;
 	int	count_empty;
-}	t_map_objects_counts;
+
+    int count_movements;
+}	t_game_data;
 
 typedef struct s_game_resolutions
 {
@@ -79,6 +99,7 @@ typedef struct s_map_data
     int size_matrice;
     char **matrice;
     t_game_resolutions resolutions;
+    t_game_positions positions;
 } t_map_data;
 
 typedef struct s_game_instance
@@ -86,34 +107,51 @@ typedef struct s_game_instance
     void *mlx_ptr;
     void *win_ptr;
     t_map_data map_init;
-    t_game_compass compass;
-    t_map_objects_counts objs_count;
-    t_game_resolutions resolutions;
+    t_game_positions positions_init;
+    t_game_data game_data;
+    t_game_resolutions resolutions_init;
+    t_game_objs game_objs;
 } t_game_instance;
 
+// Function to open and read the map file
 int	main(int argc, char **argv);
+// Initializes the game based on the command line arguments
 void ft_initialize_game(int argc, char **argv);
 
+// Checks if any reserved [key/clicks] was pressed and performs the corresponding behavior
 int	ft_check_keyboard(int key, t_game_instance *game_init);
 int	ft_close_program (t_game_instance *game_init);
 void	ft_reset_game(t_game_instance *game_init);
 
-int	ft_open_map(char *map, t_map_data *map_data);
+// Function to open and read the map file
+int	ft_open_map(char *map, t_game_instance *game_init);
+// Function to count the map content for ft_calloc and read the map content
 int	ft_read_count_map(char *map);
-int	ft_read_map(int fd, t_map_data *map_data);
-int	ft_map_dimensions(t_map_data *map_data);
+int	ft_read_map(int fd, t_game_instance *game_init);
+// Function to counts the number of rows, columns and size in matrice
+int	ft_map_dimensions(t_game_instance *game_init);
+// Check if the map has a valid .ber extension and path/
 int	ft_map_extension(char *map);
 
-int	ft_is_valid_map(t_map_data *data);
-int	ft_is_map_shape_valid(t_map_data *map_data);
-int	ft_is_wall(t_map_data *map_data);
-int	ft_count_map_objects(t_map_data *map_data, t_map_objects_counts *counts);
+// Check if all conditions are valid
+int	ft_is_valid_map(t_game_instance *game_init);
+int	ft_is_map_shape_valid(t_game_instance *game_init);
+int	ft_is_wall(t_game_instance *game_init);
+int	ft_count_map_objects(t_game_instance *game_init);
 
-void	free_map(t_map_data *map_data);
+// Checks the player positions
+void ft_positions_player(t_game_instance *game_init);
+//void ft_update_player_position(t_game_instance *game_init);
 
+// All free actions
+//void	ft_free_map(t_game_instance **game_init);
+void ft_free_map(t_game_instance *game_init);
+
+// Displays an error message for problems related to map, game and graphics
 void	ft_error_init(int n);
 void	ft_error_map(int n);
 
+// Auxiliary functions : Compares two strings, check all ocurrances and blank spaces
 int	ft_strcmp(const char *s1, const char *s2);
 size_t	ft_strchr_all_ocurrences(char *str, char ch);
 int	ft_is_blank(const char *str);

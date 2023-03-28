@@ -14,7 +14,6 @@
 
 int	main(int argc, char **argv)
 {
-	//ft_initialize_data();
 	ft_initialize_game(argc, argv);
 	return (0);
 }
