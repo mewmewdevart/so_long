@@ -34,8 +34,6 @@ int	ft_open_map(char *map, t_game_instance *game_init)
 	if (!ft_read_map(fd, game_init))
 	{
 		close (fd);
-		free(game_init->map_init.matrice);
-		game_init->map_init.matrice = NULL;
 		return (0);
 	}
 	close (fd);
@@ -45,7 +43,6 @@ int	ft_open_map(char *map, t_game_instance *game_init)
 }
 
 // Function to read and count the map content for ft_calloc in the next function
-// [  ] Take only the number of lines
 int	ft_read_count_map(char *map)
 {
 	int		i;
@@ -79,13 +76,14 @@ int	ft_read_count_map(char *map)
 	return (count);
 }
 
-// Read the file and storage the content in one struct
+// Function to read the map
 int	ft_read_map(int fd, t_game_instance *game_init)
 {
 	int		i;
 	char	*buffer;
 
 	game_init->map_init.matrice = ft_calloc(game_init->map_init.first_read_matrice + 1, sizeof(char *));
+	if (!game_init->map_init.matrice)
 	ft_printf("\n%d\n", game_init->map_init.first_read_matrice);
 	if (!game_init->map_init.matrice)
 	{
@@ -93,14 +91,17 @@ int	ft_read_map(int fd, t_game_instance *game_init)
 		return (0);
 	}
 	i = 0;
+	buffer = NULL;
 	while (1)
 	{
 		buffer = get_next_line(fd);
-		if (buffer == NULL)
+		if (!buffer)
 			break ;
 		game_init->map_init.matrice[i] = buffer;
 		i++;
 	}
+	if (buffer != NULL)
+		free(buffer);
 	if (!game_init->map_init.matrice || !ft_map_dimensions(game_init) || !ft_is_valid_map(game_init))
 	{
 		free(game_init->map_init.matrice);

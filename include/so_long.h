@@ -62,6 +62,9 @@ typedef struct s_game_objs
 
     void *wall;
     void *floor;
+
+    int img_width;
+    int img_height;
 } t_game_objs;
 
 typedef struct s_game_positions
@@ -81,14 +84,15 @@ typedef struct s_game_data
 	int	count_empty;
 
     int count_movements;
+    int endgame;
 }	t_game_data;
 
 typedef struct s_game_resolutions
 {
     int settings_map_width;
     int settings_map_height;
-    //char *settings_name_window;
-    //char *settings_name_map;
+    char *settings_name_window;
+    char *settings_name_map;
 } t_game_resolutions;
 
 typedef struct s_map_data
@@ -116,11 +120,13 @@ typedef struct s_game_instance
 // Function to open and read the map file
 int	main(int argc, char **argv);
 // Initializes the game based on the command line arguments
-void ft_initialize_game(int argc, char **argv);
+void	ft_initialize_game(t_game_instance *game_init);
+
+void ft_print_name_window(t_game_instance *game_init, char *path);
 
 // Checks if any reserved [key/clicks] was pressed and performs the corresponding behavior
 int	ft_check_keyboard(int key, t_game_instance *game_init);
-int	ft_close_program (t_game_instance *game_init);
+int ft_exit_program(t_game_instance *game_init);
 void	ft_reset_game(t_game_instance *game_init);
 
 // Function to open and read the map file
@@ -140,8 +146,18 @@ int	ft_is_wall(t_game_instance *game_init);
 int	ft_count_map_objects(t_game_instance *game_init);
 
 // Checks the player positions
-void ft_positions_player(t_game_instance *game_init);
-//void ft_update_player_position(t_game_instance *game_init);
+//void ft_positions_player(t_game_instance *game_init);
+
+void	ft_draw(t_game_instance *game_init, void *image, int x, int y);
+int	ft_put_draw_on_map(t_game_instance *game_init);
+void ft_player_up(t_game_instance *game_init);
+void ft_player_down(t_game_instance *game_init);
+void ft_player_left(t_game_instance *game_init);
+void ft_player_right(t_game_instance *game_init);
+
+void	ft_gameplay_start(t_game_instance *game_init);
+
+void ft_free_img(t_game_instance *game_init);
 
 // All free actions
 //void	ft_free_map(t_game_instance **game_init);

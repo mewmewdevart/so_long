@@ -56,10 +56,10 @@ static int	ft_found_error(int fd)
 //de-allocate the memory
 static	void	ft_free(char **str)
 {
-	if (str[0])
+	if (str && *str)
 	{
-		free(str[0]);
-		str[0] = NULL;
+		free(*str);
+		*str = NULL;
 	}
 }
 

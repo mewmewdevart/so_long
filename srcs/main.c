@@ -14,6 +14,23 @@
 
 int	main(int argc, char **argv)
 {
-	ft_initialize_game(argc, argv);
+	t_game_instance game_init;
+
+	game_init = (t_game_instance){0};
+	game_init.map_init.matrice = NULL;
+
+	if (argc != 2)
+		ft_error_map(22);
+	else
+		ft_print_name_window(&game_init, argv[1]);
+	if (ft_open_map(argv[1], &game_init))
+	{
+		ft_initialize_game(&game_init);
+		//ft_gameplay_start(&game_init);
+		//mlx_loop(game_init.mlx_ptr);
+	}
+	else
+		ft_error_map(61);
+
 	return (0);
 }

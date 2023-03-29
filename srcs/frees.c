@@ -12,41 +12,26 @@
 
 #include "../include/so_long.h"
 
-void ft_free_map(t_game_instance *game_init)
+void	ft_free_map(t_game_instance *game_init)
 {
-    int i;
+	if (game_init->map_init.matrice == NULL)
+		return;
 
-    if (game_init->map_init.matrice)
-    {
-        i = 0;
-        while (game_init->map_init.matrice[i])
-        {
-            free(game_init->map_init.matrice[i]);
-            i++;
-        }
-        free(game_init->map_init.matrice);
-        game_init->map_init.matrice = NULL;
-    }
-    free(game_init);
+	int i = 0;
+	while (game_init->map_init.matrice[i])
+	{
+		free(game_init->map_init.matrice[i]);
+		i++;
+	}
+	free(game_init->map_init.matrice);
+	game_init->map_init.matrice = NULL;
 }
-/* 
-void	ft_free_map(t_game_instance **game_init)
+
+void ft_free_img(t_game_instance *game_init)
 {
-    int		i;
-
-    i = 0;
-    if (*game_init == NULL)
-        return ;
-    while (i < (*game_init)->map_init.rows_matrice)
-    {
-        free((*game_init)->map_init.matrice[i]);
-        (*game_init)->map_init.matrice[i] = NULL;
-        ft_printf("Estou dentro do arquivo free.c : %d\n", i);
-        i++;
-    }
-    free((*game_init)->map_init.matrice);
-    (*game_init)->map_init.matrice = NULL;
-    free(*game_init);
-    *game_init = NULL;
+	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.floor);
+	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.player);
+	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.wall);
+	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.collectible);
+	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.exit_on);
 }
-*/

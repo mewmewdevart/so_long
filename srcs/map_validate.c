@@ -15,7 +15,6 @@
 // Check if the all conditions is valid or not
 int	ft_is_valid_map(t_game_instance *game_init)
 {
-
 	ft_printf("\n Eu entrei na função ft_is_valid\n");
 	if (!(ft_count_map_objects(game_init)))
 		return (0);
@@ -63,7 +62,6 @@ int	ft_is_wall(t_game_instance *game_init)
 	return (1);
 }
 
-//int	ft_count_map_objects(t_game_instance *game_init, t_game_data *game_data);
 // Count map content and check if it has (1)E, 1(E) and >= 1(C)
 int	ft_count_map_objects(t_game_instance *game_init)
 {
