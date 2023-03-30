@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:37:25 by larcrist          #+#    #+#             */
-/*   Updated: 2023/03/28 15:37:26 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/03/30 14:47:57 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ int	ft_read_map(int fd, t_game_instance *game_init)
 		game_init->map_init.matrice[i] = buffer;
 		i++;
 	}
-	if (buffer != NULL)
-		free(buffer);
+	//if (buffer != NULL)
+		//free(buffer);
 	if (!game_init->map_init.matrice || !ft_map_dimensions(game_init) || !ft_is_valid_map(game_init))
 	{
 		free(game_init->map_init.matrice);

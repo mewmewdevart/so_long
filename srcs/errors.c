@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 20:12:15 by larcrist          #+#    #+#             */
-/*   Updated: 2023/03/10 20:12:17 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:01:07 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void	ft_error_init(int n)
 	{
 		ft_printf("Error\n");
 		ft_printf("%sCheck library compatibility!", COLOR_RED);
+	}
+	if (n == 2)
+	{
+		ft_printf("Error\n");
+		ft_printf("%sNo such file or directory|", COLOR_RED);
 	}
 	exit(n);
 }

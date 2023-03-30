@@ -9,7 +9,7 @@ void ft_player_up(t_game_instance *game_init)
         game_init->map_init.matrice[game_init->positions_init.player_row + 1][game_init->positions_init.player_col] = EMPTY;
         game_init->game_data.count_movements++;
         game_init->game_data.endgame++;
-        ft_put_draw_on_map(game_init);
+        ft_show_game(game_init);
     } else if (game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] == WALL || game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] == EXIT)
         game_init->positions_init.player_row++;
     else
@@ -20,7 +20,7 @@ void ft_player_up(t_game_instance *game_init)
         game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] = PLAYER;
         game_init->map_init.matrice[game_init->positions_init.player_row + 1][game_init->positions_init.player_col] = EMPTY;
         game_init->game_data.count_movements++;
-        ft_put_draw_on_map(game_init);
+         ft_show_game(game_init);
     }
 }
 
@@ -33,7 +33,7 @@ void ft_player_left(t_game_instance *game_init)
         game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col + 1] = EMPTY;
         game_init->game_data.count_movements++;
         game_init->game_data.endgame++;
-        ft_put_draw_on_map(game_init);
+         ft_show_game(game_init);
     } else if (game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] == WALL || game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] == EXIT)
         game_init->positions_init.player_col++;
     else
@@ -44,7 +44,7 @@ void ft_player_left(t_game_instance *game_init)
         game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] = PLAYER;
         game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col +1 ] = EMPTY;
         game_init->game_data.count_movements++;
-        ft_put_draw_on_map(game_init);
+         ft_show_game(game_init);
     }
 }
 
@@ -57,7 +57,7 @@ void ft_player_right(t_game_instance *game_init)
         game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col - 1] = EMPTY;
         game_init->game_data.count_movements++;
         game_init->game_data.endgame++;
-        ft_put_draw_on_map(game_init);
+         ft_show_game(game_init);
     } else if (game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] == WALL || game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] == EXIT)
         game_init->positions_init.player_col++;
     else
@@ -68,7 +68,7 @@ void ft_player_right(t_game_instance *game_init)
         game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] = PLAYER;
         game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col - 1] = EMPTY;
         game_init->game_data.count_movements++;
-        ft_put_draw_on_map(game_init);
+         ft_show_game(game_init);
     }
 }
 
@@ -81,7 +81,7 @@ void ft_player_down(t_game_instance *game_init)
         game_init->map_init.matrice[game_init->positions_init.player_row - 1][game_init->positions_init.player_col] = EMPTY;
         game_init->game_data.count_movements++;
         game_init->game_data.endgame++;
-        ft_put_draw_on_map(game_init);
+         ft_show_game(game_init);
     } else if (game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] == WALL || game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] == EXIT)
         game_init->positions_init.player_row++;
     else
@@ -92,6 +92,6 @@ void ft_player_down(t_game_instance *game_init)
         game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] = PLAYER;
         game_init->map_init.matrice[game_init->positions_init.player_row - 1][game_init->positions_init.player_col] = EMPTY;
         game_init->game_data.count_movements++;
-        ft_put_draw_on_map(game_init);
+         ft_show_game(game_init);
     }
 }

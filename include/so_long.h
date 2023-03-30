@@ -6,7 +6,7 @@
 /*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 13:21:47 by larcrist          #+#    #+#             */
-/*   Updated: 2023/02/28 14:35:52 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/03/30 14:51:14 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct s_game_instance
 // Function to open and read the map file
 int	main(int argc, char **argv);
 // Initializes the game based on the command line arguments
+void ft_struct_init(t_game_instance *game_init);
 void	ft_initialize_game(t_game_instance *game_init);
 
 void ft_print_name_window(t_game_instance *game_init, char *path);
@@ -145,23 +146,25 @@ int	ft_is_map_shape_valid(t_game_instance *game_init);
 int	ft_is_wall(t_game_instance *game_init);
 int	ft_count_map_objects(t_game_instance *game_init);
 
-// Checks the player positions
-//void ft_positions_player(t_game_instance *game_init);
-
+int	ft_show_game(t_game_instance *game_init);
 void	ft_draw(t_game_instance *game_init, void *image, int x, int y);
-int	ft_put_draw_on_map(t_game_instance *game_init);
-void ft_player_up(t_game_instance *game_init);
-void ft_player_down(t_game_instance *game_init);
-void ft_player_left(t_game_instance *game_init);
-void ft_player_right(t_game_instance *game_init);
+
+void ft_player_draw(t_game_instance *game_init, void *image, int x, int y);
+void ft_draw_exit (t_game_instance *game_init, int x, int y);
 
 void	ft_gameplay_start(t_game_instance *game_init);
+void ft_player_up(t_game_instance *game_init);
+void ft_player_left(t_game_instance *game_init);
+void ft_player_right(t_game_instance *game_init);
+void ft_player_down(t_game_instance *game_init);
 
-void ft_free_img(t_game_instance *game_init);
+
+void ft_sprites_init(t_game_instance *game_init);
 
 // All free actions
 //void	ft_free_map(t_game_instance **game_init);
 void ft_free_map(t_game_instance *game_init);
+void ft_free_img(t_game_instance *game_init);
 
 // Displays an error message for problems related to map, game and graphics
 void	ft_error_init(int n);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 20:12:31 by larcrist          #+#    #+#             */
-/*   Updated: 2023/03/10 20:12:32 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:53:35 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	ft_is_valid_map(t_game_instance *game_init)
 // Check if the map is rectangular or square
 int	ft_is_map_shape_valid(t_game_instance *game_init)
 {
-	if (!&game_init->map_init || game_init->map_init.cols_matrice <= 0 ||game_init->map_init.rows_matrice <= 0)
+	//!&game_init->map_init || 
+	if (game_init->map_init.cols_matrice <= 0 ||game_init->map_init.rows_matrice <= 0)
 		return (0); 
 	if (game_init->map_init.size_matrice == 0)
 		return (0);
