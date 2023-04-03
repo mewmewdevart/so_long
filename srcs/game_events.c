@@ -20,25 +20,41 @@ int	ft_check_keyboard(int key, t_game_instance *game_init)
 	{
 		game_init->positions_init.player_row--;
 		ft_printf("TECLA W OU UP\n");
+<<<<<<< HEAD
 		ft_player_up(game_init);
+=======
+		//ft_player_up(game_init);
+>>>>>>> 0ec802e (fix reading errors and memory (valgrind))
 	}
 	else if (key == A || key == LEFT)
 	{
 		game_init->positions_init.player_col--;
 		ft_printf("TECLA A OU LEFT\n");
+<<<<<<< HEAD
 		ft_player_left(game_init);
+=======
+		//ft_player_left(game_init);
+>>>>>>> 0ec802e (fix reading errors and memory (valgrind))
 	}
 	else if (key == S || key == DOWN)
 	{
 		game_init->positions_init.player_row++;
 		ft_printf("TECLA S OU DOWN\n");
+<<<<<<< HEAD
 		ft_player_down(game_init);
+=======
+		//ft_player_down(game_init);
+>>>>>>> 0ec802e (fix reading errors and memory (valgrind))
 	}
 	else if (key == D || key == RIGHT)
 	{
 		game_init->positions_init.player_col++;
 		ft_printf("TECLA D OU RIGHT\n");
+<<<<<<< HEAD
 		ft_player_right(game_init);
+=======
+		//ft_player_right(game_init);
+>>>>>>> 0ec802e (fix reading errors and memory (valgrind))
 	}
 	else if (key == RESTART)
 	{
@@ -48,12 +64,22 @@ int	ft_check_keyboard(int key, t_game_instance *game_init)
 	return (0);
 }
 
+	//ft_free_img(game_init);
+
 int ft_exit_program(t_game_instance *game_init)
 {
 	ft_printf("Closing the window and program.. \n");
+<<<<<<< HEAD
 	ft_free_img(game_init);
+=======
+>>>>>>> 0ec802e (fix reading errors and memory (valgrind))
 	mlx_destroy_window(game_init->mlx_ptr, game_init->win_ptr);
 	mlx_destroy_display(game_init->mlx_ptr);
+	free(game_init->mlx_ptr);
+
+	free(game_init->resolutions_init.settings_name_window);
+	free(game_init->resolutions_init.settings_name_map);
+
 	ft_free_map(game_init);
 	free(game_init->mlx_ptr);
 	exit(0);
@@ -63,11 +89,22 @@ int ft_exit_program(t_game_instance *game_init)
 void	ft_reset_game(t_game_instance *game_init) // Um dia
 {
 	ft_printf("Reset the game.. \n");
+<<<<<<< HEAD
 	ft_free_img(game_init);
+=======
+>>>>>>> 0ec802e (fix reading errors and memory (valgrind))
 	mlx_destroy_window(game_init->mlx_ptr, game_init->win_ptr);
 	mlx_destroy_display(game_init->mlx_ptr);
-	ft_free_map(game_init);
 	free(game_init->mlx_ptr);
+
+	free(game_init->resolutions_init.settings_name_window);
+	free(game_init->resolutions_init.settings_name_map);
+
+	ft_free_map(game_init);
+<<<<<<< HEAD
+	free(game_init->mlx_ptr);
+=======
+>>>>>>> 0ec802e (fix reading errors and memory (valgrind))
 	exit(0);
 }
 

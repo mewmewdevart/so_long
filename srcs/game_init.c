@@ -23,12 +23,32 @@ void	ft_initialize_game(t_game_instance *game_init)
 	game_init->win_ptr = mlx_new_window(game_init->mlx_ptr, game_init->map_init.resolutions.settings_map_width*CELL_SIZE, game_init->map_init.resolutions.settings_map_height*CELL_SIZE, game_init->resolutions_init.settings_name_window);
 	if (game_init->win_ptr == NULL)
 		ft_error_init(38);
+<<<<<<< HEAD
 
 	game_init->game_data.count_movements = 0;
 	game_init->game_data.endgame = 0;
 
 	ft_sprites_init(game_init);
 	ft_show_game(game_init);
+=======
+	
+	ft_printf("Estou dentro do game_init\n");
+	int i;
+	i = 0;
+	while(game_init->map_init.matrice[i])
+	{
+		ft_printf("%s",game_init->map_init.matrice[i]);
+		i++;
+	}
+
+	//game_init->game_data.count_movements = 0;
+	//game_init->game_data.endgame = 0;
+
+	//ft_sprites_init(game_init);
+	//ft_put_draw_on_map(game_init);
+	//mlx_hook(game_init->win_ptr, 9, 1L << 21, ft_put_draw_on_map, game_init);
+	//mlx_loop(game_init->mlx_ptr);
+>>>>>>> 0ec802e (fix reading errors and memory (valgrind))
 }
 
 

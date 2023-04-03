@@ -14,7 +14,12 @@
 
 int	main(int argc, char **argv)
 {
+<<<<<<< HEAD
 	t_game_instance	game_init;
+=======
+	t_game_instance game_init;
+
+>>>>>>> 0ec802e (fix reading errors and memory (valgrind))
 
 	ft_struct_init(&game_init);
 	if (argc != 2)
@@ -26,6 +31,7 @@ int	main(int argc, char **argv)
 		ft_printf("PRINTANDO A MATRIZ DE DENTRO DO ft_open_map: %s\n", game_init.map_init.matrice);
 		ft_initialize_game(&game_init);
 		ft_gameplay_start(&game_init);
+<<<<<<< HEAD
 		mlx_loop(game_init.mlx_ptr);
 	}
 	else
@@ -56,3 +62,27 @@ void	ft_struct_init(t_game_instance *game_init)
 		.img_height = 0
 	};
 }
+=======
+
+		if (mlx_loop(game_init.mlx_ptr) < 0)
+				ft_error_init(38);
+	}
+	else
+		ft_error_map(61);
+
+	ft_exit_program(&game_init);
+	return (0);
+}
+
+ void ft_struct_init(t_game_instance *game_init)
+{
+    *game_init = (t_game_instance){0};
+    game_init->map_init.matrice = NULL;
+    game_init->mlx_ptr = NULL;
+    game_init->win_ptr = NULL;
+    game_init->resolutions_init.settings_name_map = NULL;
+    game_init->resolutions_init.settings_name_window = NULL;
+    game_init->game_objs = (t_game_objs){NULL};
+	return ;
+}
+>>>>>>> 0ec802e (fix reading errors and memory (valgrind))

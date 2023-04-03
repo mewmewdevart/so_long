@@ -122,7 +122,7 @@ int	main(int argc, char **argv);
 // Initializes the game based on the command line arguments
 void ft_struct_init(t_game_instance *game_init);
 void	ft_initialize_game(t_game_instance *game_init);
-
+ void ft_struct_init(t_game_instance *game_init);
 void ft_print_name_window(t_game_instance *game_init, char *path);
 
 // Checks if any reserved [key/clicks] was pressed and performs the corresponding behavior
