@@ -57,8 +57,8 @@ typedef struct s_game_objs
 
     void *collectible;
 
-    void *exit_on;
-    void *exit_off;
+    void *exit_open;
+    void *exit_close;
 
     void *wall;
     void *floor;
@@ -110,6 +110,8 @@ typedef struct s_game_instance
 {
     void *mlx_ptr;
     void *win_ptr;
+    int argc_tmp;
+    char **argv_tmp;
     t_map_data map_init;
     t_game_positions positions_init;
     t_game_data game_data;
@@ -146,20 +148,19 @@ int	ft_is_map_shape_valid(t_game_instance *game_init);
 int	ft_is_wall(t_game_instance *game_init);
 int	ft_count_map_objects(t_game_instance *game_init);
 
-int	ft_show_game(t_game_instance *game_init);
-void	ft_draw(t_game_instance *game_init, void *image, int x, int y);
-
-void ft_player_draw(t_game_instance *game_init, void *image, int x, int y);
-void ft_draw_exit (t_game_instance *game_init, int x, int y);
 
 void	ft_gameplay_start(t_game_instance *game_init);
-void ft_player_up(t_game_instance *game_init);
-void ft_player_left(t_game_instance *game_init);
-void ft_player_right(t_game_instance *game_init);
-void ft_player_down(t_game_instance *game_init);
 
+void ft_settings_draw(t_game_instance *game_init, void *image, int width, int height);
+int ft_map_draw(t_game_instance *game_init);
 
-void ft_sprites_init(t_game_instance *game_init);
+void ft_img_init(t_game_instance *game_init);
+void ft_checker_img(t_game_instance *game_init, void **image, char *path_img);
+
+void ft_events_pressed(t_game_instance *game_init, int column, int row);
+void ft_locate_player(t_game_instance *game_init);
+int ft_player_moves(t_game_instance *game_init);
+
 
 // All free actions
 //void	ft_free_map(t_game_instance **game_init);

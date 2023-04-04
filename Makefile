@@ -29,9 +29,8 @@ SRCS_FILES = map_validate.c \
 	errors.c \
 	frees.c \
 	game_init.c \
-	player_events.c \
 	game_events.c \
-	show_game.c
+	draw.c \
 
 SOURCES = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 

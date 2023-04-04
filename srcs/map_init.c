@@ -37,16 +37,6 @@ int	ft_open_map(char *map, t_game_instance *game_init)
 		return (0);
 	}
 	close (fd);
-
-	ft_printf("Estou dentro do ft_open_map\n");
-	int i;
-	i = 0;
-	while(game_init->map_init.matrice[i])
-	{
-		ft_printf("%s",game_init->map_init.matrice[i]);
-		i++;
-	}
-
 	return (1);
 }
 
@@ -108,8 +98,6 @@ int	ft_read_map(int fd, t_game_instance *game_init)
 		game_init->map_init.matrice[i] = buffer;
 		i++;
 	}
-	//if (buffer != NULL)
-		//free(buffer);
 	if (!game_init->map_init.matrice || !ft_map_dimensions(game_init) || !ft_is_valid_map(game_init))
 	{
 		free(game_init->map_init.matrice);
@@ -148,9 +136,6 @@ int	ft_map_dimensions(t_game_instance *game_init)
 	
 	game_init->map_init.resolutions.settings_map_width = game_init->map_init.cols_matrice;
 	game_init->map_init.resolutions.settings_map_height = game_init->map_init.rows_matrice;
-
-	ft_printf("Width: %d e Height: %d\n", game_init->map_init.resolutions.settings_map_width, game_init->map_init.resolutions.settings_map_height);
-
 	return (1);
 }
 

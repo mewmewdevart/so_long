@@ -31,7 +31,7 @@ int	ft_is_map_shape_valid(t_game_instance *game_init)
 {
 	//!&game_init->map_init || 
 	if (game_init->map_init.cols_matrice <= 0 ||game_init->map_init.rows_matrice <= 0)
-		return (0); 
+		return (0);
 	if (game_init->map_init.size_matrice == 0)
 		return (0);
 	if (game_init->map_init.size_matrice % game_init->map_init.rows_matrice == 0 && game_init->map_init.size_matrice / game_init->map_init.rows_matrice == game_init->map_init.cols_matrice)
