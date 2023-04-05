@@ -79,7 +79,6 @@ void	ft_gameplay_start(t_game_instance *game_init)
 	mlx_hook(game_init->win_ptr, 17, 0, ft_exit_program, game_init);
 	mlx_key_hook(game_init->win_ptr, ft_check_keyboard, game_init);
 	mlx_loop_hook(game_init->mlx_ptr, &ft_map_draw, game_init);
-	//mlx_hook(game_init->win_ptr, 9, 1L << 21, ft_map_draw, game_init);
 }
 
 void ft_events_pressed(t_game_instance *game_init, int column, int row)

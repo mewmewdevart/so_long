@@ -23,7 +23,6 @@ void	ft_initialize_game(t_game_instance *game_init)
 		ft_error_init(38);
 
 	game_init->game_data.count_movements = 0;
-	//game_init->game_data.endgame = 0;
 
 	ft_printf("Estou dentro do game_init\n");
 	int i;
@@ -40,18 +39,18 @@ void	ft_initialize_game(t_game_instance *game_init)
 
 void ft_img_init(t_game_instance *game_init)
 {
-	game_init->game_objs.player_up = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Player_walkUp/walkAnimUp_00.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
-	game_init->game_objs.player_left = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Player_walkLeft/walkAnimLeft_00.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
-	game_init->game_objs.player_down = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Player_walkDown/walkAnimDown_00.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
-	game_init->game_objs.player_right = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Player_walkRight/walkAnimRight_00.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
-	game_init->game_objs.collectible = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Collectibles/starAnim1.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
-	game_init->game_objs.floor = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Tiles/freeFloor2.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
-	game_init->game_objs.exit_open = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Exit/door.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
-	game_init->game_objs.exit_close = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Exit/door.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height); //CHANGE THE CONRRECT PATH TO SPRITE
-	game_init->game_objs.wall = mlx_xpm_file_to_image(game_init->mlx_ptr,  "../rscs/sprites/Tiles/wallLeftMidle.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	game_init->game_objs.player_up = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Player/walkUP_00.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	game_init->game_objs.player_left = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Player/walkLeft_00.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	game_init->game_objs.player_down = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Player/walkDown_00.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	game_init->game_objs.player_right = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Player/walkRight_00.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	game_init->game_objs.collectible = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Player/star_00.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	game_init->game_objs.floor = mlx_xpm_file_to_image(game_init->mlx_ptr,  "../rscs/sprites/Tiles/midBlocks_02.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	game_init->game_objs.exit_open = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Exit/exit_open_01.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	game_init->game_objs.exit_close = mlx_xpm_file_to_image(game_init->mlx_ptr, "../rscs/sprites/Exit/exit_close_01.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height); //CHANGE THE CONRRECT PATH TO SPRITE
+	game_init->game_objs.wall = mlx_xpm_file_to_image(game_init->mlx_ptr,  "../rscs/sprites/Tiles/topBlocks_02.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
 }
 
-/* 
+/* ESSA FUNÇÃO É PRA CHECAR QUANDO RETORNA NULL NO MLX_XPM_FILE_TO_IMAGE
 void ft_checker_img(t_game_instance *game_init, void **image, char *path_img)
 {
 	int width;

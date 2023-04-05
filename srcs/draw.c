@@ -1,5 +1,6 @@
 #include "../include/so_long.h"
 
+// Draw the map in the correct positions
 int ft_map_draw(t_game_instance *game_init)
 {
 	int row;
@@ -31,7 +32,7 @@ int ft_map_draw(t_game_instance *game_init)
 	return (ft_player_moves(game_init));
 }
 
-// display the movements on screen
+// Display the movements on screen
 int ft_player_moves(t_game_instance *game_init)
 {
 	char *movements;
@@ -43,6 +44,7 @@ int ft_player_moves(t_game_instance *game_init)
 	return (0);
 }
 
+// Put the image in the screen
 void ft_settings_draw(t_game_instance *game_init, void *image, int width, int height)
 {
     mlx_put_image_to_window(game_init->mlx_ptr, game_init->win_ptr, image, width * CELL_SIZE , height * CELL_SIZE );

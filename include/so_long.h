@@ -148,21 +148,20 @@ int	ft_is_map_shape_valid(t_game_instance *game_init);
 int	ft_is_wall(t_game_instance *game_init);
 int	ft_count_map_objects(t_game_instance *game_init);
 
-
+// Gameplay of the game : Calling for events
 void	ft_gameplay_start(t_game_instance *game_init);
 
+// Draw the elements inside the map
+void ft_img_init(t_game_instance *game_init);
 void ft_settings_draw(t_game_instance *game_init, void *image, int width, int height);
 int ft_map_draw(t_game_instance *game_init);
-
-void ft_img_init(t_game_instance *game_init);
 void ft_checker_img(t_game_instance *game_init, void **image, char *path_img);
 
+// Movements on screens
 void ft_events_pressed(t_game_instance *game_init, int column, int row);
 void ft_locate_player(t_game_instance *game_init);
 int ft_player_moves(t_game_instance *game_init);
 
-
-// All free actions
 //void	ft_free_map(t_game_instance **game_init);
 void ft_free_map(t_game_instance *game_init);
 void ft_free_img(t_game_instance *game_init);
