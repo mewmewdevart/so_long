@@ -121,6 +121,19 @@ For curious minds who want to test the project's features: <br>
 $ ./bin/so_long map_example.ber
 ```
 
+## 🦾 Technologies
+- [VS CODE](https://www.eclipse.org/downloads/) |  I'm a fan of Vim but due to the size of the project, I opted to use Vscode.
+- [GNU Compiler Collection](https://gcc.gnu.org/) | A suite of programming language compilers developed by the GNU Project for C, C++, Objective-C, Fortran, Ada, and other languages
+- [GNU Make](https://www.gnu.org/software/make/) | A build automation tool for compiling and linking software projects
+- [MiniLibX](https://github.com/42Paris/minilibx-linux#readme) | A simple X-Window System library for graphics programming
+- A classic notebook to take some notes about the project
+
+## 🔗 References
+- [Markdown](https://www.markdownguide.org/basic-syntax/) | Documentation on how to use Markdown.
+- Internet forums and blogs to address my doubts related to the language (Alura, Stack Overflow, and Geeks for Geeks).
+- Google Translate to translate some parts of content that were in another language.
+- 42SP Cadets and others so_longs projects | :)
+
 ## 📜  License
 This project is licensed under the terms of the [LICENSE](https://github.com/mewmewdevart/so_long/blob/main/LICENSE) file. See the file for more details. <br>
 
