@@ -30,10 +30,10 @@ int	ft_map_draw(t_game_instance *game_init)
 				ft_set(game_init, game_init->game_objs.floor, column, row);
 			if (game_init->map_init.matrice[row][column] == PLAYER)
 				ft_set(game_init, game_init->game_objs.player, column, row);
-			if (game_init->map_init.matrice[row][column] == EXIT && game_init->game_objs.collectible != 0)
-				ft_set(game_init, game_init->game_objs.exit_close, column, row);
-			if (game_init->map_init.matrice[row][column] == EXIT && game_init->game_objs.collectible == 0)
+			if (game_init->map_init.matrice[row][column] == EXIT && game_init->game_data.count_collectible == 0)
 				ft_set(game_init, game_init->game_objs.exit_open, column, row);
+			if (game_init->map_init.matrice[row][column] == EXIT && game_init->game_data.count_collectible != 0)
+				ft_set(game_init, game_init->game_objs.exit_close, column, row);
 			if (game_init->map_init.matrice[row][column] == COLLECTIBLE)
 				ft_set(game_init, game_init->game_objs.collectible, column, row);
 			column++;
