@@ -22,20 +22,14 @@
 ## 💡 About the project
 This project is a very small 2D game. Its purpose is to make you work with textures, sprites, and some other very basic gameplay elements (Version: 2.3). This project uses the 42 school's graphical library, MiniLibX. <br>
 This project is not meant to be a fully-fledged game, rather an introduction to a minimal, event-wise graphic library, developed over the course. <br>
-Mandatory part:
-- [x] Game actions: The player can move in four directions, but cannot move into walls. The player needs to collect something to exit the game. The WASD keys are used to move the main character. The game has a top-down 2D view and the movements are displayed in the shell.
-- [x] Graphics actions: The program has to display the image in a window, 
-
-<!--
-• Your program has to display the image in a window.
-• The management of your window must remain smooth (changing to another win-
-dow, minimizing, and so forth).
-• Pressing ESC must close the window and quit the program in a clean way.
-• Clicking on the cross on the window’s frame must close the window and quit the
-program in a clean way.
-• The use of the images of the MiniLibX is mandatory.
-- [ ] Graphics actions:
-- [ ]-->
+<br>
+Mandatory part: <br>
+- [x] Game actions: <br>
+The player can move in four directions but cannot move into walls. To exit the game, the player needs to collect something. The WASD keys are used to move the main character, and the game has a top-down 2D view. The movements are displayed in the shell, and pressing ESC must close the window and quit the program cleanly. <br>
+- [x] Graphics actions: <br>
+The program must display the image in a window, and window management should remain smooth (such as switching to another window or minimizing). Clicking on the cross 'X' on the window's frame should close the window and quit the program cleanly, and using MiniLibX images is mandatory.
+- [x] Map actions:<br>
+The map must be rectangular/square in shape, surrounded by walls with a clear path to the exit. It should be able to parse any type of map as long as it follows the aforementioned rules and contains three components - the exit, player start position, and collectibles. Additionally, if there is a misconfiguration in the map, the program should return an error message to indicate the issue.
 
 Bonus part:
 - [ ] Make the player lose when they touch an enemy patrol.
@@ -95,8 +89,9 @@ $ make call_mlx
 # Run the command make root directory
 $ make
 
-# This command compiles the executable file 'so_long' and runs it along with any map of your choice (or a custom one)
-#	located in the directory 'rscs/maps'. To execute it, run the following command:
+# This command compiles the executable file 'so_long' and runs it along with any map
+# of your choice (or a custom one) located in the directory 'rscs/maps'.
+#	To execute it, run the following command:
 $ ./bin/so_long ./rscs/maps/map.ber
 ```
 **2. How to play**
