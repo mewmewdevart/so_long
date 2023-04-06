@@ -155,7 +155,6 @@ void	ft_gameplay_start(t_game_instance *game_init);
 void ft_img_init(t_game_instance *game_init);
 void ft_settings_draw(t_game_instance *game_init, void *image, int width, int height);
 int ft_map_draw(t_game_instance *game_init);
-void ft_checker_img(t_game_instance *game_init, void **image, char *path_img);
 
 // Movements on screens
 void ft_events_pressed(t_game_instance *game_init, int column, int row);

@@ -40,17 +40,3 @@ void ft_img_init(t_game_instance *game_init)
 	game_init->game_objs.exit_close = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Exit/exit_close_01.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height); //CHANGE THE CONRRECT PATH TO SPRITE
 	game_init->game_objs.wall = mlx_xpm_file_to_image(game_init->mlx_ptr,  "rscs/sprites/Tiles/topBlocks_02.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
 }
-
-/* ESSA FUNÇÃO É PRA CHECAR QUANDO RETORNA NULL NO MLX_XPM_FILE_TO_IMAGE
-void ft_checker_img(t_game_instance *game_init, void **image, char *path_img)
-{
-	int width;
-	int height;
-
-	*image = mlx_xpm_file_to_image(game_init->mlx_ptr, path_img, &width, &height);
-	//if (*image == NULL)
-	//{
-		//ft_error_init(38);
-		//ft_exit_program(game_init);
-	//}
-}*/
