@@ -20,8 +20,27 @@
 </p>
 
 ## 💡 About the project
-> _This project is a very small 2D game. Its purpose is to make you work with textures, sprites, and some other very basic gameplay elements (Version: 2.3). This project uses the 42 school's graphical library, MiniLibX. <br>
-> _This project is not meant to be a fully-fledged game, rather an introduction to a minimal, event-wise graphic library, developed over the course.
+This project is a very small 2D game. Its purpose is to make you work with textures, sprites, and some other very basic gameplay elements (Version: 2.3). This project uses the 42 school's graphical library, MiniLibX. <br>
+This project is not meant to be a fully-fledged game, rather an introduction to a minimal, event-wise graphic library, developed over the course. <br>
+Mandatory part:
+- [x] Game actions: The player can move in four directions, but cannot move into walls. The player needs to collect something to exit the game. The WASD keys are used to move the main character. The game has a top-down 2D view and the movements are displayed in the shell.
+- [x] Graphics actions: The program has to display the image in a window, 
+
+<!--
+• Your program has to display the image in a window.
+• The management of your window must remain smooth (changing to another win-
+dow, minimizing, and so forth).
+• Pressing ESC must close the window and quit the program in a clean way.
+• Clicking on the cross on the window’s frame must close the window and quit the
+program in a clean way.
+• The use of the images of the MiniLibX is mandatory.
+- [ ] Graphics actions:
+- [ ]-->
+
+Bonus part:
+- [ ] Make the player lose when they touch an enemy patrol.
+- [ ] Add some sprite animation.
+- [ ] Display the movement count directly on screen instead of writing it in the shell.
 
 ## 🧶 Game Rules
 The game we choose must follow a set of rules. The executable ``so_long`` will receive a map as the only argument, and this map will have a ``.ber`` filetype.
@@ -34,7 +53,7 @@ The file also must follow these rules:
 
 If any of these checks fail, the game must end with a error message.
 
-The goal is for the player(s) to collect all the collectibles on the map before going to an exit in the least possible number of steps
+🏆 | The goal is for the player(s) to collect all the collectibles on the map before going to an exit in the least possible number of steps
 
 ## 📁 Structure/
 * ```include/```  The header file of the so_long project.
@@ -76,18 +95,31 @@ $ make call_mlx
 # Run the command make root directory
 $ make
 
-# This will compile the executable file so_long to execute its necessary run the binary file
-# 		+ any map of your choice (or you could even make a map of your own)
+# This command compiles the executable file 'so_long' and runs it along with any map of your choice (or a custom one)
+#	located in the directory 'rscs/maps'. To execute it, run the following command:
 $ ./bin/so_long ./rscs/maps/map.ber
 ```
 **2. How to play**
+- Control the player using the arrow keys (up, down, left, and right) or the letter keys (w, a, s, and d).
+- Press the 'R' key on your keyboard to reset the current level.
+- Press the [ESC] key or Click in the 'X' window to exit the game.
 
-//soon
+## 🗺️ Create your own Map:
+For curious minds who want to test the project's features: <br>
+- Create a new text file with a .ber extension. This will be your map file.
+- Open the text file in a text editor.
+- Define the map dimensions using this 5 symbols to represent different elements on the map:
+	- 0 for an empty space
+	- 1 for a wall
+	- C for a collectible
+	- E for a map exit,
+	- P for the player’s starting position.
 
-### Create your own Map
-🗺️ | Bonus for curious minds who want to test the project's features <br>
-
-//soon
+- Create a rectangular or square map, knowing that the map must be surrounded by '1's (walls) and must contain only one 'P' (player's starting point), one 'E' (exit), and multiple 'C's (collectibles). To test all the game features and have a better gaming experience, create a good level design using other game objects such as '0' for empty spaces (where the player can move).
+- After creating the map, you can run it by passing the path of 'bin/so_long' and the path where the map was created:
+```
+$ ./bin/so_long map_example.ber
+```
 
 ## 📜  License
 This project is licensed under the terms of the [LICENSE](https://github.com/mewmewdevart/so_long/blob/main/LICENSE) file. See the file for more details. <br>
