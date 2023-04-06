@@ -63,7 +63,7 @@ void	ft_print_shell(t_game_instance *game_init)
 	current_count_movements = game_init->game_data.count_movements;
 	if (current_count_movements != previous_count_movements)
 	{
-		ft_printf("Moves: %d\n", current_count_movements);
+		ft_printf("You moved %d times.\n", current_count_movements);
 		previous_count_movements = current_count_movements;
 	}
 }
@@ -89,7 +89,8 @@ void	ft_events_pressed(t_game_instance *game_init, int column, int row)
 	{
 		game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] = EMPTY;
 		game_init->game_data.count_movements++;
-		ft_printf("Congratulations!\n");
+		ft_printf("Congratulations! You have found all the stars in the game.\n");
+		ft_printf("You made %d moves. Is that the best you can do?\n", game_init->game_data.count_movements);
 		ft_exit_program(game_init);
 	}
 }
