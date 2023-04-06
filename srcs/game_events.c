@@ -15,7 +15,10 @@
 int	ft_check_keyboard(int key, t_game_instance *game_init)
 {
 	if (key == ESC)
+	{
+		ft_printf("Oh, is this game a little hard for you? :c");
 		ft_exit_program(game_init);
+	}
 	else if (key == W || key == UP)
 	{
 		game_init->game_objs.player = game_init->game_objs.player_up;
@@ -41,6 +44,7 @@ int	ft_check_keyboard(int key, t_game_instance *game_init)
 		ft_printf("Voce pressionou a tecla de restart!\n");
 		ft_reset_game(game_init);
 	}
+	ft_printf("Moves: %d\n", game_init->game_data.count_movements);
 	return (0);
 }
 
@@ -83,24 +87,24 @@ void	ft_gameplay_start(t_game_instance *game_init)
 
 void ft_events_pressed(t_game_instance *game_init, int column, int row)
 {
-	if (game_init->map_init.matrice[game_init->positions_init.player_row + row][game_init->positions_init.player_row + column] == EMPTY)
+	ft_locate_player(game_init);
+	if (game_init->map_init.matrice[game_init->positions_init.player_row + row][game_init->positions_init.player_col + column] == EMPTY)
 	{
-		game_init->map_init.matrice[game_init->positions_init.player_row + row][game_init->positions_init.player_row + column] = PLAYER;
-		game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_row] = EMPTY;
+		game_init->map_init.matrice[game_init->positions_init.player_row + row][game_init->positions_init.player_col + column] = PLAYER;
+		game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] = EMPTY;
 		game_init->game_data.count_movements++;
 
 	}
-	if (game_init->map_init.matrice[game_init->positions_init.player_row + row][game_init->positions_init.player_row + column] == COLLECTIBLE)
+	if (game_init->map_init.matrice[game_init->positions_init.player_row + row][game_init->positions_init.player_col + column] == COLLECTIBLE)
 	{
-		game_init->map_init.matrice[game_init->positions_init.player_row + row][game_init->positions_init.player_row + column] = PLAYER;
-		game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_row] = EMPTY;
+		game_init->map_init.matrice[game_init->positions_init.player_row + row][game_init->positions_init.player_col + column] = PLAYER;
+		game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] = EMPTY;
 		game_init->game_data.count_collectible--;
 		game_init->game_data.count_movements++;
 	}
-	if (game_init->map_init.matrice[game_init->positions_init.player_row + row][game_init->positions_init.player_row + column] == EXIT && game_init->game_data.count_collectible == 0)
+	if (game_init->map_init.matrice[game_init->positions_init.player_row + row][game_init->positions_init.player_col + column] == EXIT && game_init->game_data.count_collectible == 0)
 	{
-		game_init->map_init.matrice[game_init->positions_init.player_row + row][game_init->positions_init.player_row + column] = PLAYER;
-		game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_row] = EMPTY;
+		game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] = EMPTY;
 		game_init->game_data.count_movements++;
 		ft_printf("Congratulations!\n");
 		ft_exit_program(game_init);

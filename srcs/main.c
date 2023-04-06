@@ -27,9 +27,7 @@ int	main(int argc, char **argv)
 	{
 		ft_initialize_game(&game_init);
 		ft_gameplay_start(&game_init);
-
-		if (mlx_loop(game_init.mlx_ptr) < 0)
-				ft_error_init(38);
+		mlx_loop(game_init.mlx_ptr);
 	}
 	else
 		ft_error_map(61);
@@ -38,6 +36,25 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
+ void ft_struct_init(t_game_instance *game_init)
+{
+    t_game_objs *game_objs;
+
+    *game_init = (t_game_instance){0};
+    game_init->map_init.matrice = NULL;
+    game_init->mlx_ptr = NULL;
+    game_init->win_ptr = NULL;
+    game_init->resolutions_init.settings_name_map = NULL;
+    game_init->resolutions_init.settings_name_window = NULL;
+
+    game_objs = malloc(sizeof(t_game_objs));
+    if (game_objs == NULL)
+        ft_error_map(12);
+    game_init->game_objs = *game_objs;
+    free(game_objs);
+    return ;
+} 
+/*
  void ft_struct_init(t_game_instance *game_init)
 {
     *game_init = (t_game_instance){0};
@@ -49,3 +66,4 @@ int	main(int argc, char **argv)
     game_init->game_objs = (t_game_objs){NULL};
 	return ;
 }
+*/

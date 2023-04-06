@@ -18,7 +18,7 @@ int	ft_open_map(char *map, t_game_instance *game_init)
 	int			fd;
 
 	game_init->map_init.first_read_matrice = ft_read_count_map(map);
-	if (!&game_init->map_init)
+	if (game_init->map_init.first_read_matrice < 0)
 	{
 		free(game_init->map_init.matrice);
 		return (0);

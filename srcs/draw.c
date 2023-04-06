@@ -16,7 +16,7 @@ int ft_map_draw(t_game_instance *game_init)
 			if (game_init->map_init.matrice[row][column] == WALL)
 					ft_settings_draw(game_init, game_init->game_objs.wall, column, row);
 			if (game_init->map_init.matrice[row][column] == EMPTY)
-					ft_settings_draw(game_init, game_init->game_objs.floor,  column, row);
+					ft_settings_draw(game_init, game_init->game_objs.floor, column, row);
 			if (game_init->map_init.matrice[row][column] == PLAYER)
 					ft_settings_draw(game_init, game_init->game_objs.player,  column, row);
 			if (game_init->map_init.matrice[row][column] == EXIT && game_init->game_objs.collectible != 0)
