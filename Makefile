@@ -1,12 +1,11 @@
-# omg, why it is so long? 
+# omg, why is it so long? 
 NAME = so_long
 LIB_SOLONG = lib_solong.a
 
 # compilation and settings
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
-ICON_GAME = -DICON=\"rscs/sprites/iconGame.xpm\"
-LFLAGS = -lft -lmlx -lmlx_Linux -lX11 -lXext -lXext -lm $(ICON_GAME)
+LFLAGS = -lft -lmlx -lmlx_Linux -lX11 -lXext -lXext -lm
 AR = ar rcs
 REMOVE = rm -rf
 MKDIR = mkdir -p
@@ -31,6 +30,7 @@ SRCS_FILES = map_validate.c \
 	game_init.c \
 	game_events.c \
 	draw.c \
+	exit_actions.c \
 
 SOURCES = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 

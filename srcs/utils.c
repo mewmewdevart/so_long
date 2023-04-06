@@ -14,7 +14,7 @@
 
 static char	*ft_get_filename_start(char *path);
 
-// Compares the string pointed to, by str1 to the string pointed to by str2
+// Function to compares two strings character by character and returns the difference between the first two non-matching characters (in ASCII value)
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	int	i;
@@ -25,48 +25,13 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-// Locate all ocurrence of the character in string
-size_t	ft_strchr_all_ocurrences(char *str, char ch)
+// Function to take the path, filter it and put in the game window
+void	ft_print_name_window(t_game_instance *game_init, char *path)
 {
-	size_t	count;
-	char	*ptr;
+	char	*filename_start;
+	char	*new_name_window;
+	size_t	len;
 
-	count = 0;
-	ptr = ft_strchr(str, ch);
-	while (ptr != NULL)
-	{
-		ptr = ft_strchr(ptr + 1, ch);
-		count++;
-	}
-	return (count);
-}
-
-// Checks if each character is a white space
-int	ft_is_blank(const char *str)
-{
-	while (*str != '\0')
-	{
-		if (!ft_isspace(*str))
-			return (0);
-		str++;
-	}
-	return (1);
-}
-
-// Clean space comparing it to the known white space characters
-int	ft_isspace(int c)
-{
-	if (c == ' ' || c == '\t' || c == '\n'
-		|| c == '\v' || c == '\f' || c == '\r')
-		return (1);
-	return (0);
-}
-
-void ft_print_name_window(t_game_instance *game_init, char *path)
-{
-	char *filename_start;
-	char *new_name_window;
-	size_t len;
 	filename_start = ft_get_filename_start(path);
 	if (filename_start)
 	{

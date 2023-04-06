@@ -12,11 +12,14 @@
 
 #include "../include/so_long.h"
 
+// Function to free the matrice[][]
 void	ft_free_map(t_game_instance *game_init)
 {
+	int	i;
+
 	if (game_init->map_init.matrice == NULL)
-		return;
-	int i = 0;
+		return ;
+	i = 0;
 	while (game_init->map_init.matrice[i])
 	{
 		free(game_init->map_init.matrice[i]);
@@ -26,7 +29,8 @@ void	ft_free_map(t_game_instance *game_init)
 	game_init->map_init.matrice = NULL;
 }
 
-void ft_free_img(t_game_instance *game_init)
+// Function to free all images.xpm
+void	ft_free_img(t_game_instance *game_init)
 {
 	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.player_up);
 	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.player_left);
