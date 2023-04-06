@@ -27,14 +27,19 @@ Mandatory part: <br>
 - [x] Game actions: <br>
 The player can move in four directions but cannot move into walls. To exit the game, the player needs to collect something. The WASD keys are used to move the main character, and the game has a top-down 2D view. The movements are displayed in the shell, and pressing ESC must close the window and quit the program cleanly. <br>
 - [x] Graphics actions: <br>
-The program must display the image in a window, and window management should remain smooth (such as switching to another window or minimizing). Clicking on the cross 'X' on the window's frame should close the window and quit the program cleanly, and using MiniLibX images is mandatory.
+The program should display the image within a window, and window management should be smooth, such as switching to another window or minimizing. Pressing the [ESC] key should close the window and quit the program cleanly. The usage of MiniLibX images is mandatory.
 - [x] Map actions:<br>
 The map must be rectangular/square in shape, surrounded by walls with a clear path to the exit. It should be able to parse any type of map as long as it follows the aforementioned rules and contains three components - the exit, player start position, and collectibles. Additionally, if there is a misconfiguration in the map, the program should return an error message to indicate the issue.
 
 Bonus part:
 - [ ] Make the player lose when they touch an enemy patrol.
 - [ ] Add some sprite animation.
-- [ ] Display the movement count directly on screen instead of writing it in the shell.
+- [x] Display the movement count directly on screen instead of writing it in the shell.
+
+My implementations:
+- [x] The name displayed in the executable window shows the name of the game and the name of the map that the person chose to open.
+- [x] Clicking on the cross 'X' on the window's close the game.
+- [x] //
 
 ## 🧶 Game Rules
 The game we choose must follow a set of rules. The executable ``so_long`` will receive a map as the only argument, and this map will have a ``.ber`` filetype.
