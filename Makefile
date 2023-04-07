@@ -1,12 +1,10 @@
 # omg, why is it so long? 
 NAME = so_long
-LIB_SOLONG = lib_solong.a
 
 # compilation and settings
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 LFLAGS = -lft -lmlx -lmlx_Linux -lX11 -lXext -lXext -lm
-AR = ar rcs
 REMOVE = rm -rf
 MKDIR = mkdir -p
 
@@ -72,11 +70,9 @@ call_mlx :
 $(NAME) : $(OBJS_FILES)
 	@make -C $(LIBFT_PATH) --no-print-directory
 	@make -C $(MLX_PATH) --no-print-directory
-	@$(AR) $(LIB_SOLONG) $(OBJS_FILES)
 	@$(CC) $(CFLAGS) $(OBJS_FILES) -o $(NAME) $(SRCS_PATH)main.c $(PATH_LIBS) $(LFLAGS)
 	@mv $(NAME) $(BINS_PATH)
 	@mv $(OBJS_FILES) $(OBJS_PATH)
-	@mv $(LIB_SOLONG) $(HEADER_PATH)
 
 $(OBJS_FILES) :
 	@$(CC) $(CFLAGS) -I $(HEADER_PATH) -c $(SOURCES)
@@ -88,7 +84,7 @@ clean :
 	@echo "$(BLUE)[SO_LONG] Object files cleaned!$(DEF_COLOR)"
 
 fclean : clean
-	@$(REMOVE) $(NAME) $(HEADER_PATH)$(LIB_SOLONG) $(BINS_PATH) $(OBJS_PATH)
+	@$(REMOVE) $(NAME) $(BINS_PATH) $(OBJS_PATH)
 	@make fclean -C $(LIBFT_PATH) --no-print-directory
 	@echo "$(BLUE)[SO_LONG] Executable files and directories cleaned!$(DEF_COLOR)"
 
