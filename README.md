@@ -32,7 +32,7 @@ The program should display the image within a window, and window management shou
 The map must be rectangular/square in shape, surrounded by walls with a clear path to the exit. It should be able to parse any type of map as long as it follows the aforementioned rules and contains three components - the exit, player start position, and collectibles. Additionally, if there is a misconfiguration in the map, the program should return an error message to indicate the issue.
 
 Bonus part:
-- [ ] Make the player lose when they touch an enemy patrol.
+- [x] Make the player lose when they touch an enemy patrol.
 - [ ] Add some sprite animation.
 - [x] Display the movement count directly on screen instead of writing it in the shell.
 
