@@ -4,6 +4,8 @@ NAME = so_long
 BINS_PATH = ./bin/
 NAME = ${BINS_PATH}so_long
 
+NAME_BONUS = ${BINS_PATH}so_long_bonus
+
 # Compilation flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
@@ -17,6 +19,7 @@ MKDIR = mkdir -p
 
 # Path variables
 SRCS_PATH =  ./srcs/
+BONUS_PATH =  ./srcs_bonus/
 OBJS_PATH = ./objs/
 LIBS_PATH = ./libs/
 BINS_PATH = ./bin/
@@ -37,10 +40,23 @@ SRCS_FILES = map_validate.c \
 	draw.c \
 	exit_actions.c \
 
+BONUS_FILES = map_validate_bonus.c \
+	map_init_bonus.c \
+	utils_bonus.c \
+	errors_bonus.c \
+	frees_bonus.c \
+	game_init_bonus.c \
+	game_events_bonus.c \
+	draw_bonus.c \
+	exit_actions_bonus.c \
+
 # The full path to source file
 SOURCES = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
+SOURCES = $(addprefix $(BONUS_PATH), $(BONUS_FILES))
+
 # Object files
 OBJS_FILES = $(patsubst %.c, $(OBJS_PATH)%.o, $(SRCS_FILES))
+OBJS_FILES = $(patsubst %.c, $(OBJS_PATH)%.o, $(BONUS_FILES))
 OBJECTS = $(addprefix $(OBJS_PATH), $(OBJS_FILES))
 
 # Compiler flags to include library headers
@@ -62,6 +78,8 @@ WHITE = \033[0;97m
 # The default target calling for the executable
 all : $(NAME)
 
+bonus : $(NAME_BONUS)
+
 # Target for cloning the minilibx library into libs/ folder
 call_mlx:
 	@read -p "Clone via SSH (s) or HTTP (h)? " clone_method; \
@@ -76,7 +94,7 @@ call_mlx:
 		exit 1; \
 	fi
 
-# The target to build the executable
+# The target to build the mandatory part
 $(NAME) : $(OBJS_FILES)
 	$(MKDIR) $(BINS_PATH)
 	make -C $(LIBFT_PATH) --no-print-directory
@@ -92,6 +110,23 @@ $(NAME) : $(OBJS_FILES)
 
 # Compiles C source files into object files
 $(OBJS_PATH)%.o : $(SRCS_PATH)%.c
+	$(MKDIR) $(OBJS_PATH)
+	$(CC) $(CFLAGS) -I $(HEADER_PATH) -c $< -o $@
+
+# The target to build the bonus part
+$(NAME_BONUS) : $(OBJS_FILES)
+	make -C $(LIBFT_PATH) --no-print-directory
+	make -C $(MLX_PATH) --no-print-directory
+	$(CC) $(CFLAGS) $(OBJS_FILES) -o $(NAME_BONUS) $(BONUS_PATH)main_bonus.c $(PATH_LIBS) $(LFLAGS)
+	@echo "$(GREEN)  ____    ___   _   _  _   _  ____  "
+	@echo "$(GREEN) | __ )  / _ \ | \ | || | | |/ ___| "
+	@echo "$(GREEN) |  _ \ | | | ||  \| || | | |\___ \ "
+	@echo "$(GREEN) | |_) || |_| || |\  || |_| | ___) |"
+	@echo "$(GREEN) |____/  \___/ |_| \_| \___/ |____/ "                            
+	@echo "$(GREEN)◞( ､ᐛ)､＿/ The Makefile of [SO_LONG BONUS] has been compiled!$(DEF_COLOR)" 
+
+# Compiles C source bonus files into object files
+$(OBJS_PATH)%.o : $(BONUS_PATH)%.c
 	$(MKDIR) $(OBJS_PATH)
 	$(CC) $(CFLAGS) -I $(HEADER_PATH) -c $< -o $@
 
