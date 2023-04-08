@@ -84,6 +84,8 @@ typedef struct	s_game_data
 	int	count_empty;
     int count_movements;
     int endgame;
+	int anim_collectible;
+	int anim_enemy_left;
 }	t_game_data;
 
 // GAME RESOLUTIONS 
@@ -180,6 +182,9 @@ void	ft_wall_init(t_game_instance *game_init);
 int ft_gameplay_update(void *param);
 void ft_enemy_events(t_game_instance *game_init);
 void ft_locate_enemy(t_game_instance *game_init);
+
+int	ft_anim_collectable(t_game_instance *game_init);
+int	ft_anim_enemy_left(t_game_instance *game_init);
 
 
 // ------------------------------------------------------------------------------------- GRAPHICS + EVENTS
