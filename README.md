@@ -40,6 +40,7 @@ My implementations:
 - [x] The name displayed in the executable window shows the name of the game and the name of the map that the person chose to open.
 - [x] Clicking on the cross 'X' on the window's close the game.
 - [x] Press 'R' to reset the game.
+- [x] Cool design border in the map
 
 ## 🧶 Game Rules
 The game we choose must follow a set of rules. The executable ``so_long`` will receive a map as the only argument, and this map will have a ``.ber`` filetype.
