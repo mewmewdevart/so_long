@@ -56,7 +56,7 @@ SOURCES = $(addprefix $(BONUS_PATH), $(BONUS_FILES))
 
 # Object files
 OBJS_FILES = $(patsubst %.c, $(OBJS_PATH)%.o, $(SRCS_FILES))
-OBJS_FILES = $(patsubst %.c, $(OBJS_PATH)%.o, $(BONUS_FILES))
+OBJS_FILES_BONUS = $(patsubst %.c, $(OBJS_PATH)%.o, $(BONUS_FILES))
 OBJECTS = $(addprefix $(OBJS_PATH), $(OBJS_FILES))
 
 # Compiler flags to include library headers
@@ -114,10 +114,10 @@ $(OBJS_PATH)%.o : $(SRCS_PATH)%.c
 	$(CC) $(CFLAGS) -I $(HEADER_PATH) -c $< -o $@
 
 # The target to build the bonus part
-$(NAME_BONUS) : $(OBJS_FILES)
+$(NAME_BONUS) : $(OBJS_FILES_BONUS)
 	make -C $(LIBFT_PATH) --no-print-directory
 	make -C $(MLX_PATH) --no-print-directory
-	$(CC) $(CFLAGS) $(OBJS_FILES) -o $(NAME_BONUS) $(BONUS_PATH)main_bonus.c $(PATH_LIBS) $(LFLAGS)
+	$(CC) $(CFLAGS) $(OBJS_FILES_BONUS) -o $(NAME_BONUS) $(BONUS_PATH)main_bonus.c $(PATH_LIBS) $(LFLAGS)
 	@echo "$(GREEN)  ____    ___   _   _  _   _  ____  "
 	@echo "$(GREEN) | __ )  / _ \ | \ | || | | |/ ___| "
 	@echo "$(GREEN) |  _ \ | | | ||  \| || | | |\___ \ "
