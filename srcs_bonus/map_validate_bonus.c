@@ -75,7 +75,7 @@ int	ft_count_map_objects(t_game_instance *game_init)
 			else if (game_init->map_init.matrice[row][column] == EMPTY)
 				game_init->game_data.count_empty++;
 			else if (game_init->map_init.matrice[row][column] == ENEMY)
-				game_init->game_data.count_empty++;
+				game_init->game_data.count_enemy++;
 			else if (game_init->map_init.matrice[row][column] != '\n')
 				return (0);
 			column++;

@@ -49,6 +49,9 @@ BONUS_FILES = map_validate_bonus.c \
 	game_events_bonus.c \
 	draw_bonus.c \
 	exit_actions_bonus.c \
+	draw_wall.c \
+	enemy_patrol.c \
+	animation_bonus.c \
 
 # The full path to source file
 SOURCES = $(addprefix $(SRCS_PATH), $(SRCS_FILES))

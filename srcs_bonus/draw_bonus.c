@@ -13,7 +13,7 @@ int	ft_map_draw(t_game_instance *game_init)
 		while (game_init->map_init.matrice[row][column])
 		{
 			if (game_init->map_init.matrice[row][column] == WALL)
-				ft_set(game_init, game_init->game_objs.wall, column, row);
+				ft_draw_wall(game_init);
 			if (game_init->map_init.matrice[row][column] == EMPTY)
 				ft_set(game_init, game_init->game_objs.floor, column, row);
 			if (game_init->map_init.matrice[row][column] == PLAYER)

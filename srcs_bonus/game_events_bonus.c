@@ -1,11 +1,20 @@
 #include "../include/so_long_bonus.h"
 
 // Function to sets up the game window and calls ft_map_draw to draw the game map (is the gear of the game)
-void	ft_gameplay_start(t_game_instance *game_init)
+void ft_gameplay_start(t_game_instance *game_init)
 {
-	mlx_hook(game_init->win_ptr, 17, 0, ft_exit_program, game_init);
-	mlx_hook(game_init->win_ptr, 2, (1L << 0), ft_check_keyboard, game_init);
-	mlx_loop_hook(game_init->mlx_ptr, &ft_map_draw, game_init);
+    mlx_hook(game_init->win_ptr, 17, 0, ft_exit_program, game_init);
+    mlx_hook(game_init->win_ptr, 2, (1L << 0), ft_check_keyboard, game_init);
+    mlx_loop_hook(game_init->mlx_ptr, &ft_gameplay_update, game_init);
+}
+
+int ft_gameplay_update(void *param)
+{
+    t_game_instance *game_init = (t_game_instance *)param;
+    //ft_enemy_events(game_init);
+	ft_anim_collectable(game_init);
+    ft_map_draw(game_init);
+    return (0);
 }
 
 // Function to check an event handler for keyboard input during the game
@@ -59,6 +68,7 @@ void	ft_print_shell(t_game_instance *game_init)
 // Function to takes a keyboard input and performs corresponding actions, such as moving the player character or resetting the game (+ call for function print in the shell)
 void	ft_events_pressed(t_game_instance *game_init, int column, int row)
 {
+	//ft_enemy_events(game_init);
 	ft_locate_player(game_init);
 	if (game_init->map_init.matrice[game_init->positions_init.player_row + row][game_init->positions_init.player_col + column] == EMPTY)
 	{
