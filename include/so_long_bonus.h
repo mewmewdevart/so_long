@@ -47,7 +47,15 @@ typedef struct s_game_objs
     void	*exit_open;
     void	*exit_close;
 	void	*enemy;
-    void	*wall;
+	void	*wall_up0;
+	void	*wall_up1;
+	void	*wall_up2;
+	void	*wall_middle0;
+	void	*wall_middle1;
+	void	*wall_middle2;
+	void	*wall_down0;
+	void	*wall_down1;
+	void	*wall_down2;
     void	*floor;
     int img_width;
     int img_height;
@@ -58,7 +66,10 @@ typedef struct	s_game_positions
 {
     int	player_row;
     int	player_col;
+    int	enemy_row;
+    int	enemy_col;
 	int	exit_row;
+	int enemy_direction;
     int	exit_col;
 }	t_game_positions;
 
@@ -161,6 +172,16 @@ int	ft_exit_program(t_game_instance *game_init);
 void	ft_reset_game(t_game_instance *game_init);
 // Function to finds the player position and performs actions like moving the player or removing a collectible based on the block they're trying to move to, after the player presses a key
 void ft_locate_player(t_game_instance *game_init);
+
+void	ft_draw_wall(t_game_instance *game_init);
+void	ft_free_wall(t_game_instance *game_init);
+void	ft_wall_init(t_game_instance *game_init);
+
+int ft_gameplay_update(void *param);
+void ft_enemy_events(t_game_instance *game_init);
+void ft_locate_enemy(t_game_instance *game_init);
+
+
 // ------------------------------------------------------------------------------------- GRAPHICS + EVENTS
 // Function to loads the different game images (player, collectibles, floor, exit, and walls) from image files (XPM format)
 void ft_img_init(t_game_instance *game_init);

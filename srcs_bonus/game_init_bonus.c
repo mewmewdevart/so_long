@@ -25,6 +25,22 @@ void	ft_img_init(t_game_instance *game_init)
 	game_init->game_objs.floor = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Tiles/midBlocks_02.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
 	game_init->game_objs.exit_open = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Exit/exit_open_01.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
 	game_init->game_objs.exit_close = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Exit/exit_close_01.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
-	game_init->game_objs.wall = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Tiles/topBlocks_02.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	ft_wall_init(game_init);
 	game_init->game_objs.enemy = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Enemy/enemy_00.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+}
+
+
+void	ft_wall_init(t_game_instance *game_init)
+{
+	game_init->game_objs.wall_up0 = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Tiles/topBlocks_01.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	game_init->game_objs.wall_up1 = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Tiles/topBlocks_02.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	game_init->game_objs.wall_up2 = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Tiles/topBlocks_03.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+
+	game_init->game_objs.wall_middle0 = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Tiles/midBlocks_01.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	game_init->game_objs.wall_middle1 = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Tiles/block.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height); //need to be checked
+	game_init->game_objs.wall_middle2 = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Tiles/midBlocks_03.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+
+	game_init->game_objs.wall_down0 = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Tiles/botBlocks_01.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	game_init->game_objs.wall_down1 = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Tiles/botBlocks_02.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	game_init->game_objs.wall_down2 = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Tiles/botBlocks_03.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
 }
