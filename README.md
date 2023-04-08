@@ -33,7 +33,7 @@ The map must be rectangular/square in shape, surrounded by walls with a clear pa
 
 Bonus part:
 - [x] Make the player lose when they touch an enemy patrol.
-- [ ] Add some sprite animation.
+- [x] Add some sprite animation.
 - [x] Display the movement count directly on screen instead of writing it in the shell.
 
 My implementations:
