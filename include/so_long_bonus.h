@@ -159,6 +159,10 @@ int	ft_is_wall(t_game_instance *game_init);
 int	ft_count_map_objects(t_game_instance *game_init);
 // Function checks if the map has at least one player, one exit, and one collectible
 int ft_have_requires(t_game_instance *game_init);
+// Cool animations for map design
+void	ft_draw_wall(t_game_instance *game_init);
+void	ft_free_wall(t_game_instance *game_init);
+void	ft_wall_init(t_game_instance *game_init);
 // ------------------------------------------------------------------------------------- GAME EVENTS/ACTIONS + GRAPHICS
 // Function to sets up the game window and calls ft_map_draw to draw the game map (is the gear of the game)
 void	ft_gameplay_start(t_game_instance *game_init);
@@ -174,19 +178,13 @@ int	ft_exit_program(t_game_instance *game_init);
 void	ft_reset_game(t_game_instance *game_init);
 // Function to finds the player position and performs actions like moving the player or removing a collectible based on the block they're trying to move to, after the player presses a key
 void ft_locate_player(t_game_instance *game_init);
-
-void	ft_draw_wall(t_game_instance *game_init);
-void	ft_free_wall(t_game_instance *game_init);
-void	ft_wall_init(t_game_instance *game_init);
-
 int ft_gameplay_update(void *param);
+// Function to performs corresponding actions (walking for right and left), such as moving the enemycharacter 
 void ft_enemy_events(t_game_instance *game_init);
+// Function to finds the enemy position
 void ft_locate_enemy(t_game_instance *game_init);
-
+// Function animate the collectable
 int	ft_anim_collectable(t_game_instance *game_init);
-int	ft_anim_enemy_left(t_game_instance *game_init);
-
-
 // ------------------------------------------------------------------------------------- GRAPHICS + EVENTS
 // Function to loads the different game images (player, collectibles, floor, exit, and walls) from image files (XPM format)
 void ft_img_init(t_game_instance *game_init);

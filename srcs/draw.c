@@ -39,20 +39,6 @@ int	ft_map_draw(t_game_instance *game_init)
 			column++;
 		}
 	}
-	return (ft_player_moves(game_init));
-}
-
-// Function to prints the current number of movements on the terminal shell, but only if the number of movements has changed since the last time it was called
-int	ft_player_moves(t_game_instance *game_init)
-{
-	char	*movements;
-
-	mlx_string_put(game_init->mlx_ptr, game_init->win_ptr,
-		12, 16, 0x00FFFFFF, "Moves: ");
-	movements = ft_itoa (game_init->game_data.count_movements);
-	mlx_string_put(game_init->mlx_ptr, game_init->win_ptr,
-		60, 16, 0x00FFFFFF, movements);
-	free(movements);
 	return (0);
 }
 

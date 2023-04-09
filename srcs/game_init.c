@@ -37,5 +37,5 @@ void	ft_img_init(t_game_instance *game_init)
 	game_init->game_objs.floor = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Tiles/midBlocks_02.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
 	game_init->game_objs.exit_open = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Exit/exit_open_01.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
 	game_init->game_objs.exit_close = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Exit/exit_close_01.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
-	game_init->game_objs.wall = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Tiles/topBlocks_02.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
+	game_init->game_objs.wall = mlx_xpm_file_to_image(game_init->mlx_ptr, "rscs/sprites/Tiles/blockSimple.xpm", &game_init->game_objs.img_width, &game_init->game_objs.img_height);
 }

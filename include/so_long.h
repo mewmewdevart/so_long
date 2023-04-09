@@ -162,8 +162,6 @@ void	ft_gameplay_start(t_game_instance *game_init);
 void ft_events_pressed(t_game_instance *game_init, int column, int row);
 // Function to prints the current number of movements on the terminal shell, but only if the number of movements has changed since the last time it was called
 void	ft_print_shell(t_game_instance *game_init);
-// Function to displays the player number of movements on screen
-int ft_player_moves(t_game_instance *game_init);
 // Function to frees all the memory allocated during the game and exits the program
 int	ft_exit_program(t_game_instance *game_init);
 // Function to frees all the memory allocated during the game and reset the program (in the point of start)
@@ -174,7 +172,7 @@ void ft_locate_player(t_game_instance *game_init);
 // Function to loads the different game images (player, collectibles, floor, exit, and walls) from image files (XPM format)
 void ft_img_init(t_game_instance *game_init);
 // Function to draws the game map on screen, placing each object (walls, floors, player, exit, and collectibles) in the correct position based on their coordinates in the matrice
-int ft_map_draw(t_game_instance *game_init);
+int	ft_map_draw(t_game_instance *game_init);
 // Function to sets the image of an object in the corresponding cell on the game board
 void	ft_set(t_game_instance *game_init, void *img, int width, int height);
 // ------------------------------------------------------------------------------------- I WANT TO BREAK [FREE]
