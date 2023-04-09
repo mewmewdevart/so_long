@@ -208,6 +208,6 @@ void	ft_error_map(int n);
 // Function to compares two strings character by character and returns the difference between the first two non-matching characters (in ASCII value)
 int	ft_strcmp(const char *s1, const char *s2);
 // Function to take the path, filter it and put in the game window
-void	ft_print_name_window(t_game_instance *game_init, char *path);
+//void	ft_print_name_window(t_game_instance *game_init, char *path);
 
 #endif

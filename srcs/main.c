@@ -20,8 +20,6 @@ int	main(int argc, char **argv)
 	ft_struct_init(&game_init);
 	if (argc != 2)
 		ft_error_map(22);
-	else
-		ft_print_name_window(&game_init, argv[1]);
 	game_init.argc_tmp = argc;
 	game_init.argv_tmp = argv;
 	if (ft_open_map(argv[1], &game_init))

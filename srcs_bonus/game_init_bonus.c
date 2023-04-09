@@ -6,7 +6,7 @@ void	ft_initialize_game(t_game_instance *game_init)
 	game_init->mlx_ptr = mlx_init();
 	if (game_init->mlx_ptr == NULL)
 		ft_error_init(38);
-	game_init->win_ptr = mlx_new_window(game_init->mlx_ptr, game_init->map_init.resolutions.settings_map_width * CELL_SIZE, game_init->map_init.resolutions.settings_map_height * CELL_SIZE, game_init->resolutions_init.settings_name_window);
+	game_init->win_ptr = mlx_new_window(game_init->mlx_ptr, game_init->map_init.resolutions.settings_map_width * CELL_SIZE, game_init->map_init.resolutions.settings_map_height * CELL_SIZE, "The Blue Knight");
 	if (game_init->win_ptr == NULL)
 		ft_error_init(38);
 	game_init->game_data.count_movements = 0;
