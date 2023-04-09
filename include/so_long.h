@@ -180,6 +180,8 @@ void	ft_set(t_game_instance *game_init, void *img, int width, int height);
 void ft_free_map(t_game_instance *game_init);
 // Function to free all images.xpm
 void ft_free_img(t_game_instance *game_init);
+// Function to free the name in window
+void ft_cleanup(t_game_instance *game_init);
 // ------------------------------------------------------------------------------------- CUSTOM ERRORS MESSAGE
 // Function to returns feedback for errors that are related to the initialization of the game
 void	ft_error_init(int n);

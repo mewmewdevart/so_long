@@ -11,7 +11,6 @@ void ft_gameplay_start(t_game_instance *game_init)
 int ft_gameplay_update(void *param)
 {
     t_game_instance *game_init = (t_game_instance *)param;
-    //ft_enemy_events(game_init);
 	ft_anim_collectable(game_init);
     ft_map_draw(game_init);
     return (0);

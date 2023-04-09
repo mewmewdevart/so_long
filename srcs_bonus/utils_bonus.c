@@ -33,6 +33,7 @@ void	ft_print_name_window(t_game_instance *game_init, char *path)
 	new_name_window = ft_strjoin(" The Blue Knight : ", game_init->resolutions_init.settings_name_window);
 	free(game_init->resolutions_init.settings_name_window);
 	game_init->resolutions_init.settings_name_window = new_name_window;
+	free(new_name_window);
 	game_init->resolutions_init.settings_name_map = NULL;
 }
 

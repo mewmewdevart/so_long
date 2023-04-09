@@ -16,6 +16,7 @@ int	ft_open_map(char *map, t_game_instance *game_init)
 		return (0);
 	if (!ft_map_extension(map))
 	{
+		free(game_init->resolutions_init.settings_name_window);
 		close (fd);
 		return (0);
 	}

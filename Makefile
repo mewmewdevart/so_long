@@ -110,6 +110,7 @@ $(NAME) : $(OBJS_FILES)
 	@echo "$(GREEN)7     ||  !  |____|     7|  !  ||  |  ||     |"
 	@echo "$(GREEN)!_____!!_____!____!_____!!_____!!__!__!!_____!"
 	@echo "$(GREEN)◞( ､ᐛ)､＿/ The Makefile of [SO_LONG] has been compiled!$(DEF_COLOR)" 
+	@echo "$(YELLOW)\n !Use this command in the folder root: ./bin/so_long rscs/maps/valids/<map_name>.ber\n$(DEF_COLOR)" 
 
 # Compiles C source files into object files
 $(OBJS_PATH)%.o : $(SRCS_PATH)%.c
@@ -126,7 +127,8 @@ $(NAME_BONUS) : $(OBJS_FILES_BONUS)
 	@echo "$(GREEN) |  _ \ | | | ||  \| || | | |\___ \ "
 	@echo "$(GREEN) | |_) || |_| || |\  || |_| | ___) |"
 	@echo "$(GREEN) |____/  \___/ |_| \_| \___/ |____/ "                            
-	@echo "$(GREEN)◞( ､ᐛ)､＿/ The Makefile of [SO_LONG BONUS] has been compiled!$(DEF_COLOR)" 
+	@echo "$(GREEN)◞( ､ᐛ)､＿/ The Makefile of [SO_LONG BONUS] has been compiled!$(DEF_COLOR)"
+	@echo "$(YELLOW)\n !Use this command in the folder root: ./bin/so_long_bonus rscs/maps/valids_bonus/<map_name>.ber\n$(DEF_COLOR)" 
 
 # Compiles C source bonus files into object files
 $(OBJS_PATH)%.o : $(BONUS_PATH)%.c
@@ -150,4 +152,4 @@ fclean : clean
 re : fclean all
 
 # Phony targets
-.PHONY : all clean fclean re make_directory libft mlx
+.PHONY : all clean fclean re libft mlx
