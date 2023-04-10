@@ -5,24 +5,22 @@ int	ft_open_map(char *map, t_game_instance *game_init)
 {
 	int			fd;
 
-	game_init->map_init.first_read_matrice = ft_read_count_map(map);
-	if (game_init->map_init.first_read_matrice < 0)
-	{
-		free(game_init->map_init.matrice);
+	if (!ft_map_extension(map))
 		return (0);
-	}
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	if (!ft_map_extension(map))
+	game_init->map_init.first_read_matrice = ft_read_count_map(map);
+	if (!game_init->map_init.first_read_matrice || game_init->map_init.first_read_matrice < 3)
 	{
-		free(game_init->resolutions_init.settings_name_window);
 		close (fd);
+		ft_free_map(game_init);
 		return (0);
 	}
 	if (!ft_read_map(fd, game_init))
 	{
 		close (fd);
+		ft_free_map(game_init);
 		return (0);
 	}
 	close (fd);
@@ -102,7 +100,7 @@ int	ft_map_dimensions(t_game_instance *game_init)
 
 	row_index = 0;
 	row = game_init->map_init.matrice[0];
-	while (row[game_init->map_init.cols_matrice] && row[game_init->map_init.cols_matrice] != '\n')
+	while (row[game_init->map_init.rows_matrice] && row[game_init->map_init.cols_matrice] != '\n')
 		game_init->map_init.cols_matrice++;
 	while (1)
 	{

@@ -188,6 +188,8 @@ int	ft_anim_collectable(t_game_instance *game_init);
 // ------------------------------------------------------------------------------------- GRAPHICS + EVENTS
 // Function to loads the different game images (player, collectibles, floor, exit, and walls) from image files (XPM format)
 void ft_img_init(t_game_instance *game_init);
+// Function to validate the files .xpm
+void ft_check_img(t_game_instance *game_init, void **image, char *path);
 // Function to draws the game map on screen, placing each object (walls, floors, player, exit, and collectibles) in the correct position based on their coordinates in the matrice
 int ft_map_draw(t_game_instance *game_init);
 // Function to sets the image of an object in the corresponding cell on the game board

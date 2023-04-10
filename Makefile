@@ -37,6 +37,7 @@ SRCS_FILES = map_validate.c \
 	frees.c \
 	game_init.c \
 	game_events.c \
+	game_events_utils.c \
 	draw.c \
 	exit_actions.c \
 
