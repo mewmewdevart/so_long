@@ -17,20 +17,22 @@ int	ft_open_map(char *map, t_game_instance *game_init)
 {
 	int			fd;
 
-	game_init->map_init.first_read_matrice = ft_read_count_map(map);
-	if (game_init->map_init.first_read_matrice < 0)
-	{
-		free(game_init->map_init.matrice);
-		return (0);
-	}
 	if (!ft_map_extension(map))
 		return (0);
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		return (0);
+	game_init->map_init.first_read_matrice = ft_read_count_map(map);
+	if (!game_init->map_init.first_read_matrice)
+	{
+		close (fd);
+		ft_free_map(game_init);
+		return (0);
+	}
 	if (!ft_read_map(fd, game_init))
 	{
 		close (fd);
+		ft_free_map(game_init);
 		return (0);
 	}
 	close (fd);
@@ -80,7 +82,7 @@ int	ft_read_map(int fd, t_game_instance *game_init)
 	game_init->map_init.matrice = ft_calloc(game_init->map_init.first_read_matrice + 1, sizeof(char *));
 	if (!game_init->map_init.matrice)
 	{
-		free(game_init->map_init.matrice);
+		ft_free_map(game_init);
 		return (0);
 	}
 	i = 0;
@@ -93,9 +95,9 @@ int	ft_read_map(int fd, t_game_instance *game_init)
 		game_init->map_init.matrice[i] = buffer;
 		i++;
 	}
-	if (!game_init->map_init.matrice || !ft_map_dimensions(game_init) || !ft_is_valid_map(game_init))
+	if (game_init->map_init.matrice[0] == NULL || !ft_map_dimensions(game_init) || !ft_is_valid_map(game_init))
 	{
-		free(game_init->map_init.matrice);
+		ft_free_map(game_init);
 		return (0);
 	}
 	return (1);
@@ -109,10 +111,9 @@ int	ft_map_dimensions(t_game_instance *game_init)
 	int		row_index;
 
 	row_index = 0;
-	row_len = 0;
 	row = game_init->map_init.matrice[0];
-	while (row_index < game_init->map_init.rows_matrice && row[game_init->map_init.cols_matrice] && row[game_init->map_init.cols_matrice] != '\n')
-    game_init->map_init.cols_matrice++;
+	while (row[game_init->map_init.rows_matrice] && row[game_init->map_init.cols_matrice] != '\n')
+		game_init->map_init.cols_matrice++;
 	while (1)
 	{
 		row = game_init->map_init.matrice[row_index];
