@@ -6,7 +6,7 @@
 /*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:16:52 by larcrist          #+#    #+#             */
-/*   Updated: 2023/03/30 14:09:51 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:42:26 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_free_map(t_game_instance *game_init)
 	}
 	free(game_init->map_init.matrice);
 	game_init->map_init.matrice = NULL;
+	return ;
 }
 
 // Function to free all images.xpm

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_actions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:02:45 by larcrist          #+#    #+#             */
-/*   Updated: 2023/04/06 17:02:47 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:41:48 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ void	ft_reset_game(t_game_instance *game_init)
 }
 
 // Function to free the name in window
-void ft_cleanup(t_game_instance *game_init)
+void	ft_cleanup(t_game_instance *game_init)
 {
-    if (game_init->resolutions_init.settings_name_window != NULL)
-    {
-        free(game_init->resolutions_init.settings_name_window);
-        game_init->resolutions_init.settings_name_window = NULL;
-    }
-    if (game_init->resolutions_init.settings_name_map != NULL)
-    {
-        free(game_init->resolutions_init.settings_name_map);
-        game_init->resolutions_init.settings_name_map = NULL;
-    }
+	if (game_init->resolutions_init.settings_name_window != NULL)
+	{
+		free(game_init->resolutions_init.settings_name_window);
+		game_init->resolutions_init.settings_name_window = NULL;
+	}
+	if (game_init->resolutions_init.settings_name_map != NULL)
+	{
+		free(game_init->resolutions_init.settings_name_map);
+		game_init->resolutions_init.settings_name_map = NULL;
+	}
 }

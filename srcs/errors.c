@@ -6,24 +6,23 @@
 /*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 20:12:15 by larcrist          #+#    #+#             */
-/*   Updated: 2023/03/30 13:01:07 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:40:48 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-// Function to returns feedback for errors that are related to the initialization of the game
+// Function to returns feedback for errors the init of the game
 void	ft_error_init(int n)
 {
 	if (n == 38)
-	{
-		ft_printf("Error\n");
-		ft_printf("%sCheck library compatibility!", COLOR_RED);
-	}
+		ft_printf("%sError\nCheck library compatibility!", COLOR_RED);
+	if (n == 1)
+		ft_printf("%sError\n Operation not permitted!", COLOR_RED);
 	if (n == 2)
 	{
 		ft_printf("Error\n");
-		ft_printf("%sNo such file or directory|", COLOR_RED);
+		ft_printf("%sError\nNo such file or directory!", COLOR_RED);
 	}
 	exit(n);
 }

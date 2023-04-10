@@ -6,7 +6,7 @@
 /*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:37:25 by larcrist          #+#    #+#             */
-/*   Updated: 2023/03/30 14:47:57 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:53:57 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	ft_open_map(char *map, t_game_instance *game_init)
 	if (fd == -1)
 		return (0);
 	game_init->map_init.first_read_matrice = ft_read_count_map(map);
-	if (!game_init->map_init.first_read_matrice)
+	if (!game_init->map_init.first_read_matrice
+		|| game_init->map_init.first_read_matrice < 3)
 	{
 		close (fd);
 		ft_free_map(game_init);
@@ -39,7 +40,8 @@ int	ft_open_map(char *map, t_game_instance *game_init)
 	return (1);
 }
 
-// Function to count the map content for ft_calloc (reserved space to ft_read_map() function)
+// Function to count the map content for ft_calloc
+// (reserved space to ft_read_map() function)
 int	ft_read_count_map(char *map)
 {
 	int		i;
@@ -73,13 +75,15 @@ int	ft_read_count_map(char *map)
 	return (count);
 }
 
-// Function to reads a map from a file, validates it, and sets it in the game instance
+// Function to reads a map from a file, validates it, and sets
+//		it in the game instance
 int	ft_read_map(int fd, t_game_instance *game_init)
 {
 	int		i;
 	char	*buffer;
 
-	game_init->map_init.matrice = ft_calloc(game_init->map_init.first_read_matrice + 1, sizeof(char *));
+	game_init->map_init.matrice
+		= ft_calloc(game_init->map_init.first_read_matrice + 1, sizeof(char *));
 	if (!game_init->map_init.matrice)
 	{
 		ft_free_map(game_init);
@@ -95,7 +99,8 @@ int	ft_read_map(int fd, t_game_instance *game_init)
 		game_init->map_init.matrice[i] = buffer;
 		i++;
 	}
-	if (game_init->map_init.matrice[0] == NULL || !ft_map_dimensions(game_init) || !ft_is_valid_map(game_init))
+	if (game_init->map_init.matrice[0] == NULL
+		|| !ft_map_dimensions(game_init) || !ft_is_valid_map(game_init))
 	{
 		ft_free_map(game_init);
 		return (0);
@@ -103,7 +108,8 @@ int	ft_read_map(int fd, t_game_instance *game_init)
 	return (1);
 }
 
-// Function to calculate the dimensions of the game map by counting the number of rows, columns and matrice
+// Function to calculate the dimensions of the game map by counting
+//		the number of rows, columns and matrice
 int	ft_map_dimensions(t_game_instance *game_init)
 {
 	char	*row;
@@ -112,7 +118,8 @@ int	ft_map_dimensions(t_game_instance *game_init)
 
 	row_index = 0;
 	row = game_init->map_init.matrice[0];
-	while (row[game_init->map_init.rows_matrice] && row[game_init->map_init.cols_matrice] != '\n')
+	while (row[game_init->map_init.rows_matrice]
+		&& row[game_init->map_init.cols_matrice] != '\n')
 		game_init->map_init.cols_matrice++;
 	while (1)
 	{
@@ -128,9 +135,12 @@ int	ft_map_dimensions(t_game_instance *game_init)
 		game_init->map_init.rows_matrice++;
 		row_index++;
 	}
-	game_init->map_init.size_matrice = game_init->map_init.rows_matrice * game_init->map_init.cols_matrice;
-	game_init->map_init.resolutions.settings_map_width = game_init->map_init.cols_matrice;
-	game_init->map_init.resolutions.settings_map_height = game_init->map_init.rows_matrice;
+	game_init->map_init.size_matrice = game_init->map_init.rows_matrice
+		* game_init->map_init.cols_matrice;
+	game_init->map_init.resolutions.settings_map_width
+		= game_init->map_init.cols_matrice;
+	game_init->map_init.resolutions.settings_map_height
+		= game_init->map_init.rows_matrice;
 	return (1);
 }
 

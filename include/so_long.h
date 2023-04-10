@@ -6,7 +6,7 @@
 /*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 13:21:47 by larcrist          #+#    #+#             */
-/*   Updated: 2023/03/30 14:51:14 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:10:18 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void	ft_initialize_game(t_game_instance *game_init);
 // ------------------------------------------------------------------------------------- GAME EVENTS
 // Function to check an event handler for keyboard input during the game
 int	ft_check_keyboard(int key, t_game_instance *game_init);
+int	ft_non_special(int key, t_game_instance *game_init);
 // Function to free() and quit the program
 int	ft_exit_program(t_game_instance *game_init);
 // Function to free() and reset the game (start in the same point)
@@ -160,6 +161,7 @@ int ft_have_requires(t_game_instance *game_init);
 void	ft_gameplay_start(t_game_instance *game_init);
 // Function to takes a keyboard input and performs corresponding actions, such as moving the player character or resetting the game (+ call for function print in the shell)
 void ft_events_pressed(t_game_instance *game_init, int column, int row);
+void	ft_pressed_continue(t_game_instance *game_init, int column, int row);
 // Function to prints the current number of movements on the terminal shell, but only if the number of movements has changed since the last time it was called
 void	ft_print_shell(t_game_instance *game_init);
 // Function to frees all the memory allocated during the game and exits the program
@@ -171,8 +173,11 @@ void ft_locate_player(t_game_instance *game_init);
 // ------------------------------------------------------------------------------------- GRAPHICS + EVENTS
 // Function to loads the different game images (player, collectibles, floor, exit, and walls) from image files (XPM format)
 void ft_img_init(t_game_instance *game_init);
+// Function to validate the files .xpm
+void ft_check_img(t_game_instance *game_init, void **image, char *path);
 // Function to draws the game map on screen, placing each object (walls, floors, player, exit, and collectibles) in the correct position based on their coordinates in the matrice
 int	ft_map_draw(t_game_instance *game_init);
+void ft_draw_map_continues(t_game_instance *game_init, int column, int row);
 // Function to sets the image of an object in the corresponding cell on the game board
 void	ft_set(t_game_instance *game_init, void *img, int width, int height);
 // ------------------------------------------------------------------------------------- I WANT TO BREAK [FREE]
