@@ -6,7 +6,7 @@
 /*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:36:43 by larcrist          #+#    #+#             */
-/*   Updated: 2023/04/10 13:38:00 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/04/10 19:19:14 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_map_draw(t_game_instance *game_init)
 				ft_set(game_init, game_init->game_objs.floor, column, row);
 			if (game_init->map_init.matrice[row][column] == PLAYER)
 				ft_set(game_init, game_init->game_objs.player, column, row);
-			ft_draw_map_continues(game_init, column, row);
+			ft_map_continues(game_init, column, row);
 			if (game_init->map_init.matrice[row][column] == COLLECTIBLE)
 				ft_set(game_init, game_init->game_objs.collectible,
 					column, row);
@@ -40,7 +40,7 @@ int	ft_map_draw(t_game_instance *game_init)
 	return (0);
 }
 
-void	ft_draw_map_continues(t_game_instance *game_init, int column, int row)
+void	ft_map_continues(t_game_instance *game_init, int column, int row)
 {
 	if (game_init->map_init.matrice[row][column] == EXIT
 		&& game_init->game_data.count_collectible == 0)
@@ -52,8 +52,8 @@ void	ft_draw_map_continues(t_game_instance *game_init, int column, int row)
 }
 
 // Function to sets the image the corresponding cell on the game board
-void	ft_set(t_game_instance *game_init, void *img, int width, int height)
+void		ft_set(t_game_instance *game_init, void *img, int wid, int hgt)
 {
 	mlx_put_image_to_window(game_init->mlx_ptr, game_init->win_ptr,
-		img, width * CELL_SIZE, height * CELL_SIZE);
+		img, wid * CELL_SIZE, hgt * CELL_SIZE);
 }

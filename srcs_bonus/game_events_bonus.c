@@ -6,13 +6,13 @@
 /*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 17:29:16 by larcrist          #+#    #+#             */
-/*   Updated: 2023/04/10 17:30:27 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/04/10 18:53:21 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long_bonus.h"
 
-// Function to sets up the game window and calls ft_map_draw to draw the game map (is the gear of the game)
+// Function to sets up the game window and calls ft_map_draw to draw the game map
 void	ft_gameplay_start(t_game_instance *game_init)
 {
 	mlx_hook(game_init->win_ptr, 17, 0, ft_exit_program, game_init);
@@ -28,40 +28,6 @@ int	ft_gameplay_update(void *param)
 	ft_enemy_events(game_init);
 	ft_anim_collectable(game_init);
 	ft_map_draw(game_init);
-	return (0);
-}
-
-// Function to check an event handler for keyboard input during the game
-int	ft_check_keyboard(int key, t_game_instance *game_init)
-{
-	if (key == ESC)
-	{
-		ft_printf("\nOh, is this game a little hard for you? :c\n");
-		ft_exit_program(game_init);
-	}
-	else if (key == W || key == UP)
-	{
-		game_init->game_objs.player = game_init->game_objs.player_up;
-		ft_events_pressed(game_init, 0, -1);
-	}
-	else if (key == A || key == LEFT)
-	{
-		game_init->game_objs.player = game_init->game_objs.player_left;
-		ft_events_pressed(game_init, -1, 0);
-	}
-	else if (key == S || key == DOWN)
-	{
-		game_init->game_objs.player = game_init->game_objs.player_down;
-		ft_events_pressed(game_init, 0, +1);
-	}
-	else if (key == D || key == RIGHT)
-	{
-		game_init->game_objs.player = game_init->game_objs.player_right;
-		ft_events_pressed(game_init, +1, 0);
-	}
-	else if (key == RESTART)
-		ft_reset_game(game_init);
-	ft_print_shell(game_init);
 	return (0);
 }
 

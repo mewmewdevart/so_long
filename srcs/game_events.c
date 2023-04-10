@@ -6,7 +6,7 @@
 /*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 20:18:07 by larcrist          #+#    #+#             */
-/*   Updated: 2023/04/10 14:11:31 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/04/10 19:18:59 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	ft_events_pressed(t_game_instance *game_init, int column, int row)
 		game_init->game_data.count_collectible--;
 		game_init->game_data.count_movements++;
 	}
-	ft_pressed_continue(game_init, column, row);
+	ft_press_continue(game_init, column, row);
 }
 
-void	ft_pressed_continue(t_game_instance *game_init, int column, int row)
+void	ft_press_continue(t_game_instance *game_init, int column, int row)
 {
 	if (game_init->map_init.matrice[game_init->positions_init.player_row + row]
 		[game_init->positions_init.player_col + column] == EXIT

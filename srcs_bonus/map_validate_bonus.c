@@ -6,7 +6,7 @@
 /*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:33:56 by larcrist          #+#    #+#             */
-/*   Updated: 2023/04/10 17:00:35 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/04/10 19:11:12 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,16 +98,6 @@ int	ft_count_map_objects(t_game_instance *game_init)
 	}
 	return (ft_have_requires(game_init));
 }
-
-/*
-void ft_count_characters(t_game_instance *game_init, int row, int column)
-{
-	if (game_init->map_init.matrice[row][column] == PLAYER)
-		game_init->game_data.count_player++;
-	else if (game_init->map_init.matrice[row][column] == ENEMY)
-		game_init->game_data.count_enemy++;
-	return ;
-}*/
 
 // Function checks if the map has at least one player, one exit,
 //		and one collectible

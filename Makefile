@@ -49,6 +49,7 @@ BONUS_FILES = map_validate_bonus.c \
 	frees_bonus.c \
 	game_init_bonus.c \
 	game_events_bonus.c \
+	game_events_utils_bonus.c \
 	draw_bonus.c \
 	exit_actions_bonus.c \
 	draw_wall_bonus.c \
