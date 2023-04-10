@@ -157,6 +157,7 @@ int	ft_is_map_shape_valid(t_game_instance *game_init);
 int	ft_is_wall(t_game_instance *game_init);
 // Function to counts the number of players, exits, collectibles, walls, and empty spaces on the map, and checks if the map has at least one player, one exit, and one collectible
 int	ft_count_map_objects(t_game_instance *game_init);
+void ft_count_characters(t_game_instance *game_init, int row, int column);
 // Function checks if the map has at least one player, one exit, and one collectible
 int ft_have_requires(t_game_instance *game_init);
 // Cool animations for map design
@@ -188,10 +189,10 @@ int	ft_anim_collectable(t_game_instance *game_init);
 // ------------------------------------------------------------------------------------- GRAPHICS + EVENTS
 // Function to loads the different game images (player, collectibles, floor, exit, and walls) from image files (XPM format)
 void ft_img_init(t_game_instance *game_init);
-// Function to validate the files .xpm
 void ft_check_img(t_game_instance *game_init, void **image, char *path);
 // Function to draws the game map on screen, placing each object (walls, floors, player, exit, and collectibles) in the correct position based on their coordinates in the matrice
 int ft_map_draw(t_game_instance *game_init);
+void	ft_draw_map_continues(t_game_instance *game_init, int column, int row);
 // Function to sets the image of an object in the corresponding cell on the game board
 void	ft_set(t_game_instance *game_init, void *img, int width, int height);
 // ------------------------------------------------------------------------------------- I WANT TO BREAK [FREE]

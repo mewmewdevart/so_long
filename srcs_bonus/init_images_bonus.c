@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_init.c                                        :+:      :+:    :+:   */
+/*   init_images_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larcrist larcrist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 15:06:23 by larcrist          #+#    #+#             */
-/*   Updated: 2023/03/30 14:34:20 by larcrist         ###   ########.fr       */
+/*   Created: 2023/04/10 17:10:36 by larcrist          #+#    #+#             */
+/*   Updated: 2023/04/10 17:37:22 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/so_long_bonus.h"
 
-// Function to initializes the window and sets the init properties of the game
-void	ft_initialize_game(t_game_instance *game_init)
-{
-	game_init->mlx_ptr = mlx_init();
-	if (game_init->mlx_ptr == NULL)
-		ft_error_init(38);
-	game_init->win_ptr = mlx_new_window(game_init->mlx_ptr,
-			game_init->map_init.resolutions.settings_map_width
-			* CELL_SIZE, game_init->map_init.resolutions.settings_map_height
-			* CELL_SIZE, "The Blue Knight");
-	if (game_init->win_ptr == NULL)
-		ft_error_init(38);
-	game_init->game_data.count_movements = 0;
-	ft_img_init(game_init);
-	game_init->game_objs.player = game_init->game_objs.player_down;
-}
-
-// Function to loads the different game images from image files (XPM format)
+// Function to loads the different game images in (XPM format)
 void	ft_img_init(t_game_instance *game_init)
 {
 	ft_check_img(game_init, &game_init->game_objs.player_up,
@@ -48,10 +31,34 @@ void	ft_img_init(t_game_instance *game_init)
 		"rscs/textures/Exit/exit_open_01.xpm");
 	ft_check_img(game_init, &game_init->game_objs.exit_close,
 		"rscs/textures/Exit/exit_close_01.xpm");
-	ft_check_img(game_init, &game_init->game_objs.wall,
-		"rscs/textures/Tiles/blockSimple.xpm");
+	ft_check_img(game_init, &game_init->game_objs.enemy,
+		"rscs/textures/Enemy/enemy_00.xpm");
+	ft_wall_init(game_init);
 }
 
+void	ft_wall_init(t_game_instance *game_init)
+{
+	ft_check_img(game_init, &game_init->game_objs.wall_up0,
+		"rscs/textures/Tiles/topBlocks_01.xpm");
+	ft_check_img(game_init, &game_init->game_objs.wall_up1,
+		"rscs/textures/Tiles/topBlocks_02.xpm");
+	ft_check_img(game_init, &game_init->game_objs.wall_up2,
+		"rscs/textures/Tiles/topBlocks_03.xpm");
+	ft_check_img(game_init, &game_init->game_objs.wall_middle0,
+		"rscs/textures/Tiles/midBlocks_01.xpm");
+	ft_check_img(game_init, &game_init->game_objs.wall_middle1,
+		"rscs/textures/Tiles/block.xpm");
+	ft_check_img(game_init, &game_init->game_objs.wall_middle2,
+		"rscs/textures/Tiles/midBlocks_03.xpm");
+	ft_check_img(game_init, &game_init->game_objs.wall_down0,
+		"rscs/textures/Tiles/botBlocks_01.xpm");
+	ft_check_img(game_init, &game_init->game_objs.wall_down1,
+		"rscs/textures/Tiles/botBlocks_02.xpm");
+	ft_check_img(game_init, &game_init->game_objs.wall_down2,
+		"rscs/textures/Tiles/botBlocks_03.xpm");
+}
+
+// Function to validate the files .xpm
 void	ft_check_img(t_game_instance *game_init, void **image, char *path)
 {
 	int	width;

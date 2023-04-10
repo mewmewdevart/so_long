@@ -42,6 +42,7 @@ SRCS_FILES = map_validate.c \
 	exit_actions.c \
 
 BONUS_FILES = map_validate_bonus.c \
+	init_images_bonus.c \
 	map_init_bonus.c \
 	utils_bonus.c \
 	errors_bonus.c \

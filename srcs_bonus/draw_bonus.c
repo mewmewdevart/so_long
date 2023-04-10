@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_bonus.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/10 17:26:48 by larcrist          #+#    #+#             */
+/*   Updated: 2023/04/10 17:26:50 by larcrist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long_bonus.h"
 
-// Function to draws the game map on screen, placing each object (walls, floors, player, exit, and collectibles) in the correct position based on their coordinates in the matrice
+// Function to draws the game map on screen, placing each objects 
+//	in the correct position based on their coordinates in the matrice
 int	ft_map_draw(t_game_instance *game_init)
 {
 	int	row;
@@ -20,16 +33,24 @@ int	ft_map_draw(t_game_instance *game_init)
 				ft_set(game_init, game_init->game_objs.player, column, row);
 			if (game_init->map_init.matrice[row][column] == ENEMY)
 				ft_set(game_init, game_init->game_objs.enemy, column, row);
-			if (game_init->map_init.matrice[row][column] == EXIT && game_init->game_data.count_collectible == 0)
-				ft_set(game_init, game_init->game_objs.exit_open, column, row);
-			if (game_init->map_init.matrice[row][column] == EXIT && game_init->game_data.count_collectible != 0)
-				ft_set(game_init, game_init->game_objs.exit_close, column, row);
+			ft_draw_map_continues(game_init, column, row);
 			if (game_init->map_init.matrice[row][column] == COLLECTIBLE)
 				ft_set(game_init, game_init->game_objs.collectible, column, row);
 			column++;
 		}
 	}
 	return (ft_player_moves(game_init));
+}
+
+void	ft_draw_map_continues(t_game_instance *game_init, int column, int row)
+{
+	if (game_init->map_init.matrice[row][column] == EXIT
+		&& game_init->game_data.count_collectible == 0)
+		ft_set(game_init, game_init->game_objs.exit_open, column, row);
+	if (game_init->map_init.matrice[row][column] == EXIT
+		&& game_init->game_data.count_collectible != 0)
+		ft_set(game_init, game_init->game_objs.exit_close, column, row);
+	return ;
 }
 
 // Function to prints the current number of movements on the terminal shell, but only if the number of movements has changed since the last time it was called

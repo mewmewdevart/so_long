@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit_actions_bonus.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: larcrist <larcrist@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/10 16:04:31 by larcrist          #+#    #+#             */
+/*   Updated: 2023/04/10 16:04:32 by larcrist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long_bonus.h"
 
 // Function to free() and quit the program
@@ -29,16 +41,16 @@ void	ft_reset_game(t_game_instance *game_init)
 }
 
 // Function to free the name in window
-void ft_cleanup(t_game_instance *game_init)
+void	ft_cleanup(t_game_instance *game_init)
 {
-    if (game_init->resolutions_init.settings_name_window != NULL)
-    {
-        free(game_init->resolutions_init.settings_name_window);
-        game_init->resolutions_init.settings_name_window = NULL;
-    }
-    if (game_init->resolutions_init.settings_name_map != NULL)
-    {
-        free(game_init->resolutions_init.settings_name_map);
-        game_init->resolutions_init.settings_name_map = NULL;
-    }
+	if (game_init->resolutions_init.settings_name_window != NULL)
+	{
+		free(game_init->resolutions_init.settings_name_window);
+		game_init->resolutions_init.settings_name_window = NULL;
+	}
+	if (game_init->resolutions_init.settings_name_map != NULL)
+	{
+		free(game_init->resolutions_init.settings_name_map);
+		game_init->resolutions_init.settings_name_map = NULL;
+	}
 }

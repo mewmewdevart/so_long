@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_validate_bonus.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/10 16:33:56 by larcrist          #+#    #+#             */
+/*   Updated: 2023/04/10 17:00:35 by larcrist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long_bonus.h"
 
-// Function to checks if the map is valid by calling three other functions and returning 1 if all are true, 0 otherwise
+// Function to checks if the map is valid by calling three other functions
+//	and returning 1 if all are true, 0 otherwise
 int	ft_is_valid_map(t_game_instance *game_init)
 {
 	if (!(ft_count_map_objects(game_init)))
@@ -27,7 +40,8 @@ int	ft_is_map_shape_valid(t_game_instance *game_init)
 	return (0);
 }
 
-// Function to checks if the map is closed/surrounded by walls by checking if the borders of the map consist only of walls
+// Function to checks if the map is closed/surrounded by walls by checking
+//	if the borders of the map consist only of walls
 int	ft_is_wall(t_game_instance *game_init)
 {
 	int		i;
@@ -52,7 +66,8 @@ int	ft_is_wall(t_game_instance *game_init)
 	return (1);
 }
 
-// Function to counts the number of players, exits, collectibles, walls, and empty spaces on the map, and checks if the map has at least one player, one exit, and one collectible
+// Function to counts the objects in the map and 
+// checks if the map has at 1 player, 1 exit and >= collectible
 int	ft_count_map_objects(t_game_instance *game_init)
 {
 	int	row;
@@ -84,7 +99,18 @@ int	ft_count_map_objects(t_game_instance *game_init)
 	return (ft_have_requires(game_init));
 }
 
-// Function checks if the map has at least one player, one exit, and one collectible
+/*
+void ft_count_characters(t_game_instance *game_init, int row, int column)
+{
+	if (game_init->map_init.matrice[row][column] == PLAYER)
+		game_init->game_data.count_player++;
+	else if (game_init->map_init.matrice[row][column] == ENEMY)
+		game_init->game_data.count_enemy++;
+	return ;
+}*/
+
+// Function checks if the map has at least one player, one exit,
+//		and one collectible
 int	ft_have_requires(t_game_instance *game_init)
 {
 	if (!(game_init->game_data.count_player == 1

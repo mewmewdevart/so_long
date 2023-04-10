@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   frees_bonus.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/10 16:04:51 by larcrist          #+#    #+#             */
+/*   Updated: 2023/04/10 16:05:28 by larcrist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long_bonus.h"
 
 // Function to free the matrice[][]
@@ -37,11 +49,9 @@ void	ft_free_wall(t_game_instance *game_init)
 	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.wall_up0);
 	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.wall_up1);
 	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.wall_up2);
-
 	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.wall_middle0);
 	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.wall_middle1);
 	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.wall_middle2);
-
 	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.wall_down0);
 	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.wall_down1);
 	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.wall_down2);
