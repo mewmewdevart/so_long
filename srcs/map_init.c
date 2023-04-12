@@ -44,16 +44,27 @@ int	ft_open_map(char *map, t_game_instance *game_init)
 // (reserved space to ft_read_map() function)
 int	ft_read_count_map(char *map)
 {
-	int		i;
-	int		fd;
-	int		count;
-	char	buffer[BUFFER_SIZE];
-	ssize_t	n_read;
+	int	fd;
+	int	count;
 
 	count = 0;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		return (0);
+	count = ft_count_lines(fd);
+	if (close(fd) == -1)
+		return (0);
+	return (count);
+}
+
+int	ft_count_lines(int fd)
+{
+	int		count;
+	char	buffer[BUFFER_SIZE];
+	ssize_t	n_read;
+	int		i;
+
+	count = 0;
 	while (1)
 	{
 		n_read = read(fd, buffer, BUFFER_SIZE);
@@ -69,8 +80,6 @@ int	ft_read_count_map(char *map)
 			i++;
 		}
 	}
-	if (close(fd) == -1)
-		return (0);
 	count++;
 	return (count);
 }
@@ -99,75 +108,18 @@ int	ft_read_map(int fd, t_game_instance *game_init)
 		game_init->map_init.matrice[i] = buffer;
 		i++;
 	}
+	if (!ft_check_read(game_init))
+		return (0);
+	return (1);
+}
+
+int	ft_check_read(t_game_instance *game_init)
+{
 	if (game_init->map_init.matrice[0] == NULL
 		|| !ft_map_dimensions(game_init) || !ft_is_valid_map(game_init))
 	{
 		ft_free_map(game_init);
 		return (0);
 	}
-	return (1);
-}
-
-// Function to calculate the dimensions of the game map by counting
-//		the number of rows, columns and matrice
-int	ft_map_dimensions(t_game_instance *game_init)
-{
-	char	*row;
-	int		row_len;
-	int		row_index;
-
-	row_index = 0;
-	row = game_init->map_init.matrice[0];
-	while (row[game_init->map_init.rows_matrice]
-		&& row[game_init->map_init.cols_matrice] != '\n')
-		game_init->map_init.cols_matrice++;
-	while (1)
-	{
-		row = game_init->map_init.matrice[row_index];
-		if (!row)
-			break ;
-		row_len = ft_strlen(row) - (row[ft_strlen(row) - 1] == '\n');
-		if (row_len != game_init->map_init.cols_matrice)
-		{
-			game_init->map_init.rows_matrice = 0;
-			return (0);
-		}
-		game_init->map_init.rows_matrice++;
-		row_index++;
-	}
-	game_init->map_init.size_matrice = game_init->map_init.rows_matrice
-		* game_init->map_init.cols_matrice;
-	game_init->map_init.resolutions.settings_map_width
-		= game_init->map_init.cols_matrice;
-	game_init->map_init.resolutions.settings_map_height
-		= game_init->map_init.rows_matrice;
-	return (1);
-}
-
-// Function to checks if the map has a valid .ber extension and path/
-int	ft_map_extension(char *map)
-{
-	char		*extension;
-	char		*file_extension;
-	static int	file_count;
-
-	file_count = 0;
-	extension = ".ber";
-	file_extension = ft_strrchr(map, '.');
-	if (map[ft_strlen(map) - 1] == '/')
-	{
-		ft_error_map(21);
-		return (0);
-	}
-	else if (!file_extension || !ft_strcmp(file_extension, ""))
-		return (0);
-	else if (file_extension && !ft_strcmp(file_extension, extension))
-	{
-		if (file_count >= MAX_FILES)
-			return (0);
-		file_count++;
-	}
-	else
-		return (0);
 	return (1);
 }

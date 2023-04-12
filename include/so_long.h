@@ -140,10 +140,14 @@ void		ft_reset_game(t_game_instance *game_init);
 int			ft_open_map(char *map, t_game_instance *game_init);
 // Function to count the map content for ft_calloc (reserved space to read)
 int			ft_read_count_map(char *map);
+int			ft_count_lines(int fd);
 // Function to calculate the map structure (rows, cols and matrice)
 int			ft_map_dimensions(t_game_instance *game_init);
+int			get_rows_count(t_game_instance *game_init);
+int			get_cols_count(t_map_data *map_init);
 // Function to reads a map from a file, validates it, and sets the instance
 int			ft_read_map(int fd, t_game_instance *game_init);
+int			ft_check_read(t_game_instance *game_init);
 // Function to checks if the map has a valid .ber extension and path/
 int			ft_map_extension(char *map);
 // Function to checks if the map is valid

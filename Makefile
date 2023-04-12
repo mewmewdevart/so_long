@@ -40,6 +40,7 @@ SRCS_FILES = map_validate.c \
 	game_events_utils.c \
 	draw.c \
 	exit_actions.c \
+	map_init_utils.c \
 
 BONUS_FILES = map_validate_bonus.c \
 	init_images_bonus.c \
