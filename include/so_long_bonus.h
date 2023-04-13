@@ -199,11 +199,6 @@ int			ft_exit_program(t_game_instance *game_init);
 void		ft_reset_game(t_game_instance *game_init);
 // Function to finds the player position and performs actions
 void		ft_locate_player(t_game_instance *game_init);
-// Function to make the enemy walk
-void		ft_enemy_events(t_game_instance *game_init);
-void		ft_collide(t_game_instance *game_init, int row, int col, int direc);
-// Function to finds the enemy position
-void		ft_locate_enemy(t_game_instance *game_init);
 // Function animate the collectable
 int			ft_anim_collectable(t_game_instance *game_init);
 // ---------------------  GRAPHICS + EVENTS

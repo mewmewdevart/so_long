@@ -25,12 +25,12 @@ int	ft_map_draw(t_game_instance *game_init)
 		column = 0;
 		while (game_init->map_init.matrice[row][column])
 		{
-			if (game_init->map_init.matrice[row][column] == WALL)
-				ft_draw_wall(game_init);
 			if (game_init->map_init.matrice[row][column] == EMPTY)
 				ft_set(game_init, game_init->game_objs.floor, column, row);
 			if (game_init->map_init.matrice[row][column] == PLAYER)
 				ft_set(game_init, game_init->game_objs.player, column, row);
+			if (game_init->map_init.matrice[row][column] == WALL)
+				ft_draw_wall(game_init);
 			ft_draw_continues(game_init, column, row);
 			if (game_init->map_init.matrice[row][column] == COLLECTIBLE)
 				ft_set(game_init, game_init->game_objs.collectible,

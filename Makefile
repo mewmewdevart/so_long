@@ -18,7 +18,7 @@ REMOVE = rm -rf
 MKDIR = mkdir -p
 
 # Path variables
-SRCS_PATH =  ./srcs/
+SRCS_PATH =  ./srcs_mandatory/
 BONUS_PATH =  ./srcs_bonus/
 OBJS_PATH = ./objs/
 LIBS_PATH = ./libs/
@@ -54,7 +54,6 @@ BONUS_FILES = map_validate_bonus.c \
 	draw_bonus.c \
 	exit_actions_bonus.c \
 	draw_wall_bonus.c \
-	enemy_patrol_bonus.c \
 	animation_bonus.c \
 	map_validate_utils_bonus.c \
 	map_init_utils_bonus.c \
