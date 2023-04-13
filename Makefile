@@ -56,6 +56,9 @@ BONUS_FILES = map_validate_bonus.c \
 	draw_wall_bonus.c \
 	enemy_patrol_bonus.c \
 	animation_bonus.c \
+	map_validate_utils_bonus.c \
+	map_init_utils_bonus.c \
+
 
 # Object files
 OBJS_FILES = $(patsubst %.c, $(OBJS_PATH)%.o, $(SRCS_FILES))

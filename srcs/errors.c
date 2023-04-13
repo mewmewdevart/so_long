@@ -16,14 +16,11 @@
 void	ft_error_init(int n)
 {
 	if (n == 38)
-		ft_printf("%sError\nCheck library compatibility!", COLOR_RED);
+		ft_printf("%sError\nCheck library compatibility! \n", COLOR_RED);
 	if (n == 1)
-		ft_printf("%sError\n Operation not permitted!", COLOR_RED);
+		ft_printf("%sError\n Operation not permitted! \n", COLOR_RED);
 	if (n == 2)
-	{
-		ft_printf("Error\n");
-		ft_printf("%sError\nNo such file or directory!", COLOR_RED);
-	}
+		ft_printf("%sError\nNo such file or directory! \n", COLOR_RED);
 	exit(n);
 }
 

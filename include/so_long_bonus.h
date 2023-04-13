@@ -156,10 +156,13 @@ void		ft_reset_game(t_game_instance *game_init);
 int			ft_open_map(char *map, t_game_instance *game_init);
 // Function to count the map content for ft_calloc (reserved space to read)
 int			ft_read_count_map(char *map);
+int			count_newlines(int fd, char *buffer);
 // Function to calculate the map structure (rows, cols and matrice)
 int			ft_map_dimensions(t_game_instance *game_init);
+int			ft_update_map_dimensions(t_game_instance *game_init);
 // Function to reads a map from a file, validates it, and sets the instance
 int			ft_read_map(int fd, t_game_instance *game_init);
+int			ft_check_read(t_game_instance *game_init);
 // Function to checks if the map has a valid .ber extension and path/
 int			ft_map_extension(char *map);
 // Function to checks if the map is valid
@@ -170,6 +173,7 @@ int			ft_is_map_shape_valid(t_game_instance *game_init);
 int			ft_is_wall(t_game_instance *game_init);
 // Function to counts the number of objects
 int			ft_count_map_objects(t_game_instance *game_init);
+void		ft_count_continue(t_game_instance *game_init, int row, int colum);
 // Function checks if the map has at 1 player, 1 exit >= collectible
 int			ft_have_requires(t_game_instance *game_init);
 // Cool animations for map design
@@ -182,9 +186,11 @@ void		ft_gameplay_start(t_game_instance *game_init);
 // Function to do one game loop
 int			ft_gameplay_update(void *param);
 // Function to takes a keyboard input and performs corresponding actions
-void		ft_events_pressed(t_game_instance *game_init, int column, int row);
+int			ft_events_pressed(t_game_instance *game_init, int column, int row);
+void		ft_win(t_game_instance *game_init);
+void		ft_lose(t_game_instance *game_init);
 // Function to prints the current number of movements on the terminal shell
-void		ft_print_shell(t_game_instance *game_init);
+int			ft_print_shell(t_game_instance *game_init);
 // Function to displays the player number of movements on screen
 int			ft_player_moves(t_game_instance *game_init);
 // Function to frees all the memory allocated during the game and exit
@@ -195,6 +201,7 @@ void		ft_reset_game(t_game_instance *game_init);
 void		ft_locate_player(t_game_instance *game_init);
 // Function to make the enemy walk
 void		ft_enemy_events(t_game_instance *game_init);
+void		ft_collide(t_game_instance *game_init, int row, int col, int direc);
 // Function to finds the enemy position
 void		ft_locate_enemy(t_game_instance *game_init);
 // Function animate the collectable

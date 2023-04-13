@@ -79,16 +79,14 @@ int	ft_count_map_objects(t_game_instance *game_init)
 		column = 0;
 		while (game_init->map_init.matrice[row][column])
 		{
-			if (game_init->map_init.matrice[row][column] == PLAYER)
+			if (game_init->map_init.matrice[row][column] == EXIT
+				|| game_init->map_init.matrice[row][column] == WALL
+				|| game_init->map_init.matrice[row][column] == EMPTY)
+				ft_count_continue(game_init, row, column);
+			else if (game_init->map_init.matrice[row][column] == PLAYER)
 				game_init->game_data.count_player++;
-			else if (game_init->map_init.matrice[row][column] == EXIT)
-				game_init->game_data.count_exit++;
 			else if (game_init->map_init.matrice[row][column] == COLLECTIBLE)
 				game_init->game_data.count_collectible++;
-			else if (game_init->map_init.matrice[row][column] == WALL)
-				game_init->game_data.count_wall++;
-			else if (game_init->map_init.matrice[row][column] == EMPTY)
-				game_init->game_data.count_empty++;
 			else if (game_init->map_init.matrice[row][column] == ENEMY)
 				game_init->game_data.count_enemy++;
 			else if (game_init->map_init.matrice[row][column] != '\n')
@@ -99,13 +97,12 @@ int	ft_count_map_objects(t_game_instance *game_init)
 	return (ft_have_requires(game_init));
 }
 
-// Function checks if the map has at least one player, one exit,
-//		and one collectible
-int	ft_have_requires(t_game_instance *game_init)
+void	ft_count_continue(t_game_instance *game_init, int row, int colum)
 {
-	if (!(game_init->game_data.count_player == 1
-			&& game_init->game_data.count_exit == 1
-			&& game_init->game_data.count_collectible >= 1))
-		return (0);
-	return (1);
+	if (game_init->map_init.matrice[row][colum] == EXIT)
+		game_init->game_data.count_exit++;
+	else if (game_init->map_init.matrice[row][colum] == WALL)
+		game_init->game_data.count_wall++;
+	else if (game_init->map_init.matrice[row][colum] == EMPTY)
+		game_init->game_data.count_empty++;
 }

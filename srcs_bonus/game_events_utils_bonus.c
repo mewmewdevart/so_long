@@ -51,3 +51,19 @@ int	ft_non_special(int key, t_game_instance *game_init)
 		ft_reset_game(game_init);
 	return (0);
 }
+
+// Auxiliary Function  : ft_events_pressed
+void	ft_win(t_game_instance *game_init)
+{
+	game_init->map_init.matrice[game_init->positions_init.player_row]
+	[game_init->positions_init.player_col] = EMPTY;
+	game_init->game_data.count_movements++;
+	ft_printf("\nGreat! You have found all the stars in the game.\n");
+	ft_exit_program(game_init);
+}
+
+void	ft_lose(t_game_instance *game_init)
+{
+	ft_printf("\nGame over!\n");
+	ft_exit_program(game_init);
+}

@@ -31,19 +31,20 @@ int	ft_map_draw(t_game_instance *game_init)
 				ft_set(game_init, game_init->game_objs.floor, column, row);
 			if (game_init->map_init.matrice[row][column] == PLAYER)
 				ft_set(game_init, game_init->game_objs.player, column, row);
-			if (game_init->map_init.matrice[row][column] == ENEMY)
-				ft_set(game_init, game_init->game_objs.enemy, column, row);
 			ft_draw_continues(game_init, column, row);
 			if (game_init->map_init.matrice[row][column] == COLLECTIBLE)
-				ft_set(game_init, game_init->game_objs.collectible, column, row);
+				ft_set(game_init, game_init->game_objs.collectible,
+					column, row);
 			column++;
 		}
 	}
 	return (ft_player_moves(game_init));
 }
 
-void		ft_draw_continues(t_game_instance *game_init, int column, int row)
+void	ft_draw_continues(t_game_instance *game_init, int column, int row)
 {
+	if (game_init->map_init.matrice[row][column] == ENEMY)
+		ft_set(game_init, game_init->game_objs.enemy, column, row);
 	if (game_init->map_init.matrice[row][column] == EXIT
 		&& game_init->game_data.count_collectible == 0)
 		ft_set(game_init, game_init->game_objs.exit_open, column, row);
@@ -67,8 +68,9 @@ int	ft_player_moves(t_game_instance *game_init)
 	return (0);
 }
 
-// Function to sets the image of an object in the corresponding cell on the game board
+// Function to sets the image of an object in the corresponding cell
 void	ft_set(t_game_instance *game_init, void *img, int wid, int hgt)
 {
-	mlx_put_image_to_window(game_init->mlx_ptr, game_init->win_ptr, img, wid * CELL_SIZE, hgt * CELL_SIZE);
+	mlx_put_image_to_window(game_init->mlx_ptr, game_init->win_ptr,
+		img, wid * CELL_SIZE, hgt * CELL_SIZE);
 }

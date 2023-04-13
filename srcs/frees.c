@@ -42,4 +42,5 @@ void	ft_free_img(t_game_instance *game_init)
 	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.exit_close);
 	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.wall);
 	mlx_destroy_image(game_init->mlx_ptr, game_init->game_objs.floor);
+	game_init->game_objs = (t_game_objs){0};
 }

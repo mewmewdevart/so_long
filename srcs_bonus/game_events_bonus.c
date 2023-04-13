@@ -12,7 +12,7 @@
 
 #include "../include/so_long_bonus.h"
 
-// Function to sets up the game window and calls ft_map_draw to draw the game map
+// Function to sets up the game window and calls ft_map_draw
 void	ft_gameplay_start(t_game_instance *game_init)
 {
 	mlx_hook(game_init->win_ptr, 17, 0, ft_exit_program, game_init);
@@ -20,19 +20,19 @@ void	ft_gameplay_start(t_game_instance *game_init)
 	mlx_loop_hook(game_init->mlx_ptr, &ft_gameplay_update, game_init);
 }
 
+// For future uses : ft_enemy_events(game_init);
 int	ft_gameplay_update(void *param)
 {
 	t_game_instance	*game_init;
 
 	game_init = (t_game_instance *)param;
-	ft_enemy_events(game_init);
 	ft_anim_collectable(game_init);
 	ft_map_draw(game_init);
 	return (0);
 }
 
-// Function to prints the current number of movements on the terminal shell, but only if the number of movements has changed since the last time it was called
-void	ft_print_shell(t_game_instance *game_init)
+// Function to prints the current number of movements on the terminal
+int	ft_print_shell(t_game_instance *game_init)
 {
 	static int	previous_count_movements = -1;
 	int			current_count_movements;
@@ -43,47 +43,37 @@ void	ft_print_shell(t_game_instance *game_init)
 		ft_printf("You moved %d times.\n", current_count_movements);
 		previous_count_movements = current_count_movements;
 	}
+	return (1);
 }
 
-// Function to takes a keyboard input and performs corresponding actions, such as moving the player character or resetting the game (+ call for function print in the shell)
-void	ft_events_pressed(t_game_instance *game_init, int column, int row)
+// Function to takes a keyboard input and performs corresponding actions
+int	ft_events_pressed(t_game_instance *game_init, int column, int row)
 {
+	int	new_row;
+	int	new_col;
+	int	current_tile;
+
 	ft_locate_player(game_init);
-	if (game_init->map_init.matrice[game_init->positions_init.player_row + row]
-		[game_init->positions_init.player_col + column] == EMPTY)
+	new_row = game_init->positions_init.player_row + row;
+	new_col = game_init->positions_init.player_col + column;
+	current_tile = game_init->map_init.matrice[new_row][new_col];
+	if (current_tile == EMPTY || current_tile == COLLECTIBLE)
 	{
-		game_init->map_init.matrice[game_init->positions_init.player_row + row]
-		[game_init->positions_init.player_col + column] = PLAYER;
+		game_init->map_init.matrice[new_row][new_col] = PLAYER;
 		game_init->map_init.matrice[game_init->positions_init.player_row]
 		[game_init->positions_init.player_col] = EMPTY;
+		game_init->positions_init.player_row = new_row;
+		game_init->positions_init.player_col = new_col;
+		if (current_tile == COLLECTIBLE)
+			game_init->game_data.count_collectible--;
 		game_init->game_data.count_movements++;
 	}
-	if (game_init->map_init.matrice[game_init->positions_init.player_row + row]
-		[game_init->positions_init.player_col + column] == COLLECTIBLE)
-	{
-		game_init->map_init.matrice[game_init->positions_init.player_row + row]
-		[game_init->positions_init.player_col + column] = PLAYER;
-		game_init->map_init.matrice[game_init->positions_init.player_row]
-		[game_init->positions_init.player_col] = EMPTY;
-		game_init->game_data.count_collectible--;
-		game_init->game_data.count_movements++;
-	}
-	if (game_init->map_init.matrice[game_init->positions_init.player_row + row]
-		[game_init->positions_init.player_col + column] == ENEMY)
-	{
-		ft_printf("\nGame over! ");
-		ft_printf("Better luck next time! Your score was [%d] moves!\n", game_init->game_data.count_movements);
-		ft_exit_program(game_init);
-	}
-	if (game_init->map_init.matrice[game_init->positions_init.player_row + row]
-		[game_init->positions_init.player_col + column] == EXIT && game_init->game_data.count_collectible == 0)
-	{
-		game_init->map_init.matrice[game_init->positions_init.player_row][game_init->positions_init.player_col] = EMPTY;
-		game_init->game_data.count_movements++;
-		ft_printf("\nCongratulations! You have found all the stars in the game.\n");
-		ft_printf("You made %d moves. Is that the best you can do?\n", game_init->game_data.count_movements);
-		ft_exit_program(game_init);
-	}
+	else if (current_tile == ENEMY)
+		ft_lose(game_init);
+	else if (current_tile == EXIT
+		&& game_init->game_data.count_collectible == 0)
+		ft_win(game_init);
+	return (ft_print_shell(game_init));
 }
 
 // Function to finds the player position and performs actions like moving
