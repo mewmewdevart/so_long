@@ -6,7 +6,7 @@
 /*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 13:21:47 by larcrist          #+#    #+#             */
-/*   Updated: 2023/04/10 19:30:34 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/04/14 12:59:18 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,10 +164,10 @@ int			ft_have_requires(t_game_instance *game_init);
 // Function to call for events
 void		ft_gameplay_start(t_game_instance *game_init);
 // Function to takes a keyboard input and performs corresponding actions
-void		ft_events_pressed(t_game_instance *game_init, int column, int row);
-void		ft_press_continue(t_game_instance *game_init, int column, int row);
+int			ft_events_pressed(t_game_instance *game_init, int column, int row);
+void		ft_win(t_game_instance *game_init);
 // Function to prints the current number of movements on the terminal shell
-void		ft_print_shell(t_game_instance *game_init);
+int			ft_print_shell(t_game_instance *game_init);
 // Function to frees all the memory allocated during the game and exit
 int			ft_exit_program(t_game_instance *game_init);
 // Function to frees all the memory allocated and reset game

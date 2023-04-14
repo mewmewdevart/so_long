@@ -6,7 +6,7 @@
 /*   By: larcrist <larcrist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 20:18:07 by larcrist          #+#    #+#             */
-/*   Updated: 2023/04/10 19:18:59 by larcrist         ###   ########.fr       */
+/*   Updated: 2023/04/14 12:59:40 by larcrist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ void	ft_gameplay_start(t_game_instance *game_init)
 	mlx_loop_hook(game_init->mlx_ptr, &ft_map_draw, game_init);
 }
 
-// Function to prints the current number of movements on the terminal shell
-//	but only if it has changed since the last time it was called
-void	ft_print_shell(t_game_instance *game_init)
+// Function to prints the current number of movements on the terminal
+int	ft_print_shell(t_game_instance *game_init)
 {
 	static int	previous_count_movements = -1;
 	int			current_count_movements;
@@ -34,50 +33,35 @@ void	ft_print_shell(t_game_instance *game_init)
 		ft_printf("You moved %d times.\n", current_count_movements);
 		previous_count_movements = current_count_movements;
 	}
+	return (1);
 }
 
-// Function to takes a keyboard input and performs corresponding actions,
-//			such as moving the player character or resetting the game
-//							(+ call for function print in the shell)
-void	ft_events_pressed(t_game_instance *game_init, int column, int row)
+// Function to takes a keyboard input and performs corresponding actions
+int	ft_events_pressed(t_game_instance *game_init, int column, int row)
 {
+	int	new_row;
+	int	new_col;
+	int	current_tile;
+
 	ft_locate_player(game_init);
-	if (game_init->map_init.matrice[game_init->positions_init.player_row + row]
-		[game_init->positions_init.player_col + column] == EMPTY)
+	new_row = game_init->positions_init.player_row + row;
+	new_col = game_init->positions_init.player_col + column;
+	current_tile = game_init->map_init.matrice[new_row][new_col];
+	if (current_tile == EMPTY || current_tile == COLLECTIBLE)
 	{
-		game_init->map_init.matrice[game_init->positions_init.player_row + row]
-		[game_init->positions_init.player_col + column] = PLAYER;
+		game_init->map_init.matrice[new_row][new_col] = PLAYER;
 		game_init->map_init.matrice[game_init->positions_init.player_row]
 		[game_init->positions_init.player_col] = EMPTY;
+		game_init->positions_init.player_row = new_row;
+		game_init->positions_init.player_col = new_col;
+		if (current_tile == COLLECTIBLE)
+			game_init->game_data.count_collectible--;
 		game_init->game_data.count_movements++;
 	}
-	if (game_init->map_init.matrice[game_init->positions_init.player_row + row]
-		[game_init->positions_init.player_col + column] == COLLECTIBLE)
-	{
-		game_init->map_init.matrice[game_init->positions_init.player_row + row]
-		[game_init->positions_init.player_col + column] = PLAYER;
-		game_init->map_init.matrice[game_init->positions_init.player_row]
-		[game_init->positions_init.player_col] = EMPTY;
-		game_init->game_data.count_collectible--;
-		game_init->game_data.count_movements++;
-	}
-	ft_press_continue(game_init, column, row);
-}
-
-void	ft_press_continue(t_game_instance *game_init, int column, int row)
-{
-	if (game_init->map_init.matrice[game_init->positions_init.player_row + row]
-		[game_init->positions_init.player_col + column] == EXIT
+	else if (current_tile == EXIT
 		&& game_init->game_data.count_collectible == 0)
-	{
-		game_init->map_init.matrice[game_init->positions_init.player_row]
-		[game_init->positions_init.player_col] = EMPTY;
-		game_init->game_data.count_movements++;
-		ft_printf("Nice! You have found all the stars in the game.\n");
-		ft_printf("You made %d moves. Is that the best you can do?\n",
-			game_init->game_data.count_movements);
-		ft_exit_program(game_init);
-	}
+		ft_win(game_init);
+	return (ft_print_shell(game_init));
 }
 
 // Function to finds the player position and performs actions like moving the
