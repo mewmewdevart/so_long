@@ -5,7 +5,7 @@
 </p>
 
 <h1 align="center">
- so_long  (⚠️ in development)
+ so_long
 </h1>
 
 
