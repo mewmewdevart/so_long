@@ -98,7 +98,7 @@ $ make
 # This command compiles the executable file 'so_long' and runs it along with any map
 # of your choice (or a custom one) located in the directory 'rscs/maps'.
 #	To execute it, run the following command:
-$ ./bin/so_long ./rscs/maps/valids//map_valid_rectangle.ber
+$ ./bin/so_long ./rscs/maps/valids/map_valid_rectangle.ber
 # If you want to run the bonus part, run the 'make bonus' command in your directory
 #	and provide the correct path to the files starting with ./bin/so_long bonus
 ```
