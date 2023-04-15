@@ -37,7 +37,7 @@ Bonus part:
 - [x] Display the movement count directly on screen instead of writing it in the shell.
 
 My implementations:
-- [x] The name displayed in the executable window shows the name of the game and the name of the map that the person chose to open.
+- [x] The name displayed in the executable window shows the name of the game and the name of the map that the person chose to open. (I had to remove this, but you can find it in my commit history)
 - [x] Clicking on the cross 'X' on the window's close the game.
 - [x] Press 'R' to reset the game.
 - [x] Cool design border in the map
@@ -106,6 +106,16 @@ $ ./bin/so_long ./rscs/maps/valids/map_valid_rectangle.ber
 - Control the player using the arrow keys (up, down, left, and right) or the letter keys (w, a, s, and d).
 - Press the 'R' key on your keyboard to reset the current level.
 - Press the [ESC] key or Click in the 'X' window to exit the game.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/50052600/232246726-d4a89f87-0bbc-4d43-9e13-8e58c54579b1.png" alt="Gameplay Screen"/>
+</p>
+
+
+<p align="center">
+	<a href="https://www.youtube.com/watch?v=tNngHctUoaY">Click here to watch the video</a> 
+</p>
+
 
 ## 🗺️ Create your own Map:
 For curious minds who want to test the project's features: <br>
