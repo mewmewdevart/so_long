@@ -68,7 +68,7 @@ If any of these checks fail, the game must end with a error message.
 ### Prerequisites
 
 **Linux and MacOS**
-This project requires the [GNU Compiler Collection](https://gcc.gnu.org/), the [GNU Make](https://www.gnu.org/software/make/) compiler, and the Internet to clone [MiniLibX](https://github.com/42Paris/minilibx-linux#readme) in the libraryfolder.
+This project requires the [GNU Compiler Collection](https://gcc.gnu.org/), the [GNU Make](https://www.gnu.org/software/make/) compiler, internet to clone [MiniLibX](https://github.com/42Paris/minilibx-linux#readme) in the libraryfolder and X11 Development Libraries and Headers (`sudo apt-get install libx11-dev`).
 
 **Windows**
 
